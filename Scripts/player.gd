@@ -1,10 +1,12 @@
-extends Sprite3D
+extends CharacterBody3D
 
 var clickPositionx
 var clickPositionz
 
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+
 func _ready() -> void:
-	pass
 	moveTowardsMousePosition()
 
 
@@ -39,12 +41,24 @@ func getMouseWorldPosition():
 func moveTowardsMousePosition():
 	await awaitTimer()
 	if (abs(position.x-getMouseWorldPosition().x) > 1.2):
-		position.x = move_toward(position.x,getMouseWorldPosition().x,0.2)
+		position.x = move_toward(position.x,getMouseWorldPosition().x,0.06)
 	if (abs(position.z-getMouseWorldPosition().z) > 1.2):
-		position.z = move_toward(position.z,getMouseWorldPosition().z,0.2)
+		position.z = move_toward(position.z,getMouseWorldPosition().z,0.06)
 
 
 func awaitTimer():
-	await get_tree().create_timer(0.03).timeout
+	await get_tree().create_timer(0.004).timeout
 	moveTowardsMousePosition()
+	
+
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+
+	move_and_slide()
 	

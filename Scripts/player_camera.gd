@@ -14,7 +14,7 @@ func  _input(event: InputEvent) -> void:
 			if event.pressed:
 				pass
 	if event is InputEventMouseMotion:
-		adjustCamera(0.5,0.15,mousePos)
+		adjustCamera(0.1,0.05,mousePos)
 
 
 func adjustCamera(limitX,limitY,mousePos):
@@ -24,15 +24,11 @@ func adjustCamera(limitX,limitY,mousePos):
 	var divFactorY: float = ((centerY*2)/limitY)
 	var newPosX: float
 	var newPosZ: float
-	if mousePos.x > centerX:
+	
+	if mousePos.x != centerX:
 		newPosX = ((mousePos.x-centerX)/divFactorX)*2
 		position.x = newPosX
-	elif mousePos.x < centerX:
-		newPosX = ((mousePos.x-centerX)/divFactorX)*2
-		position.x = newPosX
-	if mousePos.y > centerY:
+	if mousePos.y != centerY:
 		newPosZ = ((mousePos.y-centerY)/divFactorY)*2
 		position.z = newPosZ + defaultZPos
-	elif mousePos.y < centerY:
-		newPosZ = ((mousePos.y-centerY)/divFactorY)*2
-		position.z = newPosZ + defaultZPos
+		
