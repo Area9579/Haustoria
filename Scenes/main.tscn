@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://magi1winy2i"]
+
+[ext_resource type="Texture2D" uid="uid://byxlsfs7kyuma" path="res://Assets/GoopyGoober.png" id="1_4rimi"]
+[ext_resource type="Script" path="res://playerControl.gd" id="2_mriii"]
+[ext_resource type="Texture2D" uid="uid://cpbh4qoh1ldpm" path="res://Assets/sentryPlaceholder.png" id="3_bpiof"]
+[ext_resource type="Script" path="res://player_camera.gd" id="3_cmrc7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j6jtq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8gs5"]
+
+[node name="Main" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(28.4368, 0, 0, 0, 0.102244, 0, 0, 0, 28.4368, 0, -0.987964, 0)
+mesh = SubResource("BoxMesh_j6jtq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_o8gs5")
+
+[node name="PlayerSprite" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+billboard = 1
+texture_filter = 2
+texture = ExtResource("1_4rimi")
+script = ExtResource("2_mriii")
+
+[node name="PlayerCamera" type="Camera3D" parent="PlayerSprite"]
+transform = Transform3D(0.1, 0, 0, 0, 0.069719, 0.0716886, 0, -0.0716886, 0.069719, 0, 0.318, 0.391)
+script = ExtResource("3_cmrc7")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.89772, 0.177953, -3.52292)
+billboard = 1
+texture_filter = 2
+texture = ExtResource("3_bpiof")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5.20118, 0.177953, -0.974102)
+billboard = 1
+texture_filter = 2
+texture = ExtResource("3_bpiof")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -5.2942, 0.177953, 1.66656)
+billboard = 1
+texture_filter = 2
+texture = ExtResource("3_bpiof")
