@@ -3,21 +3,14 @@ extends CharacterBody3D
 var clickPositionx
 var clickPositionz
 
-const SPEED = 5.0
+const SPEED = 5.0 #where is this being used?
 const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
-	moveTowardsMousePosition()
+	moveTowardsMousePosition() #initiates the mouse tracking loop
 
 
-func  _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				pass
-
-
-func raycastOnMousePosition():
+func raycastOnMousePosition(): #function that greates a raycast from the camera to a space in the 3D world based on the mouse position
 	var cam = get_viewport().get_camera_3d()
 	var mousePos = get_viewport().get_mouse_position()
 	var stateInSpace = get_world_3d().direct_space_state
@@ -31,14 +24,14 @@ func raycastOnMousePosition():
 	return(resultingRay)
 
 
-func getMouseWorldPosition():
+func getMouseWorldPosition(): #gets a vector3 based on the camera raycast
 	var raycastResult = raycastOnMousePosition()
 	if raycastResult:
 		return raycastResult.position
 	return position
 
 
-func moveTowardsMousePosition():
+func moveTowardsMousePosition(): #moves the player towards the position of the mouse
 	await awaitTimer()
 	if (abs(position.x-getMouseWorldPosition().x) > 1.2):
 		position.x = move_toward(position.x,getMouseWorldPosition().x,0.06)
@@ -46,13 +39,14 @@ func moveTowardsMousePosition():
 		position.z = move_toward(position.z,getMouseWorldPosition().z,0.06)
 
 
-func awaitTimer():
+func awaitTimer(): #this timer determens how frequently to call the player movement function
 	await get_tree().create_timer(0.004).timeout
 	moveTowardsMousePosition()
 	
 
 
 func _physics_process(delta: float) -> void:
+	#below code for jumping
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
