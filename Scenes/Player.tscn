@@ -21,7 +21,7 @@ texture_filter = 0
 texture = ExtResource("2_j5ysu")
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.494124, 0.869391, 0, -0.869391, 0.494124, 0, 7.27733, 5.25678)
+transform = Transform3D(1, 0, 0, 0, 0.494124, 0.869391, 0, -0.869391, 0.494124, 0, 7.27733, 4.24484)
 current = true
 fov = 53.9261
 script = ExtResource("3_iy2vu")
