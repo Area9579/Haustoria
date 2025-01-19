@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmkpfdmdrk7lf"]
+
+[ext_resource type="Texture2D" uid="uid://c0hisog6kd4bj" path="res://Assets/icon.svg" id="1_npwcc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ryya8"]
+
+[node name="Wall" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ryya8")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474465, 0)
+vertices = PackedVector3Array(-0.460838, 0, 0.665537, -0.638164, 0, -0.616541, 0.64581, 0, -0.572407, 0.511132, 0, 0.666667)
+affect_navigation_mesh = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.83, 0, 0, 0, 0.83, 0, 0, 0, 0.83, 0, -0.0517332, 0)
+billboard = 1
+texture = ExtResource("1_npwcc")

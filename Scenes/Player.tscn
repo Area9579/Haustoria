@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://skk7130cpcoh"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
+[ext_resource type="Texture2D" uid="uid://byxlsfs7kyuma" path="res://Assets/GoopyGoober.png" id="2_j5ysu"]
+[ext_resource type="Script" path="res://Scripts/player_camera.gd" id="3_iy2vu"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
+height = 0.941026
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_05xm5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_0kq8h")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3.215, 0, 0, 0, 3.215, 0, 0, 0, 3.215, 0, 0.5, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_j5ysu")
+
+[node name="PlayerCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.494124, 0.869391, 0, -0.869391, 0.494124, 0, 7.27733, 4.24484)
+current = true
+fov = 53.9261
+script = ExtResource("3_iy2vu")
