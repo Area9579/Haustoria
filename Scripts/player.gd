@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 30.0
 const JUMP_VELOCITY = 4.5
-var accel = 1
+var accel = 1.0
 
 func _ready() -> void:
 	pass
@@ -16,16 +16,23 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	if Input.is_action_pressed("Left Click"):
+	
+	#this code is for continuous
+	#if Input.is_action_pressed("Left Click"):
+		#var directionVector: Vector2 = getDirectionVector()
+		#slideTowardsMouse(directionVector,delta)
+	#else:
+		#accel = 1.0
+		#velocity.x = lerp(velocity.x,0.0,5 * delta)
+		#velocity.z = lerp(velocity.z,0.0,5 * delta)
+	
+	#this code is for impulse
+	if Input.is_action_just_pressed("Left Click"):
 		var directionVector: Vector2 = getDirectionVector()
 		slideTowardsMouse(directionVector,delta)
-	elif Input.is_action_just_released("Left Click"):
-		decelerate(delta)
-		accel = 1
-		#velocity.x = 0
-		#velocity.z = 0
-	decelerate(delta)
+	else:
+		velocity.x = lerp(velocity.x,0.0,5 * delta)
+		velocity.z = lerp(velocity.z,0.0,5 * delta)
 
 	move_and_slide()
 
@@ -65,22 +72,14 @@ func getDirectionVector():
 
 
 func slideTowardsMouse(directionVector,delta):
-	velocity.x = directionVector.x * SPEED * accel
-	velocity.z = -directionVector.y * SPEED * accel
-	if accel < 2:
-		accel += 3 * delta
-
-
-
-func decelerate(delta):
-	if velocity.x > 0:
-		velocity.x -= 8 * delta
-	elif velocity.x < 0:
-		velocity.x += 8 * delta
-	if velocity.z < 0:
-		velocity.z += 8 * delta
-	elif velocity.z > 0:
-		velocity.z -= 8 * delta
+	#this code is for continuous
+	#accel = lerp(accel,3.0,10 * delta)
+	#velocity.x = lerp(velocity.x,directionVector.x * SPEED * accel,0.3)
+	#velocity.z = lerp(velocity.z,-directionVector.y * SPEED * accel,0.3)
+	
+	#this code is for impulse
+	velocity.x = directionVector.x * SPEED
+	velocity.z = -directionVector.y * SPEED
 
 
 func moveTowardsMousePosition(): #moves the playezr towards the position of the mouse
