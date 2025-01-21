@@ -1,12 +1,18 @@
 extends CharacterBody3D
 
+@onready var dashCooldown: Timer = $CooldownTimer
+@onready var mouseCooldown: Timer = $MouseInputTimer
 
-const SPEED = 30.0
+const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
+const BOUNCE_MULTIPLIER = 3.0
+
+var mouseInput: String
+var dashCombo = 1
 var accel = 1.0
 
 func _ready() -> void:
-	pass
+	mouseInput = "Left Click"
 
 
 func _physics_process(delta: float) -> void:
@@ -27,14 +33,17 @@ func _physics_process(delta: float) -> void:
 		#velocity.z = lerp(velocity.z,0.0,5 * delta)
 	
 	#this code is for impulse
-	if Input.is_action_just_pressed("Left Click"):
-		var directionVector: Vector2 = getDirectionVector()
-		slideTowardsMouse(directionVector,delta)
+	if Input.is_action_just_pressed(mouseInput):
+		if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
+			mouseCooldown.start()
+			slideTowardsMouse(delta)
+			changeMouseInput(mouseInput)
+			if dashCombo < 1.6:
+				dashCombo += 0.2
 	else:
-		velocity.x = lerp(velocity.x,0.0,5 * delta)
-		velocity.z = lerp(velocity.z,0.0,5 * delta)
-
+		decelerate(delta)
 	move_and_slide()
+	rebound()
 
 
 func raycastOnMousePosition(): #function that greates a raycast from the camera to a space in the 3D world based on the mouse position
@@ -66,12 +75,34 @@ func getDirectionVector():
 	return directionVector
 
 
-func slideTowardsMouse(directionVector,delta):
+func slideTowardsMouse(delta):
+	var directionVector: Vector2 = getDirectionVector()
 	#this code is for continuous
 	#accel = lerp(accel,3.0,10 * delta)
 	#velocity.x = lerp(velocity.x,directionVector.x * SPEED * accel,0.3)
 	#velocity.z = lerp(velocity.z,-directionVector.y * SPEED * accel,0.3)
 	
 	#this code is for impulse
-	velocity.x = directionVector.x * SPEED
-	velocity.z = -directionVector.y * SPEED
+	velocity.x = directionVector.x * SPEED * dashCombo
+	velocity.z = -directionVector.y * SPEED * dashCombo
+
+
+func decelerate(delta):
+	velocity.x = lerp(velocity.x,0.0,5 * delta)
+	velocity.z = lerp(velocity.z,0.0,5 * delta)
+
+func rebound():
+	if get_wall_normal():
+		velocity.x += get_wall_normal().x * BOUNCE_MULTIPLIER
+		velocity.z += get_wall_normal().z * BOUNCE_MULTIPLIER
+
+func changeMouseInput(mouseClickInput):
+	if mouseClickInput == "Left Click":
+		mouseInput = "Right Click"
+	elif mouseClickInput == "Right Click":
+		mouseInput = "Left Click"
+
+
+func _on_mouse_input_timer_timeout() -> void:
+	dashCooldown.start()
+	dashCombo = 1
