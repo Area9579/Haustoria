@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://tnvub7y17iua"]
+
+[ext_resource type="Script" path="res://Scripts/boss_hand_hit_box.gd" id="1_g5163"]
+[ext_resource type="Texture2D" uid="uid://7gf8cgs5r1nw" path="res://Assets/playerhandhitboxplaceholder.png" id="2_2h3r1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dij5l"]
+
+[node name="BossHandHitBox" type="Area3D"]
+script = ExtResource("1_g5163")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dij5l")
+
+[node name="AnimatedSprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.386184, 0, 0, 0, 0.386184, 0, 0, 0, 0.386184, 0, 0, 0)
+billboard = 1
+texture = ExtResource("2_2h3r1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

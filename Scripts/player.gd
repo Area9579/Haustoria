@@ -1,10 +1,15 @@
 extends CharacterBody3D
 
+
+@onready var sprite_3d: AnimatedSprite3D = $Sprite3D
+
 var clickPositionx
 var clickPositionz
+var frozen = false
 
 const SPEED = 5.0 #where is this being used?
 const JUMP_VELOCITY = 4.5
+
 
 func _ready() -> void:
 	moveTowardsMousePosition() #initiates the mouse tracking loop
@@ -44,15 +49,25 @@ func awaitTimer(): #this timer determens how frequently to call the player movem
 	moveTowardsMousePosition()
 	
 
-
 func _physics_process(delta: float) -> void:
+	if frozen: return #dont move or anything while in the attack animation
+	print(frozen)
 	#below code for jumping
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-
+	
+	
 	move_and_slide()
 	
+func attack(): #put tween position as a parameter
+	#might want to tween to the right position to attack and fit the animation.
+	frozen = true
+	sprite_3d.play('Attack')
+	await sprite_3d.animation_finished
+	sprite_3d.play('idle')
+	frozen = false
+
+#tween to position and freeze function?
