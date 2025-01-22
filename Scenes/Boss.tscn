@@ -32,8 +32,8 @@ shape = SubResource("CylinderShape3D_ackkn")
 script = ExtResource("3_f4frn")
 
 [node name="Left" type="Area3D" parent="Feet"]
-collision_layer = 48
-collision_mask = 0
+collision_layer = 16
+collision_mask = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Left"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22042, 0, 0)
@@ -46,8 +46,8 @@ billboard = 1
 texture = ExtResource("1_lttd3")
 
 [node name="Right" type="Area3D" parent="Feet"]
-collision_layer = 48
-collision_mask = 0
+collision_layer = 16
+collision_mask = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Right"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16422, 0, 0)
@@ -60,17 +60,18 @@ billboard = 1
 texture = ExtResource("1_lttd3")
 
 [node name="Hands" type="Node3D" parent="."]
+visible = false
 script = ExtResource("4_swuvd")
 
 [node name="Left" type="Area3D" parent="Hands"]
-collision_layer = 0
-collision_mask = 48
+collision_layer = 16
+collision_mask = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Left"]
 
 [node name="Right" type="Area3D" parent="Hands"]
-collision_layer = 0
-collision_mask = 48
+collision_layer = 16
+collision_mask = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Right"]
 
@@ -88,7 +89,14 @@ shape = SubResource("CylinderShape3D_2qboq")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="area_entered" from="Feet/Left" to="." method="_on_foot_area_entered"]
+[connection signal="area_entered" from="Feet/Right" to="." method="_on_foot_area_entered"]
 [connection signal="body_entered" from="Feet Proximity" to="." method="_on_feet_proximity_body_entered"]
 [connection signal="body_exited" from="Feet Proximity" to="." method="_on_feet_proximity_body_exited"]
 [connection signal="body_entered" from="Hand Proximity" to="." method="_on_hand_proximity_body_entered"]
 [connection signal="body_exited" from="Hand Proximity" to="." method="_on_hand_proximity_body_exited"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

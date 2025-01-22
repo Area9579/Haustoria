@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var hands: Node3D = $Hands
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var movement_target = get_node("../Player")
+@onready var stun_timer: Timer = $StunTimer
 
 enum States {stunned, feet_attacking, hand_attacking, walking}
 const MOVEMENT_SPEED: float = 2.0
@@ -15,12 +16,17 @@ func _ready():
 
 
 func _physics_process(delta):
+	if stun_timer.time_left > 0:
+		state = States.stunned
+	
 	match state:
 		States.walking:
 			navigation_physics_procces()
 			feet.attacking = false
 			hands.attacking = false
 		States.stunned:
+			stun_timer.start()
+			velocity = Vector3(0, 0, 0)
 			feet.attacking = false
 			hands.attacking = false
 		States.feet_attacking:
@@ -64,18 +70,30 @@ func navigation_physics_procces():
 
 
 ## Signals
-
+# Detecting how close player is
 func _on_feet_proximity_body_entered(body: Node3D) -> void:
-	state = States.feet_attacking
+	if body.name == "Player":
+		state = States.feet_attacking
 
 
 func _on_feet_proximity_body_exited(body: Node3D) -> void:
-	state = States.hand_attacking
+	if body.name == "Player":
+		state = States.hand_attacking
 
 
 func _on_hand_proximity_body_entered(body: Node3D) -> void:
-	state = States.hand_attacking
+	if body.name == "Player":
+		state = States.hand_attacking
 
 
 func _on_hand_proximity_body_exited(body: Node3D) -> void:
+	if body.name == "Player":
+		state = States.walking
+
+# Detecting traps
+func _on_foot_area_entered(area: Area3D) -> void:
+	stun_timer.start()
+
+
+func _on_stun_timer_timeout() -> void:
 	state = States.walking
