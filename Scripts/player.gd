@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var dashCooldown: Timer = $CooldownTimer
 @onready var mouseCooldown: Timer = $MouseInputTimer
+@onready var ui: Control = $UI
 
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
 
@@ -120,8 +121,11 @@ func attack(): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.
 	frozen = true
 	sprite_3d.play('Attack')
+	ui.attack_boss()
 	await sprite_3d.animation_finished
-	sprite_3d.play('idle')
+	sprite_3d.play('Idle')
 	frozen = false
 
-#tween to position and freeze function?
+func collect_item(poison_pickedup):
+	ui.attack_multiplier += 1
+	

@@ -1,18 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=12 format=3 uid="uid://magi1winy2i"]
 
 [ext_resource type="PackedScene" uid="uid://bmkpfdmdrk7lf" path="res://Scenes/wall.tscn" id="1_vt5yp"]
 [ext_resource type="PackedScene" uid="uid://tnvub7y17iua" path="res://Scenes/boss_hand_hit_box.tscn" id="4_d6qjs"]
+[ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/poison.tscn" id="5_6xnfu"]
 [ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/MobileEnemy.tscn" id="6_u4pk0"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qfgaq"]
-vertices = PackedVector3Array(-0.9684, -0.051122, 2.5316, 0.5316, -0.051122, 2.5316, 3.0316, -0.051122, 1.0316, -13.2184, -0.051122, 3.7816, -1.7184, -0.051122, 3.7816, 3.0316, -0.051122, -13.2184, -13.2184, -0.051122, -13.2184, 5.5316, -0.051122, 0.5316, 6.2816, -0.051122, 1.5316, 13.2816, -0.051122, 1.5316, 13.2816, -0.051122, -13.2184, 3.5316, -0.051122, 0.5316, 3.2816, -0.051122, 5.0316, 2.2816, -0.051122, 5.0316, 1.7816, -0.051122, 5.7816, 0.0316, -0.051122, 13.2816, 5.2816, -0.051122, 3.7816, 3.7816, -0.051122, 4.2816, 13.2816, -0.051122, 13.2816, 6.0316, -0.051122, 3.0316, 0.0316, -0.051122, 6.0316, -0.7184, -0.051122, 6.0316, -1.4684, -0.051122, 5.2816, -13.2184, -0.051122, 13.2816)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 5), PackedInt32Array(11, 2, 5), PackedInt32Array(7, 11, 5), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 12), PackedInt32Array(12, 16, 9), PackedInt32Array(12, 9, 18), PackedInt32Array(12, 18, 15), PackedInt32Array(19, 8, 9), PackedInt32Array(15, 20, 14), PackedInt32Array(16, 19, 9), PackedInt32Array(21, 20, 15), PackedInt32Array(21, 15, 22), PackedInt32Array(22, 15, 23), PackedInt32Array(22, 23, 3), PackedInt32Array(3, 4, 22)]
+vertices = PackedVector3Array(-0.75, -0.215039, 2.75, 0.25, -0.215039, 2.75, 0.75, -0.215039, 2, 1.75, -0.215039, 2, 2.75, -0.215039, 1, -49, -0.215039, 4.25, -1.5, -0.215039, 4.25, -1.5, -0.215039, 3.5, 4.5, -0.215039, 0.5, 4.5, -0.215039, -49, -49, -0.215039, -49, 5.5, -0.215039, 0.5, 6.25, -0.215039, 1.75, 49, -0.215039, 1.75, 49, -0.215039, -49, 5.25, -0.215039, 3.75, 2.5, -0.215039, 5, 1.75, -0.215039, 6, 0.5, -0.215039, 49, 49, -0.215039, 49, 6, -0.215039, 3, 0.5, -0.215039, 6, -0.75, -0.215039, 6, -1.5, -0.215039, 5.25, -49, -0.215039, 49)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Array(7, 6, 5), PackedInt32Array(0, 7, 5), PackedInt32Array(5, 2, 0), PackedInt32Array(9, 8, 4), PackedInt32Array(4, 2, 9), PackedInt32Array(9, 2, 10), PackedInt32Array(10, 2, 5), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 11, 9), PackedInt32Array(11, 8, 9), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(18, 15, 19), PackedInt32Array(19, 15, 13), PackedInt32Array(20, 12, 13), PackedInt32Array(18, 21, 17), PackedInt32Array(15, 20, 13), PackedInt32Array(22, 21, 18), PackedInt32Array(22, 18, 23), PackedInt32Array(23, 18, 24), PackedInt32Array(23, 24, 5), PackedInt32Array(5, 6, 23)]
 agent_radius = 0.8
 
-[sub_resource type="BoxMesh" id="BoxMesh_j6jtq"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8gs5"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j6jtq"]
+size = Vector3(100, 1, 100)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lims6"]
 sky_top_color = Color(0.285814, 0.440282, 0.73271, 1)
@@ -34,15 +37,15 @@ ambient_light_color = Color(0.824375, 0.783241, 0.528634, 1)
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_qfgaq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(28.4368, 0, 0, 0, 0.102244, 0, 0, 0, 28.4368, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_j6jtq")
-skeleton = NodePath("../..")
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.965039, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_o8gs5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = SubResource("BoxMesh_j6jtq")
+skeleton = NodePath("../../..")
 
 [node name="Wall" parent="NavigationRegion3D" instance=ExtResource("1_vt5yp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0, 3.698)
@@ -72,3 +75,7 @@ environment = SubResource("Environment_ibggl")
 
 [node name="BossHandHitBox" parent="." instance=ExtResource("4_d6qjs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.50114, -0.448878, -2.43457)
+
+[node name="Poison" parent="." instance=ExtResource("5_6xnfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4102, 0.0883021, -0.83559)
+poison = "Cyanide"

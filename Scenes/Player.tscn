@@ -47,6 +47,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 3
 script = ExtResource("1_05xm5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
