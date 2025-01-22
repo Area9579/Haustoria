@@ -18,9 +18,39 @@ var mouseInput: String
 var dashCombo = 1
 var accel = 1.0
 
-
 func _ready() -> void:
 	mouseInput = "Left Click"
+
+
+func _physics_process(delta: float) -> void:
+	#below code for jumping
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	
+	#this code is for continuous
+	#if Input.is_action_pressed("Left Click"):
+		#var directionVector: Vector2 = getDirectionVector()
+		#slideTowardsMouse(directionVector,delta)
+	#else:
+		#accel = 1.0
+		#velocity.x = lerp(velocity.x,0.0,5 * delta)
+		#velocity.z = lerp(velocity.z,0.0,5 * delta)
+	
+	#this code is for impulse
+	if Input.is_action_just_pressed(mouseInput):
+		if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
+			mouseCooldown.start()
+			slideTowardsMouse(delta)
+			changeMouseInput(mouseInput)
+			if dashCombo < 1.6:
+				dashCombo += 0.2
+	else:
+		decelerate(delta)
+	move_and_slide()
+	rebound()
 
 
 func _physics_process(delta: float) -> void:
