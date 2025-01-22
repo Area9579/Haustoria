@@ -25,3 +25,12 @@ transform = Transform3D(1, 0, 0, 0, 0.494124, 0.869391, 0, -0.869391, 0.494124, 
 current = true
 fov = 53.9261
 script = ExtResource("3_iy2vu")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MouseInputTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="MouseInputTimer" to="." method="_on_mouse_input_timer_timeout"]
