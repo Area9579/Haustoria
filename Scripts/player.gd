@@ -3,6 +3,12 @@ extends CharacterBody3D
 @onready var dashCooldown: Timer = $CooldownTimer
 @onready var mouseCooldown: Timer = $MouseInputTimer
 
+@onready var sprite_3d: AnimatedSprite3D = $Sprite3D
+
+var clickPositionx
+var clickPositionz
+var frozen = false
+
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 const BOUNCE_MULTIPLIER = 3.0
@@ -10,6 +16,7 @@ const BOUNCE_MULTIPLIER = 3.0
 var mouseInput: String
 var dashCombo = 1
 var accel = 1.0
+
 
 func _ready() -> void:
 	mouseInput = "Left Click"
@@ -106,3 +113,25 @@ func changeMouseInput(mouseClickInput):
 func _on_mouse_input_timer_timeout() -> void:
 	dashCooldown.start()
 	dashCombo = 1
+func _physics_process(delta: float) -> void:
+	if frozen: return #dont move or anything while in the attack animation
+	print(frozen)
+	#below code for jumping
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	
+	
+	move_and_slide()
+	
+func attack(): #put tween position as a parameter
+	#might want to tween to the right position to attack and fit the animation.
+	frozen = true
+	sprite_3d.play('Attack')
+	await sprite_3d.animation_finished
+	sprite_3d.play('idle')
+	frozen = false
+
+#tween to position and freeze function?

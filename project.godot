@@ -23,6 +23,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Haustoria"
 
+[global_group]
+
+player=""
+
 [input]
 
 jump={

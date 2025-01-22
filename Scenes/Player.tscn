@@ -1,24 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=14 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
+[ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
 [ext_resource type="Texture2D" uid="uid://byxlsfs7kyuma" path="res://Assets/GoopyGoober.png" id="2_j5ysu"]
+[ext_resource type="Texture2D" uid="uid://dx468ym40bf1v" path="res://Assets/PlayerAnimations/attack/GoopyGoober2.png" id="3_dq4fj"]
 [ext_resource type="Script" path="res://Scripts/player_camera.gd" id="3_iy2vu"]
+[ext_resource type="Texture2D" uid="uid://c4at6q6ccw7nr" path="res://Assets/PlayerAnimations/attack/GoopyGoober3.png" id="4_3fuqi"]
+[ext_resource type="Texture2D" uid="uid://cqxsixhv7tq2x" path="res://Assets/barholderplaceholder.png" id="4_ysrak"]
+[ext_resource type="Texture2D" uid="uid://ccm12uv71w2o3" path="res://Assets/PlayerAnimations/attack/GoopyGoober4.png" id="5_ihslg"]
+[ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="5_x6hvr"]
+[ext_resource type="Texture2D" uid="uid://bqk50iwcx2kjs" path="res://Assets/PlayerAnimations/attack/GoopyGoober5.png" id="6_k0i1t"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="9_t2dxl"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
 height = 0.941026
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmg34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gel2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dq4fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3fuqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ihslg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k0i1t")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j5ysu")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_05xm5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_0kq8h")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(3.215, 0, 0, 0, 3.215, 0, 0, 0, 3.215, 0, 0.5, 0)
 billboard = 1
 texture_filter = 0
-texture = ExtResource("2_j5ysu")
+sprite_frames = SubResource("SpriteFrames_lmg34")
+animation = &"Idle"
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.494124, 0.869391, 0, -0.869391, 0.494124, 0, 7.27733, 4.24484)
@@ -34,3 +74,55 @@ wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="MouseInputTimer" to="." method="_on_mouse_input_timer_timeout"]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_t2dxl")
+metadata/_edit_lock_ = true
+
+[node name="BossHealth" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 1066.0
+offset_top = 28.0
+offset_right = 1366.0
+offset_bottom = 628.0
+scale = Vector2(0.21552, 0.488654)
+fill_mode = 3
+texture_over = ExtResource("4_ysrak")
+texture_progress = ExtResource("5_x6hvr")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/BossHealth"]
+layout_mode = 0
+offset_left = 23.1998
+offset_top = 607.791
+offset_right = 359.2
+offset_bottom = 657.791
+scale = Vector2(2.17141, 2.17141)
+text = "boss health
+"
+
+[node name="PlayerHealth" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 316.0
+offset_bottom = 605.0
+scale = Vector2(0.22927, 0.519832)
+value = 90.0
+fill_mode = 3
+texture_over = ExtResource("4_ysrak")
+texture_progress = ExtResource("5_x6hvr")
+tint_progress = Color(0.244776, 0.244776, 0.244776, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/PlayerHealth"]
+layout_mode = 0
+offset_left = 39.255
+offset_top = 602.118
+offset_right = 375.255
+offset_bottom = 652.118
+scale = Vector2(2.17141, 2.17141)
+text = "player health"
