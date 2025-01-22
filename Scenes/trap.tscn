@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi0s2hsll5m0f"]
+
+[ext_resource type="Script" path="res://Scripts/trap.gd" id="1_wqm5q"]
+[ext_resource type="Texture2D" uid="uid://rnh2mpx58po8" path="res://Assets/LightningBolt2.png" id="2_no4qc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_516bm"]
+height = 0.966992
+
+[node name="Trap" type="Area3D"]
+script = ExtResource("1_wqm5q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_516bm")
+
+[node name="TrapSprite" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+billboard = 1
+texture_filter = 2
+texture = ExtResource("2_no4qc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=11 format=3 uid="uid://magi1winy2i"]
 
 [ext_resource type="PackedScene" uid="uid://bmkpfdmdrk7lf" path="res://Scenes/wall.tscn" id="1_vt5yp"]
+[ext_resource type="PackedScene" uid="uid://bi0s2hsll5m0f" path="res://Scenes/trap.tscn" id="4_1bp2t"]
 [ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/MobileEnemy.tscn" id="6_u4pk0"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
 
@@ -68,3 +69,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.53397)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ibggl")
+
+[node name="Trap" parent="." instance=ExtResource("4_1bp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78228, 0, 3.51203)

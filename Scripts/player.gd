@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	
 	#this code is for impulse
 	if Input.is_action_just_pressed(mouseInput):
-		if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
+		if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.25):
 			mouseCooldown.start()
 			slideTowardsMouse(delta)
 			changeMouseInput(mouseInput)
