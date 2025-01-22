@@ -48,4 +48,4 @@ jump={
 3d_physics/layer_3="environment"
 3d_physics/layer_4="pickups"
 3d_physics/layer_5="damage"
-3d_physics/layer_6="health"
+3d_physics/layer_6="trap"
