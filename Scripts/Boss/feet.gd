@@ -1,14 +1,44 @@
 extends Node3D
 
-@export var attacking: bool = false
+# attacking state and target set by boss script
+@export var attacking: bool = false # true if player is within range
+@onready var attack_target
+@onready var left_animation_player: AnimationPlayer = $Left/AnimationPlayer
+@onready var right_animation_player: AnimationPlayer = $Right/AnimationPlayer
+@onready var left: RigidBody3D = $Left
+@onready var right: RigidBody3D = $Right
+@onready var attack_timer: Timer = $AttackTimer
+@onready var attacking_foot: RigidBody3D = right # stores which foot should be attacking
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	# starts/stops attacking process
+	if attacking and attack_timer.is_stopped():
+		attack_timer.start()
+		# prompts attack when player initially enters area, boss would have
+		# a small delay in attack when player initially gets close otherwise
+		_on_attack_timeout()
+	# stop attacks if player is out of range
+	if not attacking and attack_timer.is_stopped() == false:
+		attack_timer.stop()
+		left_animation_player.stop()
+		right_animation_player.stop()
+	
+	# moves currently attacking foot towards player location
+	if attacking:
+		var attack_target_local = to_local(attack_target.position)
+		attacking_foot.position.x = lerp(attacking_foot.position.x, attack_target_local.x, 0.025)
+		attacking_foot.position.z = lerp(attacking_foot.position.z, attack_target_local.z, 0.025)
+	
+
+
+func _on_attack_timeout() -> void:
+	# prompts attack from correct foot and switches animation
+	if attacking_foot == right:
+		left_animation_player.current_animation = "left_stomp"
+		right_animation_player.stop()
+		attacking_foot = left
+	elif attacking_foot == left:
+		right_animation_player.current_animation = "right_stomp"
+		left_animation_player.stop()
+		attacking_foot = right

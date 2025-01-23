@@ -12,7 +12,9 @@ var state = States.walking
 
 
 func _ready():
+	feet.attack_target = movement_target
 	navigation_actor_setup.call_deferred()
+	
 
 
 func _physics_process(delta):
@@ -25,7 +27,6 @@ func _physics_process(delta):
 			feet.attacking = false
 			hands.attacking = false
 		States.stunned:
-			stun_timer.start()
 			velocity = Vector3(0, 0, 0)
 			feet.attacking = false
 			hands.attacking = false
@@ -44,13 +45,14 @@ func _physics_process(delta):
 
 ## Navigation-related functions
 func navigation_actor_setup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
 	# Adjust nav actor's speed and route layout
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.5
-	# Wait for the first physics frame so the NavigationServer can sync.
-	await get_tree().physics_frame
 	# Now that the navigation map is no longer empty, set the movement target.
 	navigation_set_movement_target(movement_target.position)
+	
 
 func navigation_set_movement_target(_movement_target: Vector3):
 	navigation_agent.set_target_position(_movement_target)
@@ -70,7 +72,7 @@ func navigation_physics_procces():
 
 
 ## Signals
-# Detecting how close player is
+# Detecting if player is in range for foot attacks
 func _on_feet_proximity_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		state = States.feet_attacking
@@ -79,8 +81,9 @@ func _on_feet_proximity_body_entered(body: Node3D) -> void:
 func _on_feet_proximity_body_exited(body: Node3D) -> void:
 	if body.name == "Player":
 		state = States.hand_attacking
+		
 
-
+# Detecting if player is in range for hand attacks
 func _on_hand_proximity_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		state = States.hand_attacking

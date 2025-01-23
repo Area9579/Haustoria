@@ -1,28 +1,74 @@
-[gd_scene load_steps=10 format=3 uid="uid://fl224xwk37sl"]
+[gd_scene load_steps=16 format=3 uid="uid://fl224xwk37sl"]
 
 [ext_resource type="Texture2D" uid="uid://c0hisog6kd4bj" path="res://Assets/icon.svg" id="1_lttd3"]
 [ext_resource type="Script" path="res://Scripts/Boss/boss.gd" id="1_vgxb7"]
+[ext_resource type="Animation" uid="uid://eo1decu4btyf" path="res://Assets/left_stomp.res" id="3_dkcie"]
 [ext_resource type="Script" path="res://Scripts/Boss/feet.gd" id="3_f4frn"]
 [ext_resource type="Script" path="res://Scripts/Boss/hands.gd" id="4_swuvd"]
+[ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/right_stomp.res" id="5_svm4b"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ackkn"]
-radius = 8.60811
+radius = 7.70976
+
+[sub_resource type="Animation" id="Animation_bkolr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(2.82843),
+"update": 0,
+"values": [Vector3(4, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3ckr"]
+_data = {
+"RESET": SubResource("Animation_bkolr"),
+"left_stomp": ExtResource("3_dkcie")
+}
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dkcf5"]
 radius = 3.0562
+
+[sub_resource type="Animation" id="Animation_6e2d2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uxr3h"]
+_data = {
+"RESET": SubResource("Animation_6e2d2"),
+"right_stomp": ExtResource("5_svm4b")
+}
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tl6ao"]
 radius = 3.18007
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0mtwb"]
-radius = 11.4351
+radius = 9.54854
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2qboq"]
-radius = 14.8466
+radius = 12.1169
 
 [node name="Boss" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16462, 0)
 collision_layer = 2
-collision_mask = 8
+collision_mask = 4
+input_ray_pickable = false
 script = ExtResource("1_vgxb7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -31,33 +77,67 @@ shape = SubResource("CylinderShape3D_ackkn")
 [node name="Feet" type="Node3D" parent="."]
 script = ExtResource("3_f4frn")
 
-[node name="Left" type="Area3D" parent="Feet"]
-collision_layer = 16
-collision_mask = 32
+[node name="Left" type="RigidBody3D" parent="Feet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+collision_layer = 2
+collision_mask = 4
+input_ray_pickable = false
+gravity_scale = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Feet/Left"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_i3ckr")
+}
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Left"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22042, 0, 0)
 shape = SubResource("CylinderShape3D_dkcf5")
 
 [node name="Sprite3D" type="Sprite3D" parent="Feet/Left"]
-transform = Transform3D(4.905, 0, 0, 0, 1.6, 0, 0, 0, 1, 5.22042, 0, 0)
+transform = Transform3D(4.905, 0, 0, 0, 1.6, 0, 0, 0, 1, 0, 0, 0)
 modulate = Color(0.891854, 0.00108814, 0.955406, 1)
 billboard = 1
 texture = ExtResource("1_lttd3")
 
-[node name="Right" type="Area3D" parent="Feet"]
+[node name="Hitbox" type="Area3D" parent="Feet/Left"]
 collision_layer = 16
 collision_mask = 32
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Left/Hitbox"]
+shape = SubResource("CylinderShape3D_dkcf5")
+
+[node name="Right" type="RigidBody3D" parent="Feet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+collision_layer = 2
+collision_mask = 4
+input_ray_pickable = false
+gravity_scale = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Feet/Right"]
+libraries = {
+"": SubResource("AnimationLibrary_uxr3h")
+}
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Right"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16422, 0, 0)
 shape = SubResource("CylinderShape3D_tl6ao")
 
 [node name="Sprite3D" type="Sprite3D" parent="Feet/Right"]
-transform = Transform3D(4.905, 0, 0, 0, 1.6, 0, 0, 0, 1, -5.16422, 0, 0)
+transform = Transform3D(4.905, 0, 0, 0, 1.6, 0, 0, 0, 1, 0, 0, 0)
 modulate = Color(0.931858, 0.000935277, 0.965965, 1)
 billboard = 1
 texture = ExtResource("1_lttd3")
+
+[node name="Hitbox" type="Area3D" parent="Feet/Right"]
+collision_layer = 16
+collision_mask = 32
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Right/Hitbox"]
+shape = SubResource("CylinderShape3D_tl6ao")
+
+[node name="AttackTimer" type="Timer" parent="Feet"]
+wait_time = 3.5
 
 [node name="Hands" type="Node3D" parent="."]
 visible = false
@@ -66,23 +146,27 @@ script = ExtResource("4_swuvd")
 [node name="Left" type="Area3D" parent="Hands"]
 collision_layer = 16
 collision_mask = 32
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Left"]
 
 [node name="Right" type="Area3D" parent="Hands"]
 collision_layer = 16
 collision_mask = 32
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Right"]
 
 [node name="Feet Proximity" type="Area3D" parent="."]
 collision_layer = 0
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet Proximity"]
 shape = SubResource("CylinderShape3D_0mtwb")
 
 [node name="Hand Proximity" type="Area3D" parent="."]
 collision_layer = 0
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hand Proximity"]
 shape = SubResource("CylinderShape3D_2qboq")
@@ -93,8 +177,9 @@ shape = SubResource("CylinderShape3D_2qboq")
 wait_time = 5.0
 one_shot = true
 
-[connection signal="area_entered" from="Feet/Left" to="." method="_on_foot_area_entered"]
-[connection signal="area_entered" from="Feet/Right" to="." method="_on_foot_area_entered"]
+[connection signal="area_entered" from="Feet/Left/Hitbox" to="." method="_on_foot_area_entered"]
+[connection signal="area_entered" from="Feet/Right/Hitbox" to="." method="_on_foot_area_entered"]
+[connection signal="timeout" from="Feet/AttackTimer" to="Feet" method="_on_attack_timeout"]
 [connection signal="body_entered" from="Feet Proximity" to="." method="_on_feet_proximity_body_entered"]
 [connection signal="body_exited" from="Feet Proximity" to="." method="_on_feet_proximity_body_exited"]
 [connection signal="body_entered" from="Hand Proximity" to="." method="_on_hand_proximity_body_entered"]
