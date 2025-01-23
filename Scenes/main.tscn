@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dd2isihtufrl0" path="res://Scenes/gum.tscn" id="3_chq6w"]
 [ext_resource type="PackedScene" uid="uid://tnvub7y17iua" path="res://Scenes/boss_hand_hit_box.tscn" id="4_d6qjs"]
 [ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/poison.tscn" id="5_6xnfu"]
-[ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/MobileEnemy.tscn" id="6_u4pk0"]
+[ext_resource type="PackedScene" path="res://Scenes/MobileEnemy.tscn" id="6_u4pk0"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
 [ext_resource type="PackedScene" uid="uid://duhe605748oxu" path="res://Scenes/beer.tscn" id="8_8bnyb"]
 
