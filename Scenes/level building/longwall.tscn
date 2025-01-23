@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxre6ioapqt7q"]
+
+[ext_resource type="Texture2D" uid="uid://6ertr54jcxxi" path="res://Assets/stapler.png" id="1_l48bx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4s5oj"]
+size = Vector3(12, 1, 1)
+
+[node name="Longwall" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4s5oj")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("1_l48bx")
