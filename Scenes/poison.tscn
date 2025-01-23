@@ -1,10 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://eb354oelrc8q"]
+[gd_scene load_steps=5 format=3 uid="uid://eb354oelrc8q"]
 
 [ext_resource type="Script" path="res://Scripts/poison.gd" id="1_e0pka"]
 [ext_resource type="Texture2D" uid="uid://ne5a6gx7ft8m" path="res://Assets/cyanide.png" id="2_xy1sj"]
-[ext_resource type="Texture2D" uid="uid://l5wyl5a6s5r1" path="res://Assets/nitrate.png" id="3_ibm6l"]
-[ext_resource type="Texture2D" uid="uid://cs1i81gs11t5w" path="res://Assets/acid.png" id="4_kkpw0"]
-[ext_resource type="Texture2D" uid="uid://4hkmewuwo112" path="res://Assets/lighttexture'.tres" id="5_3mxpi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_obbhc"]
 
@@ -18,18 +15,7 @@ animations = [{
 "name": &"Cyanide",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_ibm6l")
-}],
-"loop": true,
-"name": &"Nitrate",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_kkpw0")
-}],
+"frames": [],
 "loop": true,
 "name": &"Sulfiric Acid",
 "speed": 5.0
@@ -55,10 +41,5 @@ animation = &"Cyanide"
 visible = false
 billboard = 1
 text = "test text"
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 24.413, 0, 0, 0, 1, -0.0112045, 6.74889, -0.344123)
-billboard = 2
-texture = ExtResource("5_3mxpi")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

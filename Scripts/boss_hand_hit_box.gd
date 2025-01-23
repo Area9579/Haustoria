@@ -5,7 +5,6 @@ extends Area3D
 signal hit
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group('player'):
-		
 		#BOSS TAKE DAMAGE HERE AND PLAY ANIMATION
 		body.attack()
 		emit_signal('hit')
