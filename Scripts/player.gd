@@ -62,28 +62,32 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	#this code is for continuous
-	#if Input.is_action_pressed("Left Click"):
-		#var directionVector: Vector2 = getDirectionVector()
-		#slideTowardsMouse(directionVector,delta)
-	#else:
-		#accel = 1.0
-		#velocity.x = lerp(velocity.x,0.0,5 * delta)
-		#velocity.z = lerp(velocity.z,0.0,5 * delta)
-	
-	#this code is for impulse
-	if Input.is_action_just_pressed(mouseInput):
-		if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
-			mouseCooldown.start()
-			slideTowardsMouse(delta)
-			changeMouseInput(mouseInput)
-			if dashCombo < 1.6:
-				dashCombo += 0.2
-	else:
-		decelerate(delta)
-	move_and_slide()
-	rebound()
+#region Continuous movement
 
+	if Input.is_action_pressed("Left Click"):
+		slideTowardsMouse(delta)
+	else:
+		accel = 1.0
+		velocity.x = lerp(velocity.x,0.0,5 * delta)
+		velocity.z = lerp(velocity.z,0.0,5 * delta)
+#endregion
+	
+#region impulse movement
+	#this code is for impulse
+	#if Input.is_action_just_pressed(mouseInput):
+		#if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
+			#mouseCooldown.start()
+			#slideTowardsMouse(delta)
+			#changeMouseInput(mouseInput)
+			#if dashCombo < 1.6:
+				#dashCombo += 0.2
+	#else:
+		#decelerate(delta)
+	#
+	#rebound()
+#endregion
+	
+	move_and_slide()
 
 func raycastOnMousePosition(): #function that greates a raycast from the camera to a space in the 3D world based on the mouse position
 	var cam = get_viewport().get_camera_3d()
@@ -117,13 +121,16 @@ func getDirectionVector():
 func slideTowardsMouse(delta):
 	var directionVector: Vector2 = getDirectionVector()
 	#this code is for continuous
-	#accel = lerp(accel,3.0,10 * delta)
-	#velocity.x = lerp(velocity.x,directionVector.x * SPEED * accel,0.3)
-	#velocity.z = lerp(velocity.z,-directionVector.y * SPEED * accel,0.3)
+#region continuous
+	accel = lerp(accel,SPEED,10 * delta)
+	velocity.x = lerp(velocity.x,directionVector.x * accel, 3 * delta)
+	velocity.z = lerp(velocity.z,-directionVector.y * accel, 3 * delta)
+#endregion
 	
-	#this code is for impulse
-	velocity.x = directionVector.x * SPEED * dashCombo
-	velocity.z = -directionVector.y * SPEED * dashCombo
+#region impulse
+	#velocity.x += directionVector.x * SPEED * dashCombo
+	#velocity.z += -directionVector.y * SPEED * dashCombo
+#endregion
 
 
 func decelerate(delta):
@@ -146,9 +153,9 @@ func _on_mouse_input_timer_timeout() -> void:
 	dashCooldown.start()
 	dashCombo = 1
 
-	
 func attack(): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.
+	
 	frozen = true
 	sprite_3d.play('Attack')
 	ui.attack_boss()
@@ -158,4 +165,6 @@ func attack(): #put tween position as a parameter
 
 func collect_item(poison_pickedup):
 	ui.attack_multiplier += 1
-	
+
+func slow_down(delta):
+	velocity = lerp(velocity, Vector3.ZERO, delta * 4)

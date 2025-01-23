@@ -17,7 +17,11 @@ func _process(delta: float) -> void:
 	
 	
 func attack_boss():
-	boss_health_total += 5 * attack_multiplier
+	boss_health_total += (player_health_total * .3) * attack_multiplier
+	player_health_total -= player_health_total * .3
+	if boss_health_total >= 100:
+		pass
+		#end game
 
 func take_damage(damage):
 	player_health.value -= damage
