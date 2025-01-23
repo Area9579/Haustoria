@@ -15,14 +15,15 @@ const BOUNCE_MULTIPLIER = 3.0
 
 var mouseInput: String
 var dashCombo = 1
-var accel = 1.0
-
+var oldMousePosition: Vector3
+var mouseVelocity: Vector2
 
 func _ready() -> void:
 	mouseInput = "Left Click"
 
 
 func _physics_process(delta: float) -> void:
+	
 	if frozen: return #dont move or anything while in the attack animation
 	#below code for jumping
 	if not is_on_floor():
@@ -31,25 +32,22 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	#this code is for continuous
-	#if Input.is_action_pressed("Left Click"):
-		#var directionVector: Vector2 = getDirectionVector()
-		#slideTowardsMouse(directionVector,delta)
-	#else:
-		#accel = 1.0
-		#velocity.x = lerp(velocity.x,0.0,5 * delta)
-		#velocity.z = lerp(velocity.z,0.0,5 * delta)
 	
-	#this code is for impulse
+	if Input.is_action_pressed(mouseInput):
+		dragSelf()
+	
 	if Input.is_action_just_pressed(mouseInput):
+		oldMousePosition = getMouseWorldPosition()
 		if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
-			mouseCooldown.start()
-			slideTowardsMouse(delta)
-			changeMouseInput(mouseInput)
-			if dashCombo < 1.6:
-				dashCombo += 0.2
+			pass
+			#mouseCooldown.start()
+			#if dashCombo < 1.6:
+				#dashCombo += 0.2
 	else:
 		decelerate(delta)
+	if Input.is_action_just_released(mouseInput):
+		getMouseVelocity(delta)
+		#changeMouseInput(mouseInput)
 	move_and_slide()
 	rebound()
 
@@ -61,7 +59,7 @@ func raycastOnMousePosition(): #function that greates a raycast from the camera 
 	
 	var rayOrigin = cam.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + cam.project_ray_normal(mousePos) * 100
-	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd)
+	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd,128)
 	rayQuery.collide_with_bodies = true
 	
 	var resultingRay = stateInSpace.intersect_ray(rayQuery)
@@ -81,18 +79,6 @@ func getDirectionVector():
 	var degreeAngle = -rad_to_deg(playerVector2.angle_to_point(mousePos))
 	var directionVector = Vector2(cos(deg_to_rad(degreeAngle)),sin(deg_to_rad(degreeAngle)))
 	return directionVector
-
-
-func slideTowardsMouse(delta):
-	var directionVector: Vector2 = getDirectionVector()
-	#this code is for continuous
-	#accel = lerp(accel,3.0,10 * delta)
-	#velocity.x = lerp(velocity.x,directionVector.x * SPEED * accel,0.3)
-	#velocity.z = lerp(velocity.z,-directionVector.y * SPEED * accel,0.3)
-	
-	#this code is for impulse
-	velocity.x = directionVector.x * SPEED * dashCombo
-	velocity.z = -directionVector.y * SPEED * dashCombo
 
 
 func decelerate(delta):
@@ -115,7 +101,29 @@ func _on_mouse_input_timer_timeout() -> void:
 	dashCooldown.start()
 	dashCombo = 1
 
-	
+
+func dragSelf():
+	find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
+
+
+func getGrabPosition():
+	var directionVector: Vector2 = Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(position.x,position.z)
+	var distance = directionVector.length()
+	if distance > 2.5:
+		directionVector = directionVector.normalized() * 2.5
+		return Vector2(directionVector)
+	else:
+		return Vector2(getMouseWorldPosition().x-position.x,getMouseWorldPosition().z-position.z)
+
+
+func getMouseVelocity(delta):
+	var dashlength: Vector2 = abs(Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(position.x,position.z))
+	dashlength = abs(getGrabPosition())
+	mouseVelocity = -(Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(oldMousePosition.x,oldMousePosition.z)).normalized()
+	velocity.x = mouseVelocity.x * SPEED * dashCombo * dashlength.x
+	velocity.z = mouseVelocity.y * SPEED * dashCombo * dashlength.y
+
+
 func attack(): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.
 	frozen = true
