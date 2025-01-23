@@ -14,9 +14,10 @@ func _ready() -> void:
 	label_3d.text = poison + ' get!'
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	$Area3D/CollisionShape3D.disabled = true
-	label_3d.show()
-	body.collect_item(self)
+	if body.name == "Player":
+		$Area3D/CollisionShape3D.disabled = true
+		label_3d.show()
+		body.collect_item(self)
 	
 	
 	var tween = get_tree().create_tween()

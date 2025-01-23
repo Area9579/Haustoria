@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bmkpfdmdrk7lf" path="res://Scenes/wall.tscn" id="1_vt5yp"]
 [ext_resource type="PackedScene" uid="uid://tnvub7y17iua" path="res://Scenes/boss_hand_hit_box.tscn" id="4_d6qjs"]
+[ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/Boss.tscn" id="4_l2ge7"]
 [ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/poison.tscn" id="5_6xnfu"]
-[ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/MobileEnemy.tscn" id="6_u4pk0"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qfgaq"]
@@ -65,10 +65,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64073, 0, 2.69669)
 [node name="Wall6" parent="NavigationRegion3D" instance=ExtResource("1_vt5yp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52319, 0, 2.18476)
 
-[node name="MobileEnemy" parent="." instance=ExtResource("6_u4pk0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.53397)
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 5.201, 1, -0.974)
+billboard = 1
+texture_filter = 2
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -5.294, 1, 1)
+billboard = 1
+texture_filter = 2
 
 [node name="Player" parent="." instance=ExtResource("7_m2bmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.60884)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ibggl")
@@ -79,3 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.50114, -0.448878, -2.43457)
 [node name="Poison" parent="." instance=ExtResource("5_6xnfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4102, 0.0883021, -0.83559)
 poison = "Cyanide"
+
+[node name="Boss" parent="." instance=ExtResource("4_l2ge7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.1182)
