@@ -4,7 +4,7 @@ extends Node3D
 @onready var animated_sprite_3d: AnimatedSprite3D = $AnimatedSprite3D
 @onready var label_3d: Label3D = $Label3D
 
-@export_enum('Cyanide','Sulfiric Acid') var poison: String
+@export_enum('Cyanide','Sulfiric Acid', 'Nitrate') var poison: String
 
 func _ready() -> void:
 	animated_sprite_3d.play(poison)
