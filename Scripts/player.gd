@@ -12,14 +12,13 @@ var frozen = false
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 const BOUNCE_MULTIPLIER = 3.0
+const VELOCITY_MULTIPLIER = 30.0
 
-var mouseInput: String
-var dashCombo = 1
 var oldMousePosition: Vector3
-var mouseVelocity: Vector2
+var oldGrabPosition: Vector2
+var oldPlayerPosition: Vector3
+var oldMouseVelocity: Vector3
 
-func _ready() -> void:
-	mouseInput = "Left Click"
 
 
 func _physics_process(delta: float) -> void:
@@ -33,21 +32,22 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 	
 	
-	if Input.is_action_pressed(mouseInput):
+	if Input.is_action_just_pressed("Left Click"):
+		#all of these variables need to be set before the drag function starts so it has the correct reference
+		oldGrabPosition = getGrabPosition()
+		oldMousePosition = getMouseWorldPosition()
+		oldPlayerPosition = position
+		if dashCooldown.is_stopped(): #the dash cooldown still needs to be reimplemented
+			#this is a visual for debugging (we'll remove this later)
+			find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
+			#mouseCooldown.start()
+	else: #decelerate constantly when not actively moving using left click
+		decelerate(delta)
+	if Input.is_action_pressed("Left Click"): #
+		oldMouseVelocity = getMouseWorldPosition()
 		dragSelf()
 	
-	if Input.is_action_just_pressed(mouseInput):
-		oldMousePosition = getMouseWorldPosition()
-		if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
-			pass
-			#mouseCooldown.start()
-			#if dashCombo < 1.6:
-				#dashCombo += 0.2
-	else:
-		decelerate(delta)
-	if Input.is_action_just_released(mouseInput):
-		getMouseVelocity(delta)
-		#changeMouseInput(mouseInput)
+	#move using velocity and check to bounce off surfaces
 	move_and_slide()
 	rebound()
 
@@ -59,7 +59,7 @@ func raycastOnMousePosition(): #function that greates a raycast from the camera 
 	
 	var rayOrigin = cam.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + cam.project_ray_normal(mousePos) * 100
-	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd,128)
+	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd,128) #this last parameter determines which collision layer to hit
 	rayQuery.collide_with_bodies = true
 	
 	var resultingRay = stateInSpace.intersect_ray(rayQuery)
@@ -73,7 +73,7 @@ func getMouseWorldPosition(): #gets a vector3 based on the camera raycast
 	return position
 
 
-func getDirectionVector():
+func getDirectionVector(): #this gets a vector2 in the direction of the mouse from the player position
 	var mousePos = Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z)
 	var playerVector2 = Vector2(position.x,position.z)
 	var degreeAngle = -rad_to_deg(playerVector2.angle_to_point(mousePos))
@@ -81,47 +81,39 @@ func getDirectionVector():
 	return directionVector
 
 
-func decelerate(delta):
+func decelerate(delta): #this function changes the velocity to always approach zero
 	velocity.x = lerp(velocity.x,0.0,5 * delta)
 	velocity.z = lerp(velocity.z,0.0,5 * delta)
 
-func rebound():
+
+func rebound(): #this function determines how much force to bounce off surfaces by using BOUNCE_MULTIPLIER
 	if get_wall_normal():
 		velocity.x += get_wall_normal().x * BOUNCE_MULTIPLIER
 		velocity.z += get_wall_normal().z * BOUNCE_MULTIPLIER
 
-func changeMouseInput(mouseClickInput):
-	if mouseClickInput == "Left Click":
-		mouseInput = "Right Click"
-	elif mouseClickInput == "Right Click":
-		mouseInput = "Left Click"
 
-
-func _on_mouse_input_timer_timeout() -> void:
+func _on_mouse_input_timer_timeout() -> void: #need to reinplement this
 	dashCooldown.start()
-	dashCombo = 1
 
 
-func dragSelf():
+func dragSelf(): #drags the player around the grabbed point and then tracks the mouse velocity until released
 	find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
+	position.x = oldPlayerPosition.x + oldGrabPosition.x - getGrabPosition().x
+	position.z = oldPlayerPosition.z + oldGrabPosition.y - getGrabPosition().y
+	
+	var mouseVelocity = (oldMouseVelocity - getMouseWorldPosition())
+	velocity = -mouseVelocity * VELOCITY_MULTIPLIER
 
 
-func getGrabPosition():
+func getGrabPosition(): #gets the position of the grabbed point when you click within a circle with a given radius
 	var directionVector: Vector2 = Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(position.x,position.z)
 	var distance = directionVector.length()
-	if distance > 2.5:
-		directionVector = directionVector.normalized() * 2.5
+	var radius: float = 2.5
+	if distance > radius:
+		directionVector = directionVector.normalized() * radius
 		return Vector2(directionVector)
 	else:
 		return Vector2(getMouseWorldPosition().x-position.x,getMouseWorldPosition().z-position.z)
-
-
-func getMouseVelocity(delta):
-	var dashlength: Vector2 = abs(Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(position.x,position.z))
-	dashlength = abs(getGrabPosition())
-	mouseVelocity = -(Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(oldMousePosition.x,oldMousePosition.z)).normalized()
-	velocity.x = mouseVelocity.x * SPEED * dashCombo * dashlength.x
-	velocity.z = mouseVelocity.y * SPEED * dashCombo * dashlength.y
 
 
 func attack(): #put tween position as a parameter
