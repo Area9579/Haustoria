@@ -137,7 +137,7 @@ input_ray_pickable = false
 shape = SubResource("CylinderShape3D_tl6ao")
 
 [node name="AttackTimer" type="Timer" parent="Feet"]
-wait_time = 3.5
+wait_time = 3.6
 
 [node name="Hands" type="Node3D" parent="."]
 visible = false
@@ -177,8 +177,12 @@ shape = SubResource("CylinderShape3D_2qboq")
 wait_time = 5.0
 one_shot = true
 
+[connection signal="animation_finished" from="Feet/Left/AnimationPlayer" to="Feet" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Feet/Left/Hitbox" to="." method="_on_foot_area_entered"]
+[connection signal="body_entered" from="Feet/Left/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="animation_finished" from="Feet/Right/AnimationPlayer" to="Feet" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Feet/Right/Hitbox" to="." method="_on_foot_area_entered"]
+[connection signal="body_entered" from="Feet/Right/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="Feet/AttackTimer" to="Feet" method="_on_attack_timeout"]
 [connection signal="body_entered" from="Feet Proximity" to="." method="_on_feet_proximity_body_entered"]
 [connection signal="body_exited" from="Feet Proximity" to="." method="_on_feet_proximity_body_exited"]

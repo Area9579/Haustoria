@@ -62,7 +62,7 @@ func raycastOnMousePosition(): #function that greates a raycast from the camera 
 	
 	var rayOrigin = cam.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + cam.project_ray_normal(mousePos) * 100
-	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd)
+	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd, 128)
 	rayQuery.collide_with_bodies = true
 	
 	var resultingRay = stateInSpace.intersect_ray(rayQuery)
@@ -106,6 +106,7 @@ func rebound():
 		velocity.z += get_wall_normal().z * BOUNCE_MULTIPLIER
 
 func changeMouseInput(mouseClickInput):
+	return
 	if mouseClickInput == "Left Click":
 		mouseInput = "Right Click"
 	elif mouseClickInput == "Right Click":

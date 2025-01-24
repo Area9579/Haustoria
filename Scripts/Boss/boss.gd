@@ -1,13 +1,15 @@
 extends CharacterBody3D
 
+# "feet" and "hands" refers to the parent node to the actual physical feet and hands
 @onready var feet: Node3D = $Feet
 @onready var hands: Node3D = $Hands
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var movement_target = get_node("../Player")
 @onready var stun_timer: Timer = $StunTimer
 
-enum States {stunned, feet_attacking, hand_attacking, walking}
 const MOVEMENT_SPEED: float = 2.0
+
+enum States {stunned, feet_attacking, hand_attacking, walking}
 var state = States.walking
 
 
@@ -100,3 +102,7 @@ func _on_foot_area_entered(area: Area3D) -> void:
 
 func _on_stun_timer_timeout() -> void:
 	state = States.walking
+
+# Detecting incoming damage from player
+func _on_hitbox_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.
