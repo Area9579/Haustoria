@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var dashCooldown: Timer = $CooldownTimer
 @onready var mouseCooldown: Timer = $MouseInputTimer
 @onready var ui: Control = $UI
-
+@onready var slime = preload("res://Scenes/ink.tscn")
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
 
 var clickPositionx
@@ -24,17 +24,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	$Limbs.rotation.y = getDirectionVector().angle()
-	
 	if frozen: return #dont move or anything while in the attack animation
+	spawn_sime()
 	#below code for jumping
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	
+	
 	
 #region Continuous movement
-
 	if Input.is_action_pressed("Left Click"):
 		slideTowardsMouse(delta)
 	else:
@@ -142,3 +140,12 @@ func collect_item(poison_pickedup):
 
 func slow_down(delta):
 	velocity = lerp(velocity, Vector3.ZERO, delta * 4)
+
+var can_slime = false
+func spawn_sime():
+	if can_slime:
+		var slime_instance = slime.instantiate()
+		add_child(slime_instance)
+
+func _on_slime_cooldown_timeout() -> void:
+	can_slime = true
