@@ -9,7 +9,7 @@ extends CharacterBody3D
 
 const MOVEMENT_SPEED: float = 2.0
 
-enum States {stunned, feet_attacking, hand_attacking, walking}
+enum States {stunned, hand_attacking, walking}
 var state = States.walking
 
 
@@ -26,19 +26,12 @@ func _physics_process(delta):
 	match state:
 		States.walking:
 			navigation_physics_procces()
-			feet.attacking = false
 			hands.attacking = false
 		States.stunned:
 			velocity = Vector3(0, 0, 0)
-			feet.attacking = false
 			hands.attacking = false
-		States.feet_attacking:
-			navigation_physics_procces()
-			feet.attacking = true
-			hands.attacking = true
 		States.hand_attacking:
 			navigation_physics_procces()
-			feet.attacking = false
 			hands.attacking = true
 			
 	move_and_slide()
@@ -74,17 +67,6 @@ func navigation_physics_procces():
 
 
 ## Signals
-# Detecting if player is in range for foot attacks
-func _on_feet_proximity_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
-		state = States.feet_attacking
-
-
-func _on_feet_proximity_body_exited(body: Node3D) -> void:
-	if body.name == "Player":
-		state = States.hand_attacking
-		
-
 # Detecting if player is in range for hand attacks
 func _on_hand_proximity_body_entered(body: Node3D) -> void:
 	if body.name == "Player":

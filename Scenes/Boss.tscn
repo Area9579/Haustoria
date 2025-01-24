@@ -59,7 +59,8 @@ _data = {
 radius = 3.18007
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0mtwb"]
-radius = 9.54854
+height = 20.8068
+radius = 7.70385
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2qboq"]
 radius = 12.1169
@@ -79,6 +80,7 @@ script = ExtResource("3_f4frn")
 
 [node name="Left" type="RigidBody3D" parent="Feet"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+top_level = true
 collision_layer = 2
 collision_mask = 4
 input_ray_pickable = false
@@ -109,6 +111,7 @@ shape = SubResource("CylinderShape3D_dkcf5")
 
 [node name="Right" type="RigidBody3D" parent="Feet"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+top_level = true
 collision_layer = 2
 collision_mask = 4
 input_ray_pickable = false
@@ -136,8 +139,17 @@ input_ray_pickable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Right/Hitbox"]
 shape = SubResource("CylinderShape3D_tl6ao")
 
+[node name="Feet Bounds" type="Area3D" parent="Feet"]
+collision_layer = 0
+collision_mask = 2
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Feet Bounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.33591, 0)
+shape = SubResource("CylinderShape3D_0mtwb")
+
 [node name="AttackTimer" type="Timer" parent="Feet"]
-wait_time = 3.6
+one_shot = true
 
 [node name="Hands" type="Node3D" parent="."]
 visible = false
@@ -156,13 +168,6 @@ collision_mask = 32
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Right"]
-
-[node name="Feet Proximity" type="Area3D" parent="."]
-collision_layer = 0
-input_ray_pickable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Feet Proximity"]
-shape = SubResource("CylinderShape3D_0mtwb")
 
 [node name="Hand Proximity" type="Area3D" parent="."]
 collision_layer = 0
@@ -183,9 +188,9 @@ one_shot = true
 [connection signal="animation_finished" from="Feet/Right/AnimationPlayer" to="Feet" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Feet/Right/Hitbox" to="." method="_on_foot_area_entered"]
 [connection signal="body_entered" from="Feet/Right/Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="timeout" from="Feet/AttackTimer" to="Feet" method="_on_attack_timeout"]
-[connection signal="body_entered" from="Feet Proximity" to="." method="_on_feet_proximity_body_entered"]
-[connection signal="body_exited" from="Feet Proximity" to="." method="_on_feet_proximity_body_exited"]
+[connection signal="body_entered" from="Feet/Feet Bounds" to="Feet" method="_on_feet_bounds_body_entered"]
+[connection signal="body_exited" from="Feet/Feet Bounds" to="Feet" method="_on_feet_bounds_body_exited"]
+[connection signal="timeout" from="Feet/AttackTimer" to="Feet" method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="Hand Proximity" to="." method="_on_hand_proximity_body_entered"]
 [connection signal="body_exited" from="Hand Proximity" to="." method="_on_hand_proximity_body_exited"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
