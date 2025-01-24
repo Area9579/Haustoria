@@ -157,10 +157,11 @@ fov = 53.9261
 script = ExtResource("3_iy2vu")
 
 [node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.25
 one_shot = true
 
 [node name="MouseInputTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 one_shot = true
 
 [node name="SlimeCooldown" type="Timer" parent="."]

@@ -1,42 +1,39 @@
 extends CharacterBody3D
 
+# "feet" and "hands" refers to the parent node to the actual physical feet and hands
 @onready var feet: Node3D = $Feet
 @onready var hands: Node3D = $Hands
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var movement_target = get_node("../Player")
 @onready var stun_timer: Timer = $StunTimer
 
-enum States {stunned, feet_attacking, hand_attacking, walking}
 const MOVEMENT_SPEED: float = 2.0
+
+enum States {stunned, hand_attacking, walking}
 var state = States.walking
 
 
 func _ready():
-	feet.attack_target = movement_target
-	navigation_actor_setup.call_deferred()
+	feet.attack_target = movement_target # pass through target node to child
+	navigation_actor_setup.call_deferred() # call this function at end of other _ready() functions
 	
 
 
 func _physics_process(delta):
+	# stunned state while timer running
 	if stun_timer.time_left > 0:
 		state = States.stunned
 	
+	# simple state machine just to keep things a little cleaner
 	match state:
 		States.walking:
 			navigation_physics_procces()
-			feet.attacking = false
 			hands.attacking = false
 		States.stunned:
 			velocity = Vector3(0, 0, 0)
-			feet.attacking = false
 			hands.attacking = false
-		States.feet_attacking:
-			navigation_physics_procces()
-			feet.attacking = true
-			hands.attacking = true
 		States.hand_attacking:
 			navigation_physics_procces()
-			feet.attacking = false
 			hands.attacking = true
 			
 	move_and_slide()
@@ -60,9 +57,9 @@ func navigation_set_movement_target(_movement_target: Vector3):
 func navigation_physics_procces():
 	# set new target position to player position each frame
 	navigation_set_movement_target(movement_target.position)
-	# 
+	
 	if navigation_agent.is_navigation_finished():
-		return
+		return # stop function here if target is reached
 
 	var current_nav_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
@@ -71,18 +68,7 @@ func navigation_physics_procces():
 	velocity = current_nav_agent_position.direction_to(next_path_position) * MOVEMENT_SPEED
 
 
-## Signals
-# Detecting if player is in range for foot attacks
-func _on_feet_proximity_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
-		state = States.feet_attacking
-
-
-func _on_feet_proximity_body_exited(body: Node3D) -> void:
-	if body.name == "Player":
-		state = States.hand_attacking
-		
-
+## Signals (a lot of this is unused)
 # Detecting if player is in range for hand attacks
 func _on_hand_proximity_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
@@ -100,3 +86,7 @@ func _on_foot_area_entered(area: Area3D) -> void:
 
 func _on_stun_timer_timeout() -> void:
 	state = States.walking
+
+# Detecting incoming damage from player from any child hitbox
+func _on_hitbox_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.
