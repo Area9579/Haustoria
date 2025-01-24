@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4ho3agy0ktao"]
+
+[ext_resource type="Script" path="res://Scripts/tentacle.gd" id="1_4i2lk"]
+[ext_resource type="Texture2D" uid="uid://c5vu5jmw5e4gl" path="res://Assets/tentacle.png" id="2_k2mbp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_og0le"]
+radius = 0.0835291
+
+[node name="Tent" type="CharacterBody3D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_4i2lk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_og0le")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+texture_filter = 0
+texture = ExtResource("2_k2mbp")

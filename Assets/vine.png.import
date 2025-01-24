@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddffootr8l1nr"
-path.s3tc="res://.godot/imported/jar1.png-2b44842f190eb3976bab8506710fc38d.s3tc.ctex"
+uid="uid://cajb3hske326b"
+path.s3tc="res://.godot/imported/vine.png-a039c71df58c9059d8880c6210729331.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/JarAnimations/jar1.png"
-dest_files=["res://.godot/imported/jar1.png-2b44842f190eb3976bab8506710fc38d.s3tc.ctex"]
+source_file="res://Assets/vine.png"
+dest_files=["res://.godot/imported/vine.png-a039c71df58c9059d8880c6210729331.s3tc.ctex"]
 
 [params]
 

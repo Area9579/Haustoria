@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cctkq45tp66vb"]
+
+[ext_resource type="Script" path="res://Scripts/arm.gd" id="1_ste2n"]
+[ext_resource type="PackedScene" uid="uid://c4ho3agy0ktao" path="res://Assets/tent.tscn" id="2_4dv7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0yvvk"]
+albedo_color = Color(0.835611, 0, 0.198014, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_myhck"]
+material = SubResource("StandardMaterial3D_0yvvk")
+
+[sub_resource type="PrismMesh" id="PrismMesh_75no6"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Arm" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.640282, 0)
+script = ExtResource("1_ste2n")
+
+[node name="IKTarget" type="Marker3D" parent="Arm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.985896, 0.0648627, 0)
+top_level = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Arm/IKTarget"]
+transform = Transform3D(0.276084, 0, 0, 0, 0.276084, 0, 0, 0, 0.276084, 0, 0.439509, 0)
+mesh = SubResource("CapsuleMesh_myhck")
+
+[node name="DistanceDirection" type="Marker3D" parent="Arm"]
+transform = Transform3D(0.275028, 0, 0, 0, 0.275028, 0, 0, 0, 0.275028, 1, 0, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Arm/DistanceDirection"]
+mesh = SubResource("PrismMesh_75no6")
+skeleton = NodePath("../../..")
+
+[node name="TentHolder" type="Node3D" parent="Arm"]
+
+[node name="Tent" parent="Arm/TentHolder" instance=ExtResource("2_4dv7s")]
+
+[node name="Tent2" parent="Arm/TentHolder" instance=ExtResource("2_4dv7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22458, 0, 0)
+
+[node name="Tent3" parent="Arm/TentHolder" instance=ExtResource("2_4dv7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55204, 0, 0)
+
+[node name="Tent4" parent="Arm/TentHolder" instance=ExtResource("2_4dv7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent5" parent="Arm/TentHolder" instance=ExtResource("2_4dv7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent6" parent="Arm/TentHolder" instance=ExtResource("2_4dv7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273739, 0.701778, 2.92978)

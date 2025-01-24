@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://jp5uwhdyds2x"]
+
+[ext_resource type="Script" path="res://Scripts/ink.gd" id="1_vni3w"]
+
+[sub_resource type="Gradient" id="Gradient_nio77"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.77551)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b6drm"]
+gradient = SubResource("Gradient_nio77")
+fill = 1
+fill_from = Vector2(0.495726, 0.534188)
+fill_to = Vector2(0.688034, 0.247863)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ygelf"]
+
+[node name="Ink" type="Node3D"]
+script = ExtResource("1_vni3w")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -4.595, 0)
+
+[node name="Decal" type="Decal" parent="."]
+texture_albedo = SubResource("GradientTexture2D_b6drm")
+distance_fade_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Decal"]
+transform = Transform3D(5.86126, 0, 0, 0, 5.86126, 0, 0, 0, 5.86126, 0, -2.8942, 0)
+mesh = SubResource("BoxMesh_ygelf")

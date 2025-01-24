@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=20 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="5_x6hvr"]
 [ext_resource type="Texture2D" uid="uid://bqk50iwcx2kjs" path="res://Assets/PlayerAnimations/attack/GoopyGoober5.png" id="6_k0i1t"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="9_t2dxl"]
+[ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="12_ltyuy"]
+[ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="13_12324"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
 height = 0.941026
@@ -46,6 +48,89 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_ifv16"]
+resource_name = "RESET"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0a1oo"]
+resource_name = "end"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1152, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_7fvta"]
+resource_name = "start"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1152, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_idjd2"]
+_data = {
+"RESET": SubResource("Animation_ifv16"),
+"end": SubResource("Animation_0a1oo"),
+"start": SubResource("Animation_7fvta")
+}
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 3
 script = ExtResource("1_05xm5")
@@ -55,11 +140,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_0kq8h")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(3.215, 0, 0, 0, 3.215, 0, 0, 0, 3.215, 0, 0.5, 0)
+transform = Transform3D(2.33079, 0, 0, 0, 2.33079, 0, 0, 0, 2.33079, 0, 0.5, 0)
 billboard = 1
 texture_filter = 0
+render_priority = 6
 sprite_frames = SubResource("SpriteFrames_lmg34")
 animation = &"Idle"
+
+[node name="Flower" parent="Sprite3D" instance=ExtResource("13_12324")]
+transform = Transform3D(-0.428824, 0, 0.0135663, 0, 0.429039, 0, -0.0135663, 0, -0.428824, 0.0188493, -0.210538, -0.180206)
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.494124, 0.869391, 0, -0.869391, 0.494124, 0, 7.27733, 4.24484)
@@ -126,5 +215,52 @@ offset_right = 375.255
 offset_bottom = 652.118
 scale = Vector2(2.17141, 2.17141)
 text = "player health"
+
+[node name="UI2" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.001
+
+[node name="CenterContainer" type="CenterContainer" parent="UI2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI2"]
+libraries = {
+"": SubResource("AnimationLibrary_idjd2")
+}
+autoplay = "start"
+
+[node name="dissolve" type="ColorRect" parent="UI2"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Limbs" type="Node3D" parent="."]
+
+[node name="Arm" parent="Limbs" instance=ExtResource("12_ltyuy")]
+
+[node name="Arm2" parent="Limbs" instance=ExtResource("12_ltyuy")]
+transform = Transform3D(0.760658, 0, 0.323053, 0, 0.826416, 0, -0.323053, 0, 0.760658, 0, -0.00899699, 0.0201983)
+tent_length = 9
+
+[node name="Arm6" parent="Limbs" instance=ExtResource("12_ltyuy")]
+transform = Transform3D(0.782827, 0, 0.26485, 0, 0.826416, 0, -0.26485, 0, 0.782827, 0, -0.00899699, -0.0192705)
+tent_length = 23
+
+[node name="Arm3" parent="Limbs" instance=ExtResource("12_ltyuy")]
+transform = Transform3D(1.17014, 0, -0.173605, 0, 1.18295, 0, 0.173605, 0, 1.17014, 0.0386584, -0.000733644, 0.0579425)
+tent_length = 5
+
+[node name="Arm4" parent="Limbs" instance=ExtResource("12_ltyuy")]
+transform = Transform3D(0.825929, 0, -0.0283658, 0, 0.826416, 0, 0.0283658, 0, 0.825929, 0, -0.00899699, 0.138124)
+tent_length = 4
+
+[node name="Arm5" parent="Limbs" instance=ExtResource("12_ltyuy")]
+transform = Transform3D(0.739652, 0.00541318, -0.368576, -0.00673772, 0.826388, -0.0013842, 0.368554, 0.00424387, 0.739671, 0, -0.00899699, 0.0722671)
+tent_length = 20
 
 [connection signal="timeout" from="MouseInputTimer" to="." method="_on_mouse_input_timer_timeout"]

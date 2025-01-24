@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddffootr8l1nr"
-path.s3tc="res://.godot/imported/jar1.png-2b44842f190eb3976bab8506710fc38d.s3tc.ctex"
+uid="uid://c5vu5jmw5e4gl"
+path.s3tc="res://.godot/imported/tentacle.png-668c214345016032172ebf8aecc8d7d7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/JarAnimations/jar1.png"
-dest_files=["res://.godot/imported/jar1.png-2b44842f190eb3976bab8506710fc38d.s3tc.ctex"]
+source_file="res://Assets/tentacle.png"
+dest_files=["res://.godot/imported/tentacle.png-668c214345016032172ebf8aecc8d7d7.s3tc.ctex"]
 
 [params]
 

@@ -23,37 +23,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	#below code for jumping
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	$Limbs.rotation.y = getDirectionVector().angle()
 	
-	#this code is for continuous
-	#if Input.is_action_pressed("Left Click"):
-		#var directionVector: Vector2 = getDirectionVector()
-		#slideTowardsMouse(directionVector,delta)
-	#else:
-		#accel = 1.0
-		#velocity.x = lerp(velocity.x,0.0,5 * delta)
-		#velocity.z = lerp(velocity.z,0.0,5 * delta)
-	
-	#this code is for impulse
-	if Input.is_action_just_pressed(mouseInput):
-		if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
-			mouseCooldown.start()
-			slideTowardsMouse(delta)
-			changeMouseInput(mouseInput)
-			if dashCombo < 1.6:
-				dashCombo += 0.2
-	else:
-		decelerate(delta)
-	move_and_slide()
-	rebound()
-
-
-func _physics_process(delta: float) -> void:
 	if frozen: return #dont move or anything while in the attack animation
 	#below code for jumping
 	if not is_on_floor():
@@ -106,7 +77,10 @@ func raycastOnMousePosition(): #function that greates a raycast from the camera 
 func getMouseWorldPosition(): #gets a vector3 based on the camera raycast
 	var raycastResult = raycastOnMousePosition()
 	if raycastResult:
+		if raycastResult.position.x > position.x: sprite_3d.flip_h = false
+		else: sprite_3d.flip_h = true
 		return raycastResult.position
+		
 	return position
 
 

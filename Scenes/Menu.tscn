@@ -1,11 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3wk1daak86hj"]
+[gd_scene load_steps=29 format=3 uid="uid://djr66pvfmqq7k"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_i28t0"]
+[ext_resource type="Texture2D" uid="uid://ddffootr8l1nr" path="res://Assets/JarAnimations/jar1.png" id="2_2byc2"]
 [ext_resource type="Texture2D" uid="uid://faehyytmtc2q" path="res://Assets/JarAnimations/jar2.png" id="2_xqgnu"]
 [ext_resource type="Texture2D" uid="uid://byxlsfs7kyuma" path="res://Assets/GoopyGoober.png" id="3_mu8wb"]
 [ext_resource type="Texture2D" uid="uid://cc4b22gsb4uat" path="res://Assets/JarAnimations/jar3.png" id="3_n15i3"]
 [ext_resource type="Texture2D" uid="uid://ba7xs6utq4bk5" path="res://Assets/JarAnimations/jar4.png" id="4_1wmgm"]
 [ext_resource type="Texture2D" uid="uid://c0xis0qqfl6l4" path="res://Assets/JarAnimations/jar5.png" id="5_fduop"]
+[ext_resource type="Texture2D" uid="uid://dc0kl110r800s" path="res://Assets/JarAnimations/jar6.png" id="7_qmmgm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gor8"]
 sky_top_color = Color(0.285814, 0.440282, 0.73271, 1)
@@ -57,14 +59,11 @@ albedo_texture = SubResource("GradientTexture2D_4uhth")
 material = SubResource("StandardMaterial3D_8lc6p")
 size = Vector3(37.875, 5.56, 2.89)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_urhxm"]
-load_path = "res://.godot/imported/jar.png-af0a11ff53ff378c344a8aa0d37bbdf8.s3tc.ctex"
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_v12l4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_urhxm")
+"texture": ExtResource("2_2byc2")
 }],
 "loop": true,
 "name": &"1",
@@ -101,7 +100,51 @@ animations = [{
 "loop": true,
 "name": &"5",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qmmgm")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_iocm8"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainAnimation/Gooper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5337, 0), Vector3(39.1142, 1.5337, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h86vx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainAnimation/Gooper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5337, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jt5jo"]
+_data = {
+"RESET": SubResource("Animation_h86vx"),
+"Start": SubResource("Animation_iocm8")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xfx41"]
 animations = [{
@@ -113,6 +156,89 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_ifv16"]
+resource_name = "RESET"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0a1oo"]
+resource_name = "end"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1152, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_7fvta"]
+resource_name = "start"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1152, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_idjd2"]
+_data = {
+"RESET": SubResource("Animation_ifv16"),
+"end": SubResource("Animation_0a1oo"),
+"start": SubResource("Animation_7fvta")
+}
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_i28t0")
@@ -148,8 +274,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76478, 0)
 sprite_frames = SubResource("SpriteFrames_v12l4")
 animation = &"1"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="MainAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jt5jo")
+}
 
-[node name="Gooper" type="AnimatedSprite3D" parent="AnimationPlayer"]
+[node name="Gooper" type="AnimatedSprite3D" parent="MainAnimation"]
 transform = Transform3D(5.68262, 0, 0, 0, 5.68262, 0, 0, 0, 5.68262, 0, 1.5337, 0)
 sprite_frames = SubResource("SpriteFrames_xfx41")
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.001
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_idjd2")
+}
+autoplay = "start"
+
+[node name="dissolve" type="ColorRect" parent="UI"]
+offset_left = -1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="animation_finished" from="MainAnimation" to="." method="start_level" unbinds=1]
