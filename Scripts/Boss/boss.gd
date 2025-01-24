@@ -14,15 +14,17 @@ var state = States.walking
 
 
 func _ready():
-	feet.attack_target = movement_target
-	navigation_actor_setup.call_deferred()
+	feet.attack_target = movement_target # pass through target node to child
+	navigation_actor_setup.call_deferred() # call this function at end of other _ready() functions
 	
 
 
 func _physics_process(delta):
+	# stunned state while timer running
 	if stun_timer.time_left > 0:
 		state = States.stunned
 	
+	# simple state machine just to keep things a little cleaner
 	match state:
 		States.walking:
 			navigation_physics_procces()
@@ -55,9 +57,9 @@ func navigation_set_movement_target(_movement_target: Vector3):
 func navigation_physics_procces():
 	# set new target position to player position each frame
 	navigation_set_movement_target(movement_target.position)
-	# 
+	
 	if navigation_agent.is_navigation_finished():
-		return
+		return # stop function here if target is reached
 
 	var current_nav_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
@@ -66,7 +68,7 @@ func navigation_physics_procces():
 	velocity = current_nav_agent_position.direction_to(next_path_position) * MOVEMENT_SPEED
 
 
-## Signals
+## Signals (a lot of this is unused)
 # Detecting if player is in range for hand attacks
 func _on_hand_proximity_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
@@ -85,6 +87,6 @@ func _on_foot_area_entered(area: Area3D) -> void:
 func _on_stun_timer_timeout() -> void:
 	state = States.walking
 
-# Detecting incoming damage from player
+# Detecting incoming damage from player from any child hitbox
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	pass # Replace with function body.
