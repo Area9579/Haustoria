@@ -111,6 +111,10 @@ func changeMouseInput(mouseClickInput):
 		mouseInput = "Right Click"
 	elif mouseClickInput == "Right Click":
 		mouseInput = "Left Click"
+	#if mouseClickInput == "Left Click":
+		#mouseInput = "Right Click"
+	#elif mouseClickInput == "Right Click":
+		#mouseInput = "Left Click"
 
 
 func _on_mouse_input_timer_timeout() -> void:

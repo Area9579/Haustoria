@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fl224xwk37sl"]
+[gd_scene load_steps=18 format=3 uid="uid://fl224xwk37sl"]
 
 [ext_resource type="Texture2D" uid="uid://c0hisog6kd4bj" path="res://Assets/icon.svg" id="1_lttd3"]
 [ext_resource type="Script" path="res://Scripts/Boss/boss.gd" id="1_vgxb7"]
@@ -61,6 +61,12 @@ radius = 3.18007
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0mtwb"]
 height = 20.8068
 radius = 7.70385
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ece0a"]
+radius = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mb8la"]
+radius = 2.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2qboq"]
 radius = 12.1169
@@ -152,22 +158,32 @@ shape = SubResource("CylinderShape3D_0mtwb")
 one_shot = true
 
 [node name="Hands" type="Node3D" parent="."]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.0906, 0)
 script = ExtResource("4_swuvd")
 
 [node name="Left" type="Area3D" parent="Hands"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 collision_layer = 16
 collision_mask = 32
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Left"]
+shape = SubResource("CylinderShape3D_ece0a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hands/Left"]
 
 [node name="Right" type="Area3D" parent="Hands"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 collision_layer = 16
 collision_mask = 32
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Right"]
+shape = SubResource("CylinderShape3D_mb8la")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hands/Right"]
+
+[node name="AttackTimer" type="Timer" parent="Hands"]
 
 [node name="Hand Proximity" type="Area3D" parent="."]
 collision_layer = 0
@@ -191,6 +207,9 @@ one_shot = true
 [connection signal="body_entered" from="Feet/Feet Bounds" to="Feet" method="_on_feet_bounds_body_entered"]
 [connection signal="body_exited" from="Feet/Feet Bounds" to="Feet" method="_on_feet_bounds_body_exited"]
 [connection signal="timeout" from="Feet/AttackTimer" to="Feet" method="_on_attack_timer_timeout"]
+[connection signal="animation_finished" from="Hands/Left/AnimationPlayer" to="Hands" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Hands/Right/AnimationPlayer" to="Hands" method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Hands/AttackTimer" to="Hands" method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="Hand Proximity" to="." method="_on_hand_proximity_body_entered"]
 [connection signal="body_exited" from="Hand Proximity" to="." method="_on_hand_proximity_body_exited"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
