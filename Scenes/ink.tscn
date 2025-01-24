@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://jp5uwhdyds2x"]
+
+[ext_resource type="Script" path="res://Scripts/ink.gd" id="1_vni3w"]
+[ext_resource type="Texture2D" uid="uid://b5ae42smc721h" path="res://Assets/slimeblob.png" id="2_m68jh"]
+
+[node name="Ink" type="Node3D"]
+top_level = true
+script = ExtResource("1_vni3w")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -4.595, 0)
+
+[node name="Decal" type="Decal" parent="."]
+texture_albedo = ExtResource("2_m68jh")
+distance_fade_enabled = true
+cull_mask = 1047554

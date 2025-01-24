@@ -189,9 +189,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8188, 0.444252, 19.0898)
 [node name="Beer6" parent="NavigationRegion3D" instance=ExtResource("8_8bnyb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.99363, 0.444252, 29.0499)
 
-[node name="MobileEnemy" parent="." instance=ExtResource("6_u4pk0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.53397)
-
 [node name="Player" parent="." instance=ExtResource("7_m2bmv")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

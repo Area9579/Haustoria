@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ne7cdhep7f61"]
+
+[ext_resource type="Texture2D" uid="uid://6ertr54jcxxi" path="res://Assets/stapler.png" id="1_iluw1"]
+
+[node name="Tint" type="PathFollow3D"]
+transform = Transform3D(0.0906676, -0.0295055, -0.995439, -0.0087824, 0.999492, -0.0304256, 0.995835, 0.011501, 0.0903632, 0.47035, 0.427201, -0.191)
+progress = 0.753888
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-0.00198423, -0.0354905, 7.95592e-10, -1.37695e-09, -7.19851e-10, -0.0355459, 0.0354905, -0.00198423, -1.33462e-09, 0, 0, 0)
+texture = ExtResource("1_iluw1")

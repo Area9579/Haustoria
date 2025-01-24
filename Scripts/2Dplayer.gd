@@ -8,7 +8,7 @@ extends CharacterBody3D
 
 var clickPositionx
 var clickPositionz
-var frozen = false
+var frozen = true
 
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
@@ -21,7 +21,12 @@ var accel = 1.0
 func _ready() -> void:
 	mouseInput = "Left Click"
 
-
+var cutscene = false
+var grab_syring = false
+@onready var cutscene_point: Marker3D = $"../MainAnimation/DecoyBoss/Hand/Cutscene_Point"
+func set_cutscene_true(): cutscene = true
+func grab_syringe():
+	grab_syring = true
 func _physics_process(delta: float) -> void:
 	$Limbs.rotation.y = getDirectionVector().angle()
 	if frozen: return #dont move or anything while in the attack animation
@@ -29,33 +34,18 @@ func _physics_process(delta: float) -> void:
 	#below code for jumping
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
-	
-	
+	if grab_syring:
+		$"../MainAnimation/DecoyBoss/Hand2/Syringe".global_position = global_position
 #region Continuous movement
-	if Input.is_action_pressed("Left Click"):
-		slideTowardsMouse(delta)
+	if Input.is_action_pressed("Left Click") and cutscene != true:
+		var direction = get_viewport().get_mouse_position()
+		velocity += Vector3(1,0,0)
+#endregion
+	if cutscene:
+		velocity += (cutscene_point.global_position - global_position) * delta * 20
+		velocity *= .95
 	else:
-		accel = 1.0
-		velocity.x = lerp(velocity.x,0.0,5 * delta)
-		velocity.z = lerp(velocity.z,0.0,5 * delta)
-#endregion
-	
-#region impulse movement
-	#this code is for impulse
-	#if Input.is_action_just_pressed(mouseInput):
-		#if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
-			#mouseCooldown.start()
-			#slideTowardsMouse(delta)
-			#changeMouseInput(mouseInput)
-			#if dashCombo < 1.6:
-				#dashCombo += 0.2
-	#else:
-		#decelerate(delta)
-	#
-	#rebound()
-#endregion
-	
+		velocity = lerp(velocity, Vector3.ZERO, delta)
 	move_and_slide()
 
 func raycastOnMousePosition(): #function that greates a raycast from the camera to a space in the 3D world based on the mouse position

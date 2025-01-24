@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://c776xvpr2thv3"]
+
+[ext_resource type="Script" path="res://Scripts/flower.gd" id="1_dp46i"]
+[ext_resource type="PackedScene" uid="uid://b0llys8h00god" path="res://Assets/vine.tscn" id="2_vxso3"]
+[ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="3_55vio"]
+[ext_resource type="Texture2D" uid="uid://dx1lag2h25iyc" path="res://Assets/flower.png" id="3_pigfa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncaih"]
+albedo_color = Color(0.835611, 0, 0.198014, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4slfo"]
+material = SubResource("StandardMaterial3D_ncaih")
+
+[sub_resource type="PrismMesh" id="PrismMesh_ubyrm"]
+
+[sub_resource type="Curve3D" id="Curve3D_1d7jp"]
+_data = {
+"points": PackedVector3Array(-0.190328, -0.154985, -0.0120578, 0.190328, 0.154985, 0.0120578, 0, 0, 0, -0.45109, 0.550339, 0.0374427, 0.45109, -0.550339, -0.0374427, 1.08819, -0.0618787, -0.148745),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Flower" type="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00899699, 0)
+script = ExtResource("1_dp46i")
+rest_length = 30
+tension = 100
+
+[node name="IKTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0252413, 0.0648627, 0)
+top_level = true
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IKTarget"]
+transform = Transform3D(0.276084, 0, 0, 0, 0.276084, 0, 0, 0, 0.276084, 0, 0.439509, 0)
+mesh = SubResource("CapsuleMesh_4slfo")
+
+[node name="DistanceDirection" type="Marker3D" parent="."]
+transform = Transform3D(0.275028, 0, 0, 0, 0.275028, 0, 0, 0, 0.275028, 1, 0.651552, 0)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="DistanceDirection"]
+mesh = SubResource("PrismMesh_ubyrm")
+skeleton = NodePath("../../..")
+
+[node name="Trail" type="Marker3D" parent="."]
+transform = Transform3D(0.30369, 0, 0, 0, 0.30369, 0, 0, 0, 0.30369, -0.0138626, 0.570339, 0.925237)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Trail"]
+mesh = SubResource("PrismMesh_ubyrm")
+skeleton = NodePath("../../..")
+
+[node name="TentHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649279, 0)
+
+[node name="Tent" parent="TentHolder" instance=ExtResource("2_vxso3")]
+
+[node name="Tent2" parent="TentHolder" instance=ExtResource("2_vxso3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.253531)
+
+[node name="Tent3" parent="TentHolder" instance=ExtResource("2_vxso3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.398521)
+
+[node name="Tent4" parent="TentHolder" instance=ExtResource("2_vxso3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.564532)
+
+[node name="Tent5" parent="TentHolder" instance=ExtResource("2_vxso3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.741739)
+
+[node name="Flower" type="Sprite3D" parent="TentHolder/Tent5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0390143, 0)
+billboard = 1
+texture_filter = 0
+render_priority = 8
+texture = ExtResource("3_pigfa")
+
+[node name="TitlerHolder" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00899699, 0)
+top_level = true
+visible = false
+curve = SubResource("Curve3D_1d7jp")
+
+[node name="PathFollow3D3" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.190901, 0.215788, -0.957565, 0.13052, 0.961257, 0.242643, 0.972864, -0.171306, 0.155346, 0.68046, 0.226068, -0.0962491)
+
+[node name="PathFollow3D4" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.215976, 0.639289, -0.737966, 0.117876, 0.73319, 0.669674, 0.969218, -0.231626, 0.0829994, 0.977224, 0.0578929, -0.138018)
+progress = 1.0954
+
+[node name="PathFollow3D5" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.219604, 0.742289, -0.633031, 0.114084, 0.624876, 0.77231, 0.968853, -0.24183, 0.0525446, 1.08819, -0.0618787, -0.148745)
+progress = 1.28379
+
+[node name="PathFollow3D6" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.219611, 0.74229, -0.633033, 0.114087, 0.624878, 0.772313, 0.968883, -0.24183, 0.0525448, 1.08819, -0.0618787, -0.148745)
+progress = 1.44877
+
+[node name="PathFollow3D7" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.219611, 0.742289, -0.633035, 0.114087, 0.624877, 0.772315, 0.968885, -0.24183, 0.0525449, 1.08819, -0.0618787, -0.148745)
+progress = 1.62546
+
+[node name="PathFollow3D8" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.171476, -0.00439514, -0.985148, 0.132943, 0.990918, 0.0187192, 0.976151, -0.134182, 0.170507, 0.555136, 0.242709, -0.075038)
+progress = 0.624339
+
+[node name="PathFollow3D9" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.129678, -0.308874, -0.942188, 0.126246, 0.947639, -0.293274, 0.983463, -0.08092, 0.161883, 0.360677, 0.212167, -0.0407189)
+progress = 0.424082
+
+[node name="PathFollow3D10" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.0851497, -0.484416, -0.870645, 0.106718, 0.873224, -0.475417, 0.990598, -0.0524334, 0.126056, 0.211122, 0.146735, -0.0163081)
+progress = 0.259098
+
+[node name="PathFollow3D11" parent="TitlerHolder" instance=ExtResource("3_55vio")]
+transform = Transform3D(0.0291367, -0.583394, -0.811623, 0.0710106, 0.811121, -0.580489, 0.997012, -0.0407217, 0.0650633, 0.0924984, 0.0712391, -0.00211111)
+progress = 0.117683
