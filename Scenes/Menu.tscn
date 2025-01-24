@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://djr66pvfmqq7k"]
+[gd_scene load_steps=50 format=3 uid="uid://djr66pvfmqq7k"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_i28t0"]
 [ext_resource type="Texture2D" uid="uid://ddffootr8l1nr" path="res://Assets/JarAnimations/jar1.png" id="2_2byc2"]
@@ -8,6 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://ba7xs6utq4bk5" path="res://Assets/JarAnimations/jar4.png" id="4_1wmgm"]
 [ext_resource type="Texture2D" uid="uid://c0xis0qqfl6l4" path="res://Assets/JarAnimations/jar5.png" id="5_fduop"]
 [ext_resource type="Texture2D" uid="uid://dc0kl110r800s" path="res://Assets/JarAnimations/jar6.png" id="7_qmmgm"]
+[ext_resource type="Script" path="res://Scripts/2Dplayer.gd" id="8_7r8i7"]
+[ext_resource type="Texture2D" uid="uid://cqep6vi2l3ayd" path="res://Assets/bossfeet.png" id="8_evwdu"]
+[ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="9_5mcuo"]
+[ext_resource type="Texture2D" uid="uid://diupmw01o68rf" path="res://Assets/hand.png" id="9_8gh20"]
+[ext_resource type="Texture2D" uid="uid://bgsykpdnc2pur" path="res://Assets/syringe.png" id="10_8isue"]
+[ext_resource type="Texture2D" uid="uid://dx468ym40bf1v" path="res://Assets/PlayerAnimations/attack/GoopyGoober2.png" id="10_jud2y"]
+[ext_resource type="Texture2D" uid="uid://c4at6q6ccw7nr" path="res://Assets/PlayerAnimations/attack/GoopyGoober3.png" id="11_dectp"]
+[ext_resource type="Texture2D" uid="uid://ccm12uv71w2o3" path="res://Assets/PlayerAnimations/attack/GoopyGoober4.png" id="12_k0s7g"]
+[ext_resource type="Texture2D" uid="uid://bqk50iwcx2kjs" path="res://Assets/PlayerAnimations/attack/GoopyGoober5.png" id="13_mgauf"]
+[ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="15_tluda"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="16_ecw48"]
+[ext_resource type="Texture2D" uid="uid://cqxsixhv7tq2x" path="res://Assets/barholderplaceholder.png" id="17_66xvd"]
+[ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="18_o3lnb"]
+[ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="19_5fxju"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gor8"]
 sky_top_color = Color(0.285814, 0.440282, 0.73271, 1)
@@ -58,6 +72,9 @@ albedo_texture = SubResource("GradientTexture2D_4uhth")
 [sub_resource type="BoxMesh" id="BoxMesh_gi7bd"]
 material = SubResource("StandardMaterial3D_8lc6p")
 size = Vector3(37.875, 5.56, 2.89)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2m3kh"]
+size = Vector3(55.4301, 3.35748, 3.32861)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v12l4"]
 animations = [{
@@ -110,34 +127,124 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_iocm8"]
-resource_name = "Start"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainAnimation/Gooper:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5337, 0), Vector3(39.1142, 1.5337, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_h86vx"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainAnimation/Gooper:position")
+tracks/0/path = NodePath("MainAnimation/DecoyBoss/Hand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.5337, 0)]
+"values": [Vector3(-5.46025, 18.4029, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainAnimation/DecoyBoss/Hand2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.14025, 18.9485, 1.14598)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainAnimation/DecoyBoss/Hand/Cutscene_Point:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.347799, -3.96235, 0.281794)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainAnimation/DecoyBoss/Hand2/Syringe:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0703438, -0.0385918, 0.135403)]
+}
+
+[sub_resource type="Animation" id="Animation_iocm8"]
+resource_name = "Start"
+length = 6.3015
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2DPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"set_cutscene_true"
+}, {
+"args": [],
+"method": &"grab_syringe"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainAnimation/DecoyBoss/Hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.76667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-5.46025, 17.0587, 0), Vector3(-7.13015, 5.23155, 0), Vector3(-7.13015, 9.48727, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainAnimation/DecoyBoss/Hand2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.6, 3.06667),
+"transitions": PackedFloat32Array(0.353553, 1),
+"update": 0,
+"values": [Vector3(-2.14025, 18.9485, 1.14598), Vector3(-6.03672, 11.0587, 1.14598)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainAnimation/DecoyBoss/Hand/Cutscene_Point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.03333, 3.1, 3.16667, 3.5, 3.7, 6.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1.86607, 1),
+"update": 0,
+"values": [Vector3(0.347799, -3.96235, 0.281794), Vector3(3.09411, -2.20239, 0.344143), Vector3(0.347799, -3.96235, 0.281794), Vector3(0.347799, -3.96235, 0.281794), Vector3(0.315308, -7.71304, 0.477022), Vector3(20.7898, -5.84078, 1.53286)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainAnimation/DecoyBoss/Hand2/Syringe:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.1, 3.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0703438, -0.0385918, 0.135403), Vector3(-0.0353834, -0.0748971, -3.05548)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt5jo"]
@@ -146,14 +253,40 @@ _data = {
 "Start": SubResource("Animation_iocm8")
 }
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xfx41"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7knul"]
+size = Vector3(4.3938, 3.24463, 3.88712)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
+height = 0.941026
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmg34"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_5mcuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jud2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_dectp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k0s7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mgauf")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_mu8wb")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 5.0
 }]
 
@@ -240,6 +373,89 @@ _data = {
 "start": SubResource("Animation_7fvta")
 }
 
+[sub_resource type="Animation" id="Animation_50e12"]
+resource_name = "RESET"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qwrqu"]
+resource_name = "end"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1152, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_jv3pw"]
+resource_name = "start"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1152, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dissolve:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocvl8"]
+_data = {
+"RESET": SubResource("Animation_50e12"),
+"end": SubResource("Animation_qwrqu"),
+"start": SubResource("Animation_jv3pw")
+}
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_i28t0")
 
@@ -262,8 +478,11 @@ skeleton = NodePath("../../..")
 transform = Transform3D(3.01262, 0, 0, 0, 1, 0, 0, 0, 1, 24.7818, -2.41178, 0)
 mesh = SubResource("BoxMesh_gi7bd")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.50571, 7.3496)
+[node name="StaticBody3D" type="StaticBody3D" parent="Table"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87506, 1.17874, 0.123779)
+shape = SubResource("BoxShape3D_2m3kh")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(6.18658, 0, 0, 0, 6.18658, 0, 0, 0, 6.18658, 0, 7.10776, 0)
@@ -279,9 +498,178 @@ libraries = {
 "": SubResource("AnimationLibrary_jt5jo")
 }
 
-[node name="Gooper" type="AnimatedSprite3D" parent="MainAnimation"]
-transform = Transform3D(5.68262, 0, 0, 0, 5.68262, 0, 0, 0, 5.68262, 0, 1.5337, 0)
-sprite_frames = SubResource("SpriteFrames_xfx41")
+[node name="DecoyBoss" type="Node3D" parent="MainAnimation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.123, 3.90227, 0)
+
+[node name="Left" type="Sprite3D" parent="MainAnimation/DecoyBoss"]
+transform = Transform3D(2.05196, 0, 0, 0, 2.05196, 0, 0, 0, 2.05196, -1.14111, 4.44097, 0)
+texture = ExtResource("8_evwdu")
+
+[node name="Right" type="Sprite3D" parent="MainAnimation/DecoyBoss"]
+transform = Transform3D(2.05196, 0, 0, 0, 2.05196, 0, 0, 0, 2.05196, 1.84589, 4.44097, 0.812045)
+texture = ExtResource("8_evwdu")
+
+[node name="Area3D" type="Area3D" parent="MainAnimation/DecoyBoss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.61227, 0, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainAnimation/DecoyBoss/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.20398, -1.12231, 0.947037)
+shape = SubResource("BoxShape3D_7knul")
+
+[node name="Hand" type="Sprite3D" parent="MainAnimation/DecoyBoss"]
+transform = Transform3D(1.58237, 0.144698, 0.0816001, -0.139995, 1.58228, -0.0910241, -0.0894275, 0.0833468, 1.58637, -5.46025, 18.4029, 0)
+texture = ExtResource("9_8gh20")
+
+[node name="Cutscene_Point" type="Marker3D" parent="MainAnimation/DecoyBoss/Hand"]
+transform = Transform3D(1, 1.62981e-08, -1.49012e-08, 3.11993e-08, 0.999999, -7.45058e-09, -5.21541e-08, 5.58794e-08, 1, 0.347799, -3.96235, 0.281794)
+
+[node name="Hand2" type="Sprite3D" parent="MainAnimation/DecoyBoss"]
+transform = Transform3D(1.55043, -0.341431, 0.10534, 0.34594, 1.55177, -0.0620275, -0.0894276, 0.0833468, 1.58637, -2.14025, 18.9485, 1.14598)
+render_priority = 1
+texture = ExtResource("9_8gh20")
+
+[node name="Syringe" type="Sprite3D" parent="MainAnimation/DecoyBoss/Hand2"]
+transform = Transform3D(0.990476, -0.132202, -0.0384868, 0.134656, 0.988397, 0.0702858, 0.0287483, -0.0747988, 0.996784, -0.659468, -4.08728, 1.91292)
+render_priority = 2
+texture = ExtResource("10_8isue")
+
+[node name="2DPlayer" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(1.59107, 0, 0, 0, 1.59107, 0, 0, 0, 1.59107, 0.0787538, 1.33468, 1.14598)
+collision_layer = 3
+script = ExtResource("8_7r8i7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="2DPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_0kq8h")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="2DPlayer"]
+transform = Transform3D(2.33079, 0, 0, 0, 2.33079, 0, 0, 0, 2.33079, 0, 0.039595, 0)
+billboard = 1
+texture_filter = 0
+render_priority = 6
+sprite_frames = SubResource("SpriteFrames_lmg34")
+animation = &"Idle"
+
+[node name="Flower" parent="2DPlayer/Sprite3D" instance=ExtResource("15_tluda")]
+transform = Transform3D(-0.428824, 0, 0.0135663, 0, 0.429039, 0, -0.0135663, 0, -0.428824, 0.0188493, -0.210538, -0.180206)
+
+[node name="CooldownTimer" type="Timer" parent="2DPlayer"]
+one_shot = true
+
+[node name="MouseInputTimer" type="Timer" parent="2DPlayer"]
+wait_time = 0.5
+one_shot = true
+
+[node name="SlimeCooldown" type="Timer" parent="2DPlayer"]
+wait_time = 0.1
+autostart = true
+
+[node name="UI" type="Control" parent="2DPlayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_ecw48")
+metadata/_edit_lock_ = true
+
+[node name="BossHealth" type="TextureProgressBar" parent="2DPlayer/UI"]
+layout_mode = 0
+offset_left = 1071.0
+offset_top = 13.0
+offset_right = 1371.0
+offset_bottom = 613.0
+scale = Vector2(0.21552, 0.488654)
+fill_mode = 3
+texture_over = ExtResource("17_66xvd")
+texture_progress = ExtResource("18_o3lnb")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="2DPlayer/UI/BossHealth"]
+layout_mode = 0
+offset_left = 23.1998
+offset_top = 607.791
+offset_right = 359.2
+offset_bottom = 657.791
+scale = Vector2(2.17141, 2.17141)
+text = "boss health
+"
+
+[node name="PlayerHealth" type="TextureProgressBar" parent="2DPlayer/UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 316.0
+offset_bottom = 605.0
+scale = Vector2(0.22927, 0.519832)
+value = 90.0
+fill_mode = 3
+texture_over = ExtResource("17_66xvd")
+texture_progress = ExtResource("18_o3lnb")
+tint_progress = Color(0.244776, 0.244776, 0.244776, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="2DPlayer/UI/PlayerHealth"]
+layout_mode = 0
+offset_left = 39.255
+offset_top = 602.118
+offset_right = 375.255
+offset_bottom = 652.118
+scale = Vector2(2.17141, 2.17141)
+text = "player health"
+
+[node name="UI2" type="CanvasLayer" parent="2DPlayer"]
+follow_viewport_scale = 0.001
+
+[node name="CenterContainer" type="CenterContainer" parent="2DPlayer/UI2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="2DPlayer/UI2"]
+libraries = {
+"": SubResource("AnimationLibrary_idjd2")
+}
+autoplay = "start"
+
+[node name="dissolve" type="ColorRect" parent="2DPlayer/UI2"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Limbs" type="Node3D" parent="2DPlayer"]
+
+[node name="Arm" parent="2DPlayer/Limbs" instance=ExtResource("19_5fxju")]
+
+[node name="Arm2" parent="2DPlayer/Limbs" instance=ExtResource("19_5fxju")]
+transform = Transform3D(0.760658, 0, 0.323053, 0, 0.826416, 0, -0.323053, 0, 0.760658, 0, -0.00899699, 0.0201983)
+tent_length = 9
+
+[node name="Arm6" parent="2DPlayer/Limbs" instance=ExtResource("19_5fxju")]
+transform = Transform3D(0.782827, 0, 0.26485, 0, 0.826416, 0, -0.26485, 0, 0.782827, 0, -0.00899699, -0.0192705)
+tent_length = 23
+
+[node name="Arm3" parent="2DPlayer/Limbs" instance=ExtResource("19_5fxju")]
+transform = Transform3D(1.17014, 0, -0.173605, 0, 1.18295, 0, 0.173605, 0, 1.17014, 0.0386584, -0.000733644, 0.0579425)
+tent_length = 5
+
+[node name="Arm4" parent="2DPlayer/Limbs" instance=ExtResource("19_5fxju")]
+transform = Transform3D(0.825929, 0, -0.0283658, 0, 0.826416, 0, 0.0283658, 0, 0.825929, 0, -0.00899699, 0.138124)
+tent_length = 4
+
+[node name="Arm5" parent="2DPlayer/Limbs" instance=ExtResource("19_5fxju")]
+transform = Transform3D(0.739652, 0.00541318, -0.368576, -0.00673772, 0.826388, -0.0013842, 0.368554, 0.00424387, 0.739671, 0, -0.00899699, 0.0722671)
+tent_length = 20
+
+[node name="Camera3D" type="Camera3D" parent="2DPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37041, 7.3496)
+
+[node name="SyringeHand" type="Marker3D" parent="2DPlayer"]
 
 [node name="UI" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001
@@ -297,7 +685,7 @@ size_flags_vertical = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
-"": SubResource("AnimationLibrary_idjd2")
+"": SubResource("AnimationLibrary_ocvl8")
 }
 autoplay = "start"
 
@@ -307,3 +695,6 @@ offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
 [connection signal="animation_finished" from="MainAnimation" to="." method="start_level" unbinds=1]
+[connection signal="body_entered" from="MainAnimation/DecoyBoss/Area3D" to="." method="start_anim" unbinds=1]
+[connection signal="timeout" from="2DPlayer/MouseInputTimer" to="2DPlayer" method="_on_mouse_input_timer_timeout"]
+[connection signal="timeout" from="2DPlayer/SlimeCooldown" to="2DPlayer" method="_on_slime_cooldown_timeout"]

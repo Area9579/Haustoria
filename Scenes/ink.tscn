@@ -13,3 +13,4 @@ target_position = Vector3(0, -4.595, 0)
 [node name="Decal" type="Decal" parent="."]
 texture_albedo = ExtResource("2_m68jh")
 distance_fade_enabled = true
+cull_mask = 1047554

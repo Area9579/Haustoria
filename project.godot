@@ -21,6 +21,7 @@ Director="*res://Scripts/Director.gd"
 
 [display]
 
+window/size/always_on_top=true
 window/stretch/mode="viewport"
 
 [dotnet]
