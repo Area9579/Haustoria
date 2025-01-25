@@ -22,12 +22,9 @@ var mouseVelocity: Vector3
 
 func _physics_process(delta: float) -> void:
 	$Limbs.rotation.y = getDirectionVector().angle()
-
-
-func _physics_process(delta: float) -> void:
 	
 	if frozen: return #dont move or anything while in the attack animation
-	spawn_sime()
+	spawn_slime()
 	#below code for jumping
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -38,7 +35,6 @@ func _physics_process(delta: float) -> void:
 		oldGrabPosition = getGrabPosition()
 		oldMousePosition = getMouseWorldPosition()
 		oldPlayerPosition = position
-		#find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
 		
 	else: #decelerate constantly when not actively moving using left click
 		decelerate(delta)
@@ -98,7 +94,6 @@ func rebound(): #this function determines how much force to bounce off surfaces 
 
 
 func dragSelf(): #drags the player around the grabbed point and then tracks the mouse velocity until released
-	#find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
 	position.x = oldPlayerPosition.x + oldGrabPosition.x - getGrabPosition().x
 	position.z = oldPlayerPosition.z + oldGrabPosition.y - getGrabPosition().y
 	
@@ -133,7 +128,7 @@ func slow_down(delta):
 	velocity = lerp(velocity, Vector3.ZERO, delta * 4)
 
 var can_slime = false
-func spawn_sime():
+func spawn_slime():
 	if can_slime:
 		var slime_instance = slime.instantiate()
 		add_child(slime_instance)

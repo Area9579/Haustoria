@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bmkpfdmdrk7lf" path="res://Scenes/wall.tscn" id="1_vt5yp"]
 [ext_resource type="PackedScene" uid="uid://tnvub7y17iua" path="res://Scenes/boss_hand_hit_box.tscn" id="4_d6qjs"]
-[ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/MobileEnemy.tscn" id="6_u4pk0"]
+[ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/Boss.tscn" id="6_u4pk0"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qfgaq"]
@@ -36,6 +36,7 @@ navigation_mesh = SubResource("NavigationMesh_qfgaq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(28.4368, 0, 0, 0, 0.102244, 0, 0, 0, 28.4368, 0, -0.5, 0)
+layers = 3
 mesh = SubResource("BoxMesh_j6jtq")
 skeleton = NodePath("../..")
 
