@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=14 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="5_x6hvr"]
 [ext_resource type="Texture2D" uid="uid://bqk50iwcx2kjs" path="res://Assets/PlayerAnimations/attack/GoopyGoober5.png" id="6_k0i1t"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="9_t2dxl"]
-[ext_resource type="Texture2D" uid="uid://bkcrh7bxbpml" path="res://Assets/Item1.png" id="12_qsi5h"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
 height = 0.941026
@@ -68,7 +67,7 @@ fov = 53.9261
 script = ExtResource("3_iy2vu")
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.6
 one_shot = true
 
 [node name="UI" type="Control" parent="."]
@@ -123,9 +122,3 @@ offset_right = 375.255
 offset_bottom = 652.118
 scale = Vector2(2.17141, 2.17141)
 text = "player health"
-
-[node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.265, 0)
-billboard = 1
-texture_filter = 2
-texture = ExtResource("12_qsi5h")

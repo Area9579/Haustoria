@@ -1,8 +1,6 @@
 extends CharacterBody3D
 
 @onready var dashCooldown: Timer = $CooldownTimer
-@onready var mouseCooldown: Timer = $MouseInputTimer
-
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
 
 var clickPositionx
@@ -18,6 +16,7 @@ var oldMousePosition: Vector3
 var oldGrabPosition: Vector2
 var oldPlayerPosition: Vector3
 var oldMouseVelocity: Vector3
+var mouseVelocity: Vector3
 
 
 
@@ -37,16 +36,19 @@ func _physics_process(delta: float) -> void:
 		oldGrabPosition = getGrabPosition()
 		oldMousePosition = getMouseWorldPosition()
 		oldPlayerPosition = position
-		if dashCooldown.is_stopped(): #the dash cooldown still needs to be reimplemented
-			#this is a visual for debugging (we'll remove this later)
-			find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
-			#mouseCooldown.start()
+		#find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
+		
 	else: #decelerate constantly when not actively moving using left click
 		decelerate(delta)
-	if Input.is_action_pressed("Left Click"): #
+		
+	if Input.is_action_pressed("Left Click"): #as you hold the mouse button
 		oldMouseVelocity = getMouseWorldPosition()
 		dragSelf()
-	
+		
+	if Input.is_action_just_released("Left Click") and dashCooldown.is_stopped():
+		velocity = mouseVelocity
+		dashCooldown.start()
+		
 	#move using velocity and check to bounce off surfaces
 	move_and_slide()
 	rebound()
@@ -92,17 +94,12 @@ func rebound(): #this function determines how much force to bounce off surfaces 
 		velocity.z += get_wall_normal().z * BOUNCE_MULTIPLIER
 
 
-func _on_mouse_input_timer_timeout() -> void: #need to reinplement this
-	dashCooldown.start()
-
-
 func dragSelf(): #drags the player around the grabbed point and then tracks the mouse velocity until released
-	find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
+	#find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
 	position.x = oldPlayerPosition.x + oldGrabPosition.x - getGrabPosition().x
 	position.z = oldPlayerPosition.z + oldGrabPosition.y - getGrabPosition().y
 	
-	var mouseVelocity = (oldMouseVelocity - getMouseWorldPosition())
-	velocity = -mouseVelocity * VELOCITY_MULTIPLIER
+	mouseVelocity = -(oldMouseVelocity - getMouseWorldPosition()) * VELOCITY_MULTIPLIER
 
 
 func getGrabPosition(): #gets the position of the grabbed point when you click within a circle with a given radius
