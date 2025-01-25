@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 @onready var dashCooldown: Timer = $CooldownTimer
-@onready var mouseCooldown: Timer = $MouseInputTimer
 @onready var ui: Control = $UI
 @onready var slime = preload("res://Scenes/ink.tscn")
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
@@ -13,17 +12,20 @@ var frozen = false
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 const BOUNCE_MULTIPLIER = 3.0
+const VELOCITY_MULTIPLIER = 30.0
 
-var mouseInput: String
-var dashCombo = 1
-var accel = 1.0
-
-func _ready() -> void:
-	mouseInput = "Left Click"
-
+var oldMousePosition: Vector3
+var oldGrabPosition: Vector2
+var oldPlayerPosition: Vector3
+var oldMouseVelocity: Vector3
+var mouseVelocity: Vector3
 
 func _physics_process(delta: float) -> void:
 	$Limbs.rotation.y = getDirectionVector().angle()
+
+
+func _physics_process(delta: float) -> void:
+	
 	if frozen: return #dont move or anything while in the attack animation
 	spawn_sime()
 	#below code for jumping
@@ -31,31 +33,25 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	
-	
-#region Continuous movement
-	if Input.is_action_pressed("Left Click"):
-		slideTowardsMouse(delta)
-	else:
-		accel = 1.0
-		velocity.x = lerp(velocity.x,0.0,5 * delta)
-		velocity.z = lerp(velocity.z,0.0,5 * delta)
-#endregion
-	
-#region impulse movement
-	#this code is for impulse
-	#if Input.is_action_just_pressed(mouseInput):
-		#if dashCooldown.is_stopped() and (mouseCooldown.is_stopped() or mouseCooldown.time_left <= 0.15):
-			#mouseCooldown.start()
-			#slideTowardsMouse(delta)
-			#changeMouseInput(mouseInput)
-			#if dashCombo < 1.6:
-				#dashCombo += 0.2
-	#else:
-		#decelerate(delta)
-	#
-	#rebound()
-#endregion
-	
+	if Input.is_action_just_pressed("Left Click"):
+		#all of these variables need to be set before the drag function starts so it has the correct reference
+		oldGrabPosition = getGrabPosition()
+		oldMousePosition = getMouseWorldPosition()
+		oldPlayerPosition = position
+		#find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
+		
+	else: #decelerate constantly when not actively moving using left click
+		decelerate(delta)
+		
+	if Input.is_action_pressed("Left Click"): #as you hold the mouse button
+		oldMouseVelocity = getMouseWorldPosition()
+		dragSelf()
+		
+	if Input.is_action_just_released("Left Click") and dashCooldown.is_stopped():
+		velocity = mouseVelocity
+		dashCooldown.start()
+		
+	#move using velocity and check to bounce off surfaces
 	move_and_slide()
 
 func raycastOnMousePosition(): #function that greates a raycast from the camera to a space in the 3D world based on the mouse position
@@ -65,7 +61,7 @@ func raycastOnMousePosition(): #function that greates a raycast from the camera 
 	
 	var rayOrigin = cam.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + cam.project_ray_normal(mousePos) * 100
-	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd, 128)
+	var rayQuery = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd,128) #this last parameter determines which collision layer to hit
 	rayQuery.collide_with_bodies = true
 	
 	var resultingRay = stateInSpace.intersect_ray(rayQuery)
@@ -82,7 +78,7 @@ func getMouseWorldPosition(): #gets a vector3 based on the camera raycast
 	return position
 
 
-func getDirectionVector():
+func getDirectionVector(): #this gets a vector2 in the direction of the mouse from the player position
 	var mousePos = Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z)
 	var playerVector2 = Vector2(position.x,position.z)
 	var degreeAngle = -rad_to_deg(playerVector2.angle_to_point(mousePos))
@@ -90,45 +86,35 @@ func getDirectionVector():
 	return directionVector
 
 
-func slideTowardsMouse(delta):
-	var directionVector: Vector2 = getDirectionVector()
-	#this code is for continuous
-#region continuous
-	accel = lerp(accel,SPEED,10 * delta)
-	velocity.x = lerp(velocity.x,directionVector.x * accel, 3 * delta)
-	velocity.z = lerp(velocity.z,-directionVector.y * accel, 3 * delta)
-#endregion
-	
-#region impulse
-	#velocity.x += directionVector.x * SPEED * dashCombo
-	#velocity.z += -directionVector.y * SPEED * dashCombo
-#endregion
-
-
-func decelerate(delta):
+func decelerate(delta): #this function changes the velocity to always approach zero
 	velocity.x = lerp(velocity.x,0.0,5 * delta)
 	velocity.z = lerp(velocity.z,0.0,5 * delta)
 
-func rebound():
+
+func rebound(): #this function determines how much force to bounce off surfaces by using BOUNCE_MULTIPLIER
 	if get_wall_normal():
 		velocity.x += get_wall_normal().x * BOUNCE_MULTIPLIER
 		velocity.z += get_wall_normal().z * BOUNCE_MULTIPLIER
 
-func changeMouseInput(mouseClickInput):
-	return
-	if mouseClickInput == "Left Click":
-		mouseInput = "Right Click"
-	elif mouseClickInput == "Right Click":
-		mouseInput = "Left Click"
-	#if mouseClickInput == "Left Click":
-		#mouseInput = "Right Click"
-	#elif mouseClickInput == "Right Click":
-		#mouseInput = "Left Click"
+
+func dragSelf(): #drags the player around the grabbed point and then tracks the mouse velocity until released
+	#find_child("Sprite3D2").position = Vector3(getGrabPosition().x,find_child("Sprite3D2").position.y,getGrabPosition().y)
+	position.x = oldPlayerPosition.x + oldGrabPosition.x - getGrabPosition().x
+	position.z = oldPlayerPosition.z + oldGrabPosition.y - getGrabPosition().y
+	
+	mouseVelocity = -(oldMouseVelocity - getMouseWorldPosition()) * VELOCITY_MULTIPLIER
 
 
-func _on_mouse_input_timer_timeout() -> void:
-	dashCooldown.start()
-	dashCombo = 1
+func getGrabPosition(): #gets the position of the grabbed point when you click within a circle with a given radius
+	var directionVector: Vector2 = Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(position.x,position.z)
+	var distance = directionVector.length()
+	var radius: float = 2.5
+	if distance > radius:
+		directionVector = directionVector.normalized() * radius
+		return Vector2(directionVector)
+	else:
+		return Vector2(getMouseWorldPosition().x-position.x,getMouseWorldPosition().z-position.z)
+
 
 func attack(): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.
