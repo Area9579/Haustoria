@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ne5a6gx7ft8m" path="res://Assets/cyanide.png" id="2_xy1sj"]
 [ext_resource type="Texture2D" uid="uid://l5wyl5a6s5r1" path="res://Assets/nitrate.png" id="3_ibm6l"]
 [ext_resource type="Texture2D" uid="uid://cs1i81gs11t5w" path="res://Assets/acid.png" id="4_kkpw0"]
-[ext_resource type="Texture2D" uid="uid://4hkmewuwo112" path="res://Assets/lighttexture'.tres" id="5_3mxpi"]
+[ext_resource type="Texture2D" uid="uid://c6pbnxm46un01" path="res://Assets/lighttexture'.tres" id="5_3mxpi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_obbhc"]
 

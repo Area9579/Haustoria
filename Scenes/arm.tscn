@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c7x20hq3ju2re"]
 
 [ext_resource type="Script" path="res://Scripts/arm.gd" id="1_gdipq"]
-[ext_resource type="PackedScene" uid="uid://c4ho3agy0ktao" path="res://Assets/tent.tscn" id="2_ghqqy"]
+[ext_resource type="PackedScene" uid="uid://c4ho3agy0ktao" path="res://Scenes/tent.tscn" id="2_ghqqy"]
 [ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="3_fv42r"]
 
 [sub_resource type="Gradient" id="Gradient_8ni0o"]
