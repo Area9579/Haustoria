@@ -531,7 +531,7 @@ render_priority = 1
 texture = ExtResource("9_8gh20")
 
 [node name="Syringe" type="Sprite3D" parent="MainAnimation/DecoyBoss/Hand2"]
-transform = Transform3D(0.990476, -0.132202, -0.0384868, 0.134656, 0.988397, 0.0702858, 0.0287483, -0.0747988, 0.996784, -0.659468, -4.08728, 1.91292)
+transform = Transform3D(0.990476, -0.132202, -0.0384868, 0.134656, 0.988397, 0.0702858, 0.0287483, -0.0747989, 0.996784, -0.659468, -4.08728, 1.91292)
 render_priority = 2
 texture = ExtResource("10_8isue")
 

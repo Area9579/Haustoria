@@ -9,15 +9,14 @@ var clickPositionx
 var clickPositionz
 var frozen = false
 
-const SPEED = 10.0
+const SPEED = 10.0 #used for launching speed
 const JUMP_VELOCITY = 4.5
-const BOUNCE_MULTIPLIER = 3.0
-const VELOCITY_MULTIPLIER = 30.0
+const BOUNCE_MULTIPLIER = 5.0 #how much the player bounces off surfaces
+const VELOCITY_MULTIPLIER = 30.0 #used to calculate how snappy the drag is
 
 var oldMousePosition: Vector3
 var oldGrabPosition: Vector2
 var oldPlayerPosition: Vector3
-var oldMouseVelocity: Vector3
 var mouseVelocity: Vector3
 
 func _physics_process(delta: float) -> void:
@@ -36,11 +35,12 @@ func _physics_process(delta: float) -> void:
 		oldMousePosition = getMouseWorldPosition()
 		oldPlayerPosition = position
 		
-	else: #decelerate constantly when not actively moving using left click
+	else: #decelerate constantly after initially pressing left click
 		decelerate(delta)
 		
-	if Input.is_action_pressed("Left Click"): #as you hold the mouse button
-		oldMouseVelocity = getMouseWorldPosition()
+		
+	if Input.is_action_pressed("Left Click"): #as you hold the mouse button drag the player
+		getMouseVelocity()
 		dragSelf()
 		
 	if Input.is_action_just_released("Left Click") and dashCooldown.is_stopped():
@@ -49,6 +49,7 @@ func _physics_process(delta: float) -> void:
 		
 	#move using velocity and check to bounce off surfaces
 	move_and_slide()
+	rebound()
 
 func raycastOnMousePosition(): #function that greates a raycast from the camera to a space in the 3D world based on the mouse position
 	var cam = get_viewport().get_camera_3d()
@@ -93,12 +94,14 @@ func rebound(): #this function determines how much force to bounce off surfaces 
 		velocity.z += get_wall_normal().z * BOUNCE_MULTIPLIER
 
 
-func dragSelf(): #drags the player around the grabbed point and then tracks the mouse velocity until released
-	position.x = oldPlayerPosition.x + oldGrabPosition.x - getGrabPosition().x
-	position.z = oldPlayerPosition.z + oldGrabPosition.y - getGrabPosition().y
-	
-	mouseVelocity = -(oldMouseVelocity - getMouseWorldPosition()) * VELOCITY_MULTIPLIER
-
+func dragSelf(): #drags the player around the grabbed point by constantly setting velocity towards where the player should be
+	var pointx = oldPlayerPosition.x + oldGrabPosition.x - getGrabPosition().x
+	var pointz = oldPlayerPosition.z + oldGrabPosition.y - getGrabPosition().y
+	var vectorDistance: float = (Vector2(pointx,pointz)-Vector2(position.x,position.z)).length()/2
+	var targetPoint = -rad_to_deg(Vector2(pointx,pointz).angle_to_point(Vector2(position.x,position.z)))
+	targetPoint = Vector2(cos(deg_to_rad(targetPoint)),sin(deg_to_rad(targetPoint)))
+	velocity.x = -targetPoint.x * VELOCITY_MULTIPLIER * vectorDistance
+	velocity.z = targetPoint.y * VELOCITY_MULTIPLIER * vectorDistance
 
 func getGrabPosition(): #gets the position of the grabbed point when you click within a circle with a given radius
 	var directionVector: Vector2 = Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(position.x,position.z)
@@ -110,6 +113,8 @@ func getGrabPosition(): #gets the position of the grabbed point when you click w
 	else:
 		return Vector2(getMouseWorldPosition().x-position.x,getMouseWorldPosition().z-position.z)
 
+func getMouseVelocity(): #gets the velocity of the mouse to launch the player in
+	mouseVelocity = -Vector3(Input.get_last_mouse_velocity().x/1000,0,Input.get_last_mouse_velocity().y/1000) * SPEED
 
 func attack(): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.

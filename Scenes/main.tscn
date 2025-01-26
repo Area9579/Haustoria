@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=13 format=3 uid="uid://magi1winy2i"]
 
 [ext_resource type="PackedScene" uid="uid://bmkpfdmdrk7lf" path="res://Scenes/wall.tscn" id="1_vt5yp"]
 [ext_resource type="PackedScene" uid="uid://tnvub7y17iua" path="res://Scenes/boss_hand_hit_box.tscn" id="4_d6qjs"]
@@ -28,6 +28,10 @@ sky_material = SubResource("ProceduralSkyMaterial_lims6")
 background_mode = 2
 sky = SubResource("Sky_f5vmn")
 ambient_light_color = Color(0.824375, 0.783241, 0.528634, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q8b48"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0tcdf"]
 
 [node name="Main" type="Node3D"]
 
@@ -74,3 +78,33 @@ environment = SubResource("Environment_ibggl")
 
 [node name="BossHandHitBox" parent="." instance=ExtResource("4_d6qjs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.50114, -0.448878, -2.43457)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.2, 0, 0, 0, 16.965, 0, 0, 0, 28.29, -14.4617, 4, 0)
+mesh = SubResource("BoxMesh_q8b48")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_0tcdf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.2, 0, 0, 0, 16.965, 0, 0, 0, 28.29, 14.5383, 4, 0)
+mesh = SubResource("BoxMesh_q8b48")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_0tcdf")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-9.61651e-08, 0, -28.29, 0, 16.965, 0, 2.2, 0, -1.2366e-06, 0.538315, 4, -15)
+mesh = SubResource("BoxMesh_q8b48")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_0tcdf")
