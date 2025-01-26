@@ -5,11 +5,9 @@ extends CharacterBody3D
 @onready var slime = preload("res://Scenes/ink.tscn")
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
 
-var clickPositionx
-var clickPositionz
 var frozen = false
 
-const SPEED = 10.0 #used for launching speed
+const SPEED = 2.0 #used for launching speed
 const JUMP_VELOCITY = 4.5
 const BOUNCE_MULTIPLIER = 5.0 #how much the player bounces off surfaces
 const VELOCITY_MULTIPLIER = 30.0 #used to calculate how snappy the drag is
@@ -17,7 +15,7 @@ const VELOCITY_MULTIPLIER = 30.0 #used to calculate how snappy the drag is
 var oldMousePosition: Vector3
 var oldGrabPosition: Vector2
 var oldPlayerPosition: Vector3
-var mouseVelocity: Vector3
+var launchVelocity: Vector3
 
 func _physics_process(delta: float) -> void:
 	$Limbs.rotation.y = getDirectionVector().angle()
@@ -40,11 +38,11 @@ func _physics_process(delta: float) -> void:
 		
 		
 	if Input.is_action_pressed("Left Click"): #as you hold the mouse button drag the player
-		getMouseVelocity()
+		launch()
 		dragSelf()
 		
 	if Input.is_action_just_released("Left Click") and dashCooldown.is_stopped():
-		velocity = mouseVelocity
+		velocity = launchVelocity
 		dashCooldown.start()
 		
 	#move using velocity and check to bounce off surfaces
@@ -114,8 +112,9 @@ func getGrabPosition(): #gets the position of the grabbed point when you click w
 	else:
 		return Vector2(getMouseWorldPosition().x-position.x,getMouseWorldPosition().z-position.z)
 
-func getMouseVelocity(): #gets the velocity of the mouse to launch the player in
-	mouseVelocity = -Vector3(Input.get_last_mouse_velocity().x/1000,0,Input.get_last_mouse_velocity().y/1000) * SPEED
+func launch(): #gets the velocity of the mouse to launch the player in
+	launchVelocity = velocity * SPEED
+
 
 func attack(): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.
