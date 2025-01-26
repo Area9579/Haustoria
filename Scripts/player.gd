@@ -80,6 +80,7 @@ func getDirectionVector(): #this gets a vector2 in the direction of the mouse fr
 	var playerVector2 = Vector2(position.x,position.z)
 	var degreeAngle = -rad_to_deg(playerVector2.angle_to_point(mousePos))
 	var directionVector = Vector2(cos(deg_to_rad(degreeAngle)),sin(deg_to_rad(degreeAngle)))
+	
 	return directionVector
 
 
