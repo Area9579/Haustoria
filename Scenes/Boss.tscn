@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://fl224xwk37sl"]
 
-[ext_resource type="Texture2D" uid="uid://c0hisog6kd4bj" path="res://Assets/icon.svg" id="1_lttd3"]
 [ext_resource type="Script" path="res://Scripts/Boss/boss.gd" id="1_vgxb7"]
 [ext_resource type="Animation" uid="uid://eo1decu4btyf" path="res://Assets/left_stomp.res" id="3_dkcie"]
 [ext_resource type="Script" path="res://Scripts/Boss/feet.gd" id="3_f4frn"]
+[ext_resource type="Texture2D" uid="uid://cqep6vi2l3ayd" path="res://Assets/bossfeet.png" id="4_27xct"]
 [ext_resource type="Script" path="res://Scripts/Boss/hands.gd" id="4_swuvd"]
 [ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/right_stomp.res" id="5_svm4b"]
 
@@ -102,10 +102,11 @@ libraries = {
 shape = SubResource("CylinderShape3D_dkcf5")
 
 [node name="Sprite3D" type="Sprite3D" parent="Feet/Left"]
-transform = Transform3D(4.905, 0, 0, 0, 1.6, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(2.15278, 0, 0, 0, 1.6, 0, 0, 0, 1, 0, 2.65953, -3.45479)
 modulate = Color(0.891854, 0.00108814, 0.955406, 1)
 billboard = 1
-texture = ExtResource("1_lttd3")
+render_priority = 8
+texture = ExtResource("4_27xct")
 
 [node name="Hitbox" type="Area3D" parent="Feet/Left"]
 collision_layer = 16
@@ -132,10 +133,11 @@ libraries = {
 shape = SubResource("CylinderShape3D_tl6ao")
 
 [node name="Sprite3D" type="Sprite3D" parent="Feet/Right"]
-transform = Transform3D(4.905, 0, 0, 0, 1.6, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(2.16177, 0, 0, 0, 1.6, 0, 0, 0, 1, 0, 2.65953, -3.45479)
 modulate = Color(0.931858, 0.000935277, 0.965965, 1)
 billboard = 1
-texture = ExtResource("1_lttd3")
+render_priority = 8
+texture = ExtResource("4_27xct")
 
 [node name="Hitbox" type="Area3D" parent="Feet/Right"]
 collision_layer = 16

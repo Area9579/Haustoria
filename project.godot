@@ -73,3 +73,4 @@ fullscreen={
 3d_physics/layer_4="pickups"
 3d_physics/layer_5="damage"
 3d_physics/layer_6="trap"
+3d_physics/layer_12="RealPlayer"
