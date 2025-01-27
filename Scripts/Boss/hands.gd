@@ -1,39 +1,88 @@
-extends Node3D
+extends CharacterBody3D
 
-@onready var left: Area3D = $Left
-@onready var right: Area3D = $Right
+@onready var boss: CharacterBody3D = get_parent()
 @onready var attack_timer: Timer = $AttackTimer
-@export var attacking: bool = false
-@onready var left_animation_player: AnimationPlayer = $Left/AnimationPlayer
-@onready var right_animation_player: AnimationPlayer = $Right/AnimationPlayer
-var attacking_hand = left
-var resting_hand = right
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var attack_target: CharacterBody3D
+var attacking: bool = false
+var old_attacking: bool = false
+var swipe_target_position
+
+enum AttackPhase {first, second, third, fourth, fifth}
+var attack_phase
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	attack_phase = AttackPhase.fifth
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if attacking:
-		pass
-	if not attacking:
-		left.position = lerp(left.position, Vector3(-10, 0, 0), 0.025)
-		left.position = lerp(left.position, Vector3(-10, 0, 0), 0.025)
+	if attacking != old_attacking:
+		attack_timer.start(0.1)
+	old_attacking = attacking
+	
+	match attack_phase:
+		AttackPhase.first:
+			# state is set to first while not attacking, so we need to double check
+			# to make sure this behavior is needed
+			if attacking:
+				# track attacking hand to player position
+				self.position.y = 7
+				self.position.x = lerp(self.position.x, attack_target.position.x, 0.3)
+				self.position.z = lerp(self.position.z, attack_target.position.z, 0.3)
+			elif not attacking:
+				# reset hand position
+				self.position = lerp(self.position, boss.position, 1)
+		AttackPhase.second:
+			# slam hand down and get player position
+			swipe_target_position = (attack_target.position - self.position) * Vector3(5, 0, 5)
+		AttackPhase.third:
+			# pause for player dodge
+			pass
+		AttackPhase.fourth:
+			# swipe hand accross ground towards previous player position
+			self.velocity = lerp(self.velocity, swipe_target_position, 0.05)
+			
+		AttackPhase.fifth:
+			self.velocity = Vector3(0, 0, 0)
+			# raise hand
+			self.position = boss.position + Vector3(0, 7, 0)
+	
+	move_and_slide()
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	# create a delay before the start of the next attack
-	attack_timer.start()
 
 func _on_attack_timer_timeout() -> void:
 	attack_timer.stop()
-	# switch which foot is attacking and set correct animation
-	if attacking_hand == right:
-		left_animation_player.current_animation = "left_swipe"
-		attacking_hand = left
-		resting_hand = right
-	elif attacking_hand == left:
-		right_animation_player.current_animation = "right_swipe"
-		attacking_hand = right
-		resting_hand = left
+	# stop loop at first phase if player exits attack range
+	# (allows for attack to finish before cycling out of attack mode)
+	if not attacking and attack_phase == AttackPhase.fifth:
+		attack_phase = AttackPhase.fifth
+	elif attacking:
+		# all of these lines execute only once per state, so functions that don't need to be executed
+		# each frame will be here
+		match attack_phase:
+			AttackPhase.first:
+				# slam hand down and gets player position
+				attack_timer.start(1.75)
+				animation_player.current_animation = "hand_attack"
+				attack_phase = AttackPhase.second
+			AttackPhase.second:
+				# hand pauses for player to dodge
+				attack_timer.start(0.2)
+				attack_phase = AttackPhase.third
+			AttackPhase.third:
+				# hand accelerates towards previous player position
+				attack_timer.start(1)
+				attack_phase = AttackPhase.fourth
+			AttackPhase.fourth:
+				# hand resets to boss position
+				attack_timer.start(.1)
+				attack_phase = AttackPhase.fifth
+			AttackPhase.fifth:
+				# track attacking hand to player position
+				attack_timer.start(3)
+				attack_phase = AttackPhase.first
+		
+		

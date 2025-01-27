@@ -1,11 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://fl224xwk37sl"]
+[gd_scene load_steps=21 format=3 uid="uid://fl224xwk37sl"]
 
 [ext_resource type="Script" path="res://Scripts/Boss/boss.gd" id="1_vgxb7"]
-[ext_resource type="Animation" uid="uid://eo1decu4btyf" path="res://Assets/left_stomp.res" id="3_dkcie"]
+[ext_resource type="Animation" uid="uid://eo1decu4btyf" path="res://Assets/Boss Animations/left_stomp.res" id="3_dkcie"]
 [ext_resource type="Script" path="res://Scripts/Boss/feet.gd" id="3_f4frn"]
 [ext_resource type="Texture2D" uid="uid://cqep6vi2l3ayd" path="res://Assets/bossfeet.png" id="4_27xct"]
 [ext_resource type="Script" path="res://Scripts/Boss/hands.gd" id="4_swuvd"]
-[ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/right_stomp.res" id="5_svm4b"]
+[ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/Boss Animations/right_stomp.res" id="5_svm4b"]
+[ext_resource type="Texture2D" uid="uid://7gf8cgs5r1nw" path="res://Assets/playerhandhitboxplaceholder.png" id="7_0ri2b"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ackkn"]
 radius = 7.70976
@@ -65,8 +66,54 @@ radius = 7.70385
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ece0a"]
 radius = 2.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_mb8la"]
-radius = 2.0
+[sub_resource type="Animation" id="Animation_yla34"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 20, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20.0]
+}
+
+[sub_resource type="Animation" id="Animation_6qgbc"]
+resource_name = "hand_attack"
+length = 1.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.75),
+"transitions": PackedFloat32Array(9.81, 9.81),
+"update": 0,
+"values": [7.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epdl0"]
+_data = {
+"RESET": SubResource("Animation_yla34"),
+"hand_attack": SubResource("Animation_6qgbc")
+}
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2qboq"]
 radius = 12.1169
@@ -159,33 +206,28 @@ shape = SubResource("CylinderShape3D_0mtwb")
 [node name="AttackTimer" type="Timer" parent="Feet"]
 one_shot = true
 
-[node name="Hands" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.0906, 0)
+[node name="Hand" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+top_level = true
+collision_layer = 2
+collision_mask = 128
 script = ExtResource("4_swuvd")
 
-[node name="Left" type="Area3D" parent="Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
-collision_layer = 16
-collision_mask = 32
-input_ray_pickable = false
+[node name="AttackTimer" type="Timer" parent="Hand"]
+wait_time = 2.0
+one_shot = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Left"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hand"]
 shape = SubResource("CylinderShape3D_ece0a")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Hands/Left"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand"]
+libraries = {
+"": SubResource("AnimationLibrary_epdl0")
+}
 
-[node name="Right" type="Area3D" parent="Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
-collision_layer = 16
-collision_mask = 32
-input_ray_pickable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Right"]
-shape = SubResource("CylinderShape3D_mb8la")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Hands/Right"]
-
-[node name="AttackTimer" type="Timer" parent="Hands"]
+[node name="Sprite3D" type="Sprite3D" parent="Hand"]
+billboard = 1
+texture = ExtResource("7_0ri2b")
 
 [node name="Hand Proximity" type="Area3D" parent="."]
 collision_layer = 0
@@ -209,9 +251,7 @@ one_shot = true
 [connection signal="body_entered" from="Feet/Feet Bounds" to="Feet" method="_on_feet_bounds_body_entered"]
 [connection signal="body_exited" from="Feet/Feet Bounds" to="Feet" method="_on_feet_bounds_body_exited"]
 [connection signal="timeout" from="Feet/AttackTimer" to="Feet" method="_on_attack_timer_timeout"]
-[connection signal="animation_finished" from="Hands/Left/AnimationPlayer" to="Hands" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="Hands/Right/AnimationPlayer" to="Hands" method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="Hands/AttackTimer" to="Hands" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Hand/AttackTimer" to="Hand" method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="Hand Proximity" to="." method="_on_hand_proximity_body_entered"]
 [connection signal="body_exited" from="Hand Proximity" to="." method="_on_hand_proximity_body_exited"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
