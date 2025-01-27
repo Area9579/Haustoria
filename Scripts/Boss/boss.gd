@@ -15,6 +15,7 @@ var state = States.walking
 
 func _ready():
 	feet.attack_target = movement_target # pass through target node to child
+	hands.attack_target = movement_target # pass through target node to child
 	navigation_actor_setup.call_deferred() # call this function at end of other _ready() functions
 	
 
