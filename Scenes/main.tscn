@@ -56,6 +56,12 @@ shape = SubResource("BoxShape3D_o8gs5")
 [node name="MeshInstance3D" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 8, -14, 0, -9)
 
+[node name="MeshInstance3D13" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 8, 0, 0, -11)
+
+[node name="MeshInstance3D14" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
+transform = Transform3D(-8.74228e-08, 0, -8, 0, 1, 0, 2, 0, -3.49691e-07, 7, 0, -8)
+
 [node name="MeshInstance3D7" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 8, 14, 0, 3)
 
@@ -66,19 +72,19 @@ transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 8, 14, 0, -5)
 transform = Transform3D(-8.74228e-08, 0, 8, 0, 1, 0, -2, 0, -3.49691e-07, -11, 0, -14)
 
 [node name="MeshInstance3D3" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(-1.31134e-07, 0, 6, 0, 1, 0, -3, 0, -2.62268e-07, -12, 0, -3.5)
+transform = Transform3D(-1.31134e-07, 0, 6, 0, 1, 0, -3, 0, -2.62268e-07, -8, 0, -3.5)
 
 [node name="MeshInstance3D9" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(-1.31134e-07, 0, 6, 0, 1, 0, -3, 0, -2.62268e-07, -0.5, 0, 3)
+transform = Transform3D(-1.31134e-07, 0, 6, 0, 1, 0, -3, 0, -2.62268e-07, -0.5, 0, 2)
 
 [node name="MeshInstance3D10" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 6, 4, 0, 4.5)
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 6, 4, 0, 3.5)
 
 [node name="MeshInstance3D11" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(3.93402e-07, 0, -6, 0, 1, 0, 3, 0, 7.86805e-07, -1, 0, 11.5)
+transform = Transform3D(3.93402e-07, 0, -6, 0, 1, 0, 3, 0, 7.86805e-07, -1, 0, 10.5)
 
 [node name="MeshInstance3D12" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(-3, 0, -5.24537e-07, 0, 1, 0, 2.62268e-07, 0, -6, -5.5, 0, 10)
+transform = Transform3D(-3, 0, -5.24537e-07, 0, 1, 0, 2.62268e-07, 0, -6, -5.5, 0, 9)
 
 [node name="MeshInstance3D4" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
 transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 10, -11, 0, 5.5)
@@ -88,6 +94,9 @@ transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 11, 0, 11)
 
 [node name="MeshInstance3D6" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_bb7qa")]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 9, 0, -3)
+
+[node name="MeshInstance3D15" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_bb7qa")]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, -5, 0, -9)
 
 [node name="MobileEnemy" parent="." instance=ExtResource("6_u4pk0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.53397)
