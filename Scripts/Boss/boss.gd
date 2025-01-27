@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # "feet" and "hands" refers to the parent node to the actual physical feet and hands
 @onready var feet: Node3D = $Feet
-@onready var hands: Node3D = $Hands
+@onready var hand: Node3D = $Hand
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var movement_target = get_node("../Player")
 @onready var stun_timer: Timer = $StunTimer
@@ -15,7 +15,7 @@ var state = States.walking
 
 func _ready():
 	feet.attack_target = movement_target # pass through target node to child
-	hands.attack_target = movement_target # pass through target node to child
+	hand.attack_target = movement_target # pass through target node to child
 	navigation_actor_setup.call_deferred() # call this function at end of other _ready() functions
 	
 
@@ -29,13 +29,13 @@ func _physics_process(delta):
 	match state:
 		States.walking:
 			navigation_physics_procces()
-			hands.attacking = false
+			hand.attacking = false
 		States.stunned:
 			velocity = Vector3(0, 0, 0)
-			hands.attacking = false
+			hand.attacking = false
 		States.hand_attacking:
 			navigation_physics_procces()
-			hands.attacking = true
+			hand.attacking = true
 			
 	move_and_slide()
 

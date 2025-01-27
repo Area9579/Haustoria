@@ -1,11 +1,11 @@
-extends Node3D
+extends CharacterBody3D
 
 @onready var boss: CharacterBody3D = get_parent()
-@onready var hand: CharacterBody3D = $Hand
 @onready var attack_timer: Timer = $AttackTimer
-@onready var animation_player: AnimationPlayer = $Hand/AnimationPlayer
-@export var attacking: bool = false
-@onready var attack_target
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var attack_target: CharacterBody3D
+var attacking: bool = false
+var old_attacking: bool = false
 var swipe_target_position
 
 enum AttackPhase {first, second, third, fourth, fifth}
@@ -14,67 +14,74 @@ var attack_phase
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	attack_phase = AttackPhase.first
-	attack_timer.start()
+	attack_phase = AttackPhase.fifth
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if attacking != old_attacking:
+		attack_timer.start(0.1)
+	old_attacking = attacking
+	
 	match attack_phase:
 		AttackPhase.first:
 			# state is set to first while not attacking, so we need to double check
 			# to make sure this behavior is needed
 			if attacking:
 				# track attacking hand to player position
-				hand.position.y = 7
-				hand.position.x = lerp(hand.position.x, attack_target.position.x, 0.025)
-				hand.position.z = lerp(hand.position.z, attack_target.position.z, 0.025)
+				self.position.y = 7
+				self.position.x = lerp(self.position.x, attack_target.position.x, 0.3)
+				self.position.z = lerp(self.position.z, attack_target.position.z, 0.3)
 			elif not attacking:
 				# reset hand position
-				hand.position = lerp(hand.position, boss.position, 0.025)
+				self.position = lerp(self.position, boss.position, 1)
 		AttackPhase.second:
 			# slam hand down and get player position
-			swipe_target_position = attack_target.position
+			swipe_target_position = (attack_target.position - self.position) * Vector3(5, 0, 5)
 		AttackPhase.third:
 			# pause for player dodge
 			pass
 		AttackPhase.fourth:
 			# swipe hand accross ground towards previous player position
-			var swipe_target_position = to_global(swipe_target_position - hand.position) * Vector3(1, 0, 1)
-			#hand.position = lerp(hand.position, target_position, 0.05)
-			hand.velocity = lerp(hand.velocity, swipe_target_position, 2)
+			self.velocity = lerp(self.velocity, swipe_target_position, 0.05)
 			
 		AttackPhase.fifth:
+			self.velocity = Vector3(0, 0, 0)
 			# raise hand
-			hand.position = lerp(hand.position, boss.position + Vector3(0, 10, 0), 0.025)
+			self.position = boss.position + Vector3(0, 7, 0)
 	
-	hand.move_and_slide()
+	move_and_slide()
 
 
 func _on_attack_timer_timeout() -> void:
 	attack_timer.stop()
-	print("state change: ", attack_phase)
-	if not attacking:
-		attack_phase = AttackPhase.first
+	# stop loop at first phase if player exits attack range
+	# (allows for attack to finish before cycling out of attack mode)
+	if not attacking and attack_phase == AttackPhase.fifth:
+		attack_phase = AttackPhase.fifth
 	elif attacking:
 		# all of these lines execute only once per state, so functions that don't need to be executed
 		# each frame will be here
 		match attack_phase:
 			AttackPhase.first:
-				attack_timer.start(3)
-				animation_player.current_animation = "left_swipe"
+				# slam hand down and gets player position
+				attack_timer.start(1.75)
+				animation_player.current_animation = "hand_attack"
 				attack_phase = AttackPhase.second
 			AttackPhase.second:
-				attack_timer.start(3)
+				# hand pauses for player to dodge
+				attack_timer.start(0.2)
 				attack_phase = AttackPhase.third
 			AttackPhase.third:
-				attack_timer.start(3)
+				# hand accelerates towards previous player position
+				attack_timer.start(1)
 				attack_phase = AttackPhase.fourth
 			AttackPhase.fourth:
-				print(hand.position)
-				attack_timer.start(2)
+				# hand resets to boss position
+				attack_timer.start(.1)
 				attack_phase = AttackPhase.fifth
 			AttackPhase.fifth:
+				# track attacking hand to player position
 				attack_timer.start(3)
 				attack_phase = AttackPhase.first
 		
