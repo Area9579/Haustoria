@@ -22,14 +22,10 @@ func _ready():
 
 
 func _physics_process(delta):
-	
 	# stunned state while timer running
 	if stun_timer.time_left > 0:
 		state = States.stunned
-	if $"Hand Proximity".has_overlapping_bodies():
-		for i in $"Hand Proximity".get_overlapping_bodies():
-			if i.is_in_group('player'):
-				state = States.hand_attacking
+
 	
 	# simple state machine just to keep things a little cleaner
 	match state:
@@ -37,8 +33,11 @@ func _physics_process(delta):
 			navigation_physics_procces()
 			hand.attacking = false
 			feet.stunned = false
+			if $"Hand Proximity".has_overlapping_bodies():
+				for i in $"Hand Proximity".get_overlapping_bodies():
+					if i.is_in_group('player'):
+						state = States.hand_attacking
 		States.stunned:
-			
 			velocity = Vector3(0, 0, 0)
 			hand.attacking = false
 			feet.stunned = true
@@ -97,6 +96,7 @@ func _on_foot_area_entered(area: Area3D) -> void:
 
 func stun():
 	stun_timer.start()
+	feet.stun()
 
 func _on_stun_timer_timeout() -> void:
 	state = States.walking
@@ -107,9 +107,13 @@ func _on_stun_timer_timeout() -> void:
 
 # Detecting incoming damage from player from any child hitbox
 func _on_hitbox_body_entered(body: Node3D) -> void: #feet
+	if state == States.stunned: 
+		return
 	if body.has_method('hurt'):
 		body.hurt(Vector3(randf_range(-7,7),0,randf_range(-7,7)) * 2, 10)
 
 func _on_hand_attack_body_entered(body: Node3D) -> void:
+	if state == States.stunned: 
+		return
 	if body.has_method('hurt'):
 		body.hurt($Hand.velocity + Vector3(randf_range(-.5,.5),0,randf_range(-.5,.5)) * 4, 10)

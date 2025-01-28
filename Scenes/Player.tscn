@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=25 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
@@ -138,6 +138,8 @@ albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_m1r10"]
 material = SubResource("StandardMaterial3D_npjvh")
+
+[sub_resource type="BoxMesh" id="BoxMesh_an7aj"]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 3
@@ -279,6 +281,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 anchor_position = NodePath("../../AnchorPoint1/Marker3D")
 
 [node name="Arm8" parent="Limbs" node_paths=PackedStringArray("anchor_position") instance=ExtResource("15_joelk")]
+transform = Transform3D(3.27304, 0, 0, 0, 3.27304, 0, 0, 0, 3.27304, 0, -0.00899699, 0)
 anchor_position = NodePath("../../AnchorPoint2/Marker3D")
 
 [node name="AnchorPoint1" type="MeshInstance3D" parent="."]
@@ -290,11 +293,13 @@ mesh = SubResource("CylinderMesh_m1r10")
 [node name="Marker3D" type="Marker3D" parent="AnchorPoint1"]
 
 [node name="AnchorPoint2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.216557, 0, 0, 0, 0.539421, 0, 0, 0, 0.229171, 0, -0.412979, 0)
+transform = Transform3D(0.881763, 0, 0, 0, 2.19638, 0, 0, 0, 0.933125, 0, 0.145023, 0)
 top_level = true
 visible = false
-mesh = SubResource("CylinderMesh_m1r10")
 
 [node name="Marker3D" type="Marker3D" parent="AnchorPoint2"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnchorPoint2/Marker3D"]
+mesh = SubResource("BoxMesh_an7aj")
 
 [connection signal="timeout" from="SlimeCooldown" to="." method="_on_slime_cooldown_timeout"]

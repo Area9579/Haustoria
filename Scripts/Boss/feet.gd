@@ -79,3 +79,8 @@ func _on_feet_bounds_body_entered(body: Node3D) -> void:
 		attacking_foot_in_bounds = true
 	elif body == resting_foot:
 		resting_foot_in_bounds = true
+
+func stun():
+	stunned = true
+	left_animation_player.pause()
+	right_animation_player.pause()

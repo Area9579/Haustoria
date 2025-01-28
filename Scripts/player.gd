@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var ui: Control = $UI
 @onready var slime = preload("res://Scenes/ink.tscn")
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
+@onready var player_camera: Camera3D = $PlayerCamera
 
 var frozen = false
 
@@ -18,9 +19,14 @@ var oldPlayerPosition: Vector3
 var launchVelocity: Vector3
 
 var state_grabbed = false
+var attacking = false
 
 func _physics_process(delta: float) -> void:
 	
+	if !attacking:
+		$AnchorPoint2/Marker3D.global_position = global_position
+	else:
+		pass
 	$Limbs.rotation.y = getDirectionVector().angle()
 	
 	if frozen: return #dont move or anything while in the attack animation
@@ -121,15 +127,23 @@ func launch(): #gets the velocity of the mouse to launch the player in
 	launchVelocity = velocity * SPEED
 
 
-func attack(): #put tween position as a parameter
+func attack(attack_origin): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.
-	
+	attacking = true
+	var tween = get_tree().create_tween()
+	tween.tween_property($AnchorPoint2/Marker3D, 'global_position', attack_origin, 2.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	frozen = true
+	var tweenc = get_tree().create_tween()
+	tweenc.tween_property(player_camera, 'fov', 25.0, .5).set_trans(Tween.TRANS_CUBIC)
 	sprite_3d.play('Attack')
 	ui.attack_boss()
 	await sprite_3d.animation_finished
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property(player_camera, 'fov', 53.7, .8).set_trans(Tween.TRANS_CUBIC)
+	attacking = false
 	sprite_3d.play('Idle')
 	frozen = false
+	
 
 func collect_item(poison_pickedup):
 	ui.attack_multiplier += 1
