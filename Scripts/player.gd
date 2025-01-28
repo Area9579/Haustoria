@@ -7,7 +7,7 @@ extends CharacterBody3D
 
 var frozen = false
 
-const SPEED = 2.0 #used for launching speed
+const SPEED = 1.2 #used for launching speed
 const JUMP_VELOCITY = 4.5
 const BOUNCE_MULTIPLIER = 5.0 #how much the player bounces off surfaces
 const VELOCITY_MULTIPLIER = 30.0 #used to calculate how snappy the drag is
@@ -102,6 +102,7 @@ func dragSelf(): #drags the player around the grabbed point by constantly settin
 	velocity.x = -targetPoint.x * VELOCITY_MULTIPLIER * vectorDistance
 	velocity.z = targetPoint.y * VELOCITY_MULTIPLIER * vectorDistance
 
+
 func getGrabPosition(): #gets the position of the grabbed point when you click within a circle with a given radius
 	var directionVector: Vector2 = Vector2(getMouseWorldPosition().x,getMouseWorldPosition().z) - Vector2(position.x,position.z)
 	var distance = directionVector.length()
@@ -111,6 +112,7 @@ func getGrabPosition(): #gets the position of the grabbed point when you click w
 		return Vector2(directionVector)
 	else:
 		return Vector2(getMouseWorldPosition().x-position.x,getMouseWorldPosition().z-position.z)
+
 
 func launch(): #gets the velocity of the mouse to launch the player in
 	launchVelocity = velocity * SPEED
@@ -129,14 +131,17 @@ func attack(): #put tween position as a parameter
 func collect_item(poison_pickedup):
 	ui.attack_multiplier += 1
 
+
 func slow_down(delta):
 	velocity = lerp(velocity, Vector3.ZERO, delta * 4)
+
 
 var can_slime = false
 func spawn_slime():
 	if can_slime:
 		var slime_instance = slime.instantiate()
 		add_child(slime_instance)
+
 
 func _on_slime_cooldown_timeout() -> void:
 	can_slime = true
