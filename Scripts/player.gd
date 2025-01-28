@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		oldMousePosition = getMouseWorldPosition()
 		oldPlayerPosition = position
 		state_grabbed = true
-	else: #decelerate constantly after initially pressing left click
+	elif is_on_floor(): #decelerate constantly after initially pressing left click
 		decelerate(delta)
 		
 		
