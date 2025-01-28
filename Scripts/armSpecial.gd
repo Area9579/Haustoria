@@ -8,8 +8,8 @@ extends Marker3D
 
 var tendons = []
 @export var rest_length = 20
-@export var squeeze_length = 2
-@export var tension = 120
+@export var squeeze_length = 1
+@export var tension = 100
 @export var tent_strength = 30 #NEGATIVE HAHAHAHAHAHA >:D
 const damping = .96
 @export var noise : NoiseTexture3D
@@ -61,6 +61,6 @@ func tendon_puller(delta):
 		if i.global_position != tendons[tendons.find(i) - 1].global_position: i.look_at(tendons[tendons.find(i) - 1].global_position)
 
 func titler_puller(delta):
-	titler_holder.global_position = global_position
-	
-	titler_holder.curve.set_point_position(1, titler_holder.to_local(ik_target.position))
+	#titler_holder.global_position = global_position
+	titler_holder.curve.set_point_position(0, titler_holder.to_local(global_position))
+	titler_holder.curve.set_point_position(1, titler_holder.to_local(trail.global_position))

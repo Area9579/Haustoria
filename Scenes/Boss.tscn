@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://fl224xwk37sl"]
+[gd_scene load_steps=31 format=3 uid="uid://fl224xwk37sl"]
 
 [ext_resource type="Script" path="res://Scripts/Boss/boss.gd" id="1_vgxb7"]
 [ext_resource type="Animation" uid="uid://eo1decu4btyf" path="res://Assets/Boss Animations/left_stomp.res" id="3_dkcie"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://q138lqo8nb6w" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
 [ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/Boss Animations/right_stomp.res" id="5_svm4b"]
 [ext_resource type="Texture2D" uid="uid://diupmw01o68rf" path="res://Assets/hand.png" id="8_uxjh0"]
+[ext_resource type="Texture2D" uid="uid://dd0geblwnhfxf" path="res://Assets/handstun.png" id="9_vpndc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypvny"]
 emission_enabled = true
@@ -119,15 +120,51 @@ tracks/0/keys = {
 "values": [7.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_3jqhi"]
+resource_name = "hand_lift"
+length = 1.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.73333),
+"transitions": PackedFloat32Array(0.464662, 9.81),
+"update": 0,
+"values": [0.0, 7.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epdl0"]
 _data = {
 "RESET": SubResource("Animation_yla34"),
-"hand_attack": SubResource("Animation_6qgbc")
+"hand_attack": SubResource("Animation_6qgbc"),
+"hand_lift": SubResource("Animation_3jqhi")
 }
 
 [sub_resource type="PrismMesh" id="PrismMesh_7rcs5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vonts"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogh61"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_uxjh0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_vpndc")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 5.0
+}]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c5pl4"]
 radius = 0.821734
@@ -243,7 +280,7 @@ shape = SubResource("CylinderShape3D_0mtwb")
 [node name="AttackTimer" type="Timer" parent="Feet"]
 one_shot = true
 
-[node name="Hand" type="CharacterBody3D" parent="."]
+[node name="Hand" type="CharacterBody3D" parent="." groups=["hand"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
 top_level = true
 collision_layer = 2
@@ -272,9 +309,10 @@ skeleton = NodePath("../Sprite3D")
 transform = Transform3D(0.42901, 0, 0, 0, 1.15825, -1.77636e-15, 0, 7.10543e-15, 0.42901, 0.0289983, -0.956927, 0.0860633)
 mesh = SubResource("BoxMesh_vonts")
 
-[node name="Sprite3D" type="Sprite3D" parent="Hand"]
+[node name="Sprite3D" type="AnimatedSprite3D" parent="Hand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.80371, 0)
-texture = ExtResource("8_uxjh0")
+render_priority = 10
+sprite_frames = SubResource("SpriteFrames_ogh61")
 
 [node name="DropShadow" parent="Hand/Sprite3D" instance=ExtResource("5_cax5e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142204, -10.4858, -0.962459)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=20 format=3 uid="uid://magi1winy2i"]
 
 [ext_resource type="PackedScene" uid="uid://bmkpfdmdrk7lf" path="res://Scenes/wall.tscn" id="1_vt5yp"]
 [ext_resource type="PackedScene" uid="uid://dxre6ioapqt7q" path="res://Scenes/level building/longwall.tscn" id="2_x83md"]
 [ext_resource type="PackedScene" uid="uid://dq8w0tn5j7bbq" path="res://Scenes/gum.tscn" id="3_chq6w"]
 [ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/poison.tscn" id="5_6xnfu"]
+[ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/Boss.tscn" id="6_u4pk0"]
+[ext_resource type="PackedScene" uid="uid://8jw6qsrgo3uv" path="res://Scenes/trap.tscn" id="7_i6rvp"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
 [ext_resource type="PackedScene" path="res://Scenes/beer.tscn" id="8_8bnyb"]
 
@@ -221,3 +223,9 @@ layers = 3
 size = Vector3(2.82751, 5.29681, 6.6897)
 texture_albedo = SubResource("GradientTexture2D_sld6a")
 cull_mask = 1048346
+
+[node name="Trap" parent="." instance=ExtResource("7_i6rvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.11164, -0.0726807, 8.16384)
+
+[node name="Boss" parent="." instance=ExtResource("6_u4pk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.34227, 0.618785, -0.301689)

@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhktpe40ixw88"]
+[gd_scene load_steps=9 format=3 uid="uid://doiiw83vgdkis"]
 
-[ext_resource type="Script" path="res://Scripts/armSpecial.gd" id="1_wamss"]
-[ext_resource type="PackedScene" uid="uid://c4ho3agy0ktao" path="res://Assets/tent.tscn" id="2_db28r"]
-[ext_resource type="NoiseTexture3D" uid="uid://dgl4j15pjkdfq" path="res://Assets/arm_noise.tres" id="2_tfyny"]
-[ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="3_hgwml"]
+[ext_resource type="Script" path="res://Scripts/armSpecial.gd" id="1_ygwit"]
+[ext_resource type="NoiseTexture3D" uid="uid://dgl4j15pjkdfq" path="res://Assets/arm_noise.tres" id="2_0hxp0"]
+[ext_resource type="PackedScene" uid="uid://c4ho3agy0ktao" path="res://Assets/tent.tscn" id="3_dq25v"]
+[ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="4_28vby"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncaih"]
 albedo_color = Color(0.835611, 0, 0.198014, 1)
@@ -22,8 +22,8 @@ point_count = 2
 
 [node name="Arm" type="Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00899699, 0)
-script = ExtResource("1_wamss")
-noise = ExtResource("2_tfyny")
+script = ExtResource("1_ygwit")
+noise = ExtResource("2_0hxp0")
 
 [node name="IKTarget" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0252413, 0.0648627, 0)
@@ -55,27 +55,27 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1.11527, 0, 0, 0, 1, 0, 0, 0, 2.09596, 0, 0.649279, 0)
 visible = false
 
-[node name="Tent" parent="TentHolder" instance=ExtResource("2_db28r")]
+[node name="Tent" parent="TentHolder" instance=ExtResource("3_dq25v")]
 
-[node name="Tent2" parent="TentHolder" instance=ExtResource("2_db28r")]
+[node name="Tent2" parent="TentHolder" instance=ExtResource("3_dq25v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22458, 0, 0)
 
-[node name="Tent3" parent="TentHolder" instance=ExtResource("2_db28r")]
+[node name="Tent3" parent="TentHolder" instance=ExtResource("3_dq25v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55204, 0, 0)
 
-[node name="Tent4" parent="TentHolder" instance=ExtResource("2_db28r")]
+[node name="Tent4" parent="TentHolder" instance=ExtResource("3_dq25v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
 
-[node name="Tent5" parent="TentHolder" instance=ExtResource("2_db28r")]
+[node name="Tent5" parent="TentHolder" instance=ExtResource("3_dq25v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
 
-[node name="Tent6" parent="TentHolder" instance=ExtResource("2_db28r")]
+[node name="Tent6" parent="TentHolder" instance=ExtResource("3_dq25v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
 
-[node name="Tent7" parent="TentHolder" instance=ExtResource("2_db28r")]
+[node name="Tent7" parent="TentHolder" instance=ExtResource("3_dq25v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
 
-[node name="Tent8" parent="TentHolder" instance=ExtResource("2_db28r")]
+[node name="Tent8" parent="TentHolder" instance=ExtResource("3_dq25v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
 
 [node name="TitlerHolder" type="Path3D" parent="."]
@@ -83,69 +83,69 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00899699, 0)
 top_level = true
 curve = SubResource("Curve3D_1d7jp")
 
-[node name="PathFollow3D3" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D3" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369303, 0.992936, -0.112409, 0.999011, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139994)
 
-[node name="PathFollow3D4" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D4" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0264829, -0.0902011, -0.995539, 0.0372348, 0.995269, -0.0891893, 0.998915, -0.0347075, 0.0297179, 1.07728, 0.171954, -0.0238062)
 progress = 1.0954
 
-[node name="PathFollow3D5" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D5" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0277745, -0.079367, -0.996433, 0.0373434, 0.996198, -0.0783083, 0.998873, -0.0350366, 0.0306343, 1.2651, 0.187729, -0.0295007)
 progress = 1.28379
 
-[node name="PathFollow3D6" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D6" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.028795, -0.0703557, -0.997082, 0.03742, 0.996868, -0.0692606, 0.99887, -0.0353168, 0.0313381, 1.42968, 0.199907, -0.0346193)
 progress = 1.44877
 
-[node name="PathFollow3D7" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
-transform = Transform3D(0.0298165, -0.0608972, -0.99768, 0.0374862, 0.997476, -0.0597661, 0.998839, -0.0356172, 0.0320249, 1.60607, 0.211318, -0.0402237)
+[node name="PathFollow3D7" parent="TitlerHolder" instance=ExtResource("4_28vby")]
+transform = Transform3D(0.0298165, -0.0608972, -0.99768, 0.0374862, 0.997476, -0.0597661, 0.99884, -0.0356172, 0.0320249, 1.60607, 0.211318, -0.0402237)
 progress = 1.62546
 
-[node name="PathFollow3D12" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
-transform = Transform3D(0.0317741, -0.0415423, -0.99861, 0.0375847, 0.998449, -0.0403404, 0.998776, -0.0362508, 0.0332868, 1.96108, 0.229167, -0.0518422)
+[node name="PathFollow3D12" parent="TitlerHolder" instance=ExtResource("4_28vby")]
+transform = Transform3D(0.0317741, -0.0415423, -0.99861, 0.0375847, 0.998449, -0.0403404, 0.998776, -0.0362508, 0.0332869, 1.96108, 0.229167, -0.0518422)
 progress = 1.98081
 
-[node name="PathFollow3D13" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
-transform = Transform3D(0.0333443, -0.0249418, -0.999112, 0.0376352, 0.99898, -0.023683, 0.998723, -0.0368121, 0.0342497, 2.24394, 0.238291, -0.0614045)
+[node name="PathFollow3D13" parent="TitlerHolder" instance=ExtResource("4_28vby")]
+transform = Transform3D(0.0333443, -0.0249418, -0.999112, 0.0376352, 0.99898, -0.023683, 0.998723, -0.0368121, 0.0342498, 2.24394, 0.238291, -0.0614045)
 progress = 2.26379
 
-[node name="PathFollow3D14" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
-transform = Transform3D(0.0350356, -0.00607717, -0.999346, 0.0376593, 0.999247, -0.00475644, 0.998663, -0.0374682, 0.035239, 2.52694, 0.242407, -0.0712428)
+[node name="PathFollow3D14" parent="TitlerHolder" instance=ExtResource("4_28vby")]
+transform = Transform3D(0.0350356, -0.00607717, -0.999346, 0.0376593, 0.999247, -0.00475644, 0.998664, -0.0374682, 0.035239, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
-[node name="PathFollow3D15" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D15" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0369368, 0.01599, -0.999169, 0.0376475, 0.99911, 0.017381, 0.998596, -0.0382583, 0.0363027, 2.80966, 0.240759, -0.0813593)
 progress = 2.82973
 
-[node name="PathFollow3D16" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D16" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0405579, 0.0599341, -0.997357, 0.037505, 0.997373, 0.0614614, 0.998459, -0.0398988, 0.0382045, 3.22756, 0.224939, -0.0969306)
 progress = 3.24778
 
-[node name="PathFollow3D17" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D17" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0461907, 0.13092, -0.990294, 0.0369559, 0.99044, 0.132665, 0.998234, -0.0427253, 0.0409119, 3.64277, 0.186022, -0.113397)
 progress = 3.66534
 
-[node name="PathFollow3D18" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D18" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0582584, 0.287236, -0.956062, 0.0343419, 0.956536, 0.289477, 0.997696, -0.0496977, 0.0458632, 4.05105, 0.103497, -0.131371)
 progress = 4.08289
 
-[node name="PathFollow3D19" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D19" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0947794, 0.768265, -0.633032, 0.00996172, 0.635124, 0.772311, 0.995434, -0.0795057, 0.0525448, 4.35439, -0.0618787, -0.148745)
 progress = 4.43262
 
-[node name="PathFollow3D8" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D8" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0219042, -0.124576, -0.991935, 0.0367426, 0.991604, -0.123723, 0.999055, -0.0337372, 0.0262983, 0.608655, 0.122444, -0.0105)
 progress = 0.624339
 
-[node name="PathFollow3D9" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D9" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362703, 0.988434, -0.147136, 0.999145, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547852)
 progress = 0.424082
 
-[node name="PathFollow3D10" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D10" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.0133142, -0.180524, -0.983443, 0.0354167, 0.982996, -0.179963, 0.999243, -0.0324355, 0.0194823, 0.252031, 0.0700715, -0.00191475)
 progress = 0.259098
 
-[node name="PathFollow3D11" parent="TitlerHolder" instance=ExtResource("3_hgwml")]
+[node name="PathFollow3D11" parent="TitlerHolder" instance=ExtResource("4_28vby")]
 transform = Transform3D(0.00103784, -0.254508, -0.967032, 0.0326815, 0.96652, -0.254341, 0.999421, -0.0313414, 0.00932126, 0.106747, 0.0390801, 0.000415762)
 progress = 0.117683

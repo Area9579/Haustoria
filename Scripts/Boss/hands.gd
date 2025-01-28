@@ -8,7 +8,7 @@ var attacking: bool = false
 var old_attacking: bool = false
 var swipe_target_position
 
-enum AttackPhase {first, second, third, fourth, fifth}
+enum AttackPhase {first, second, third, fourth, fifth, silly}
 var attack_phase
 
 
@@ -19,6 +19,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print(attack_phase, " timer is ", attack_timer.time_left)
 	if attacking != old_attacking:
 		attack_timer.start(0.1)
 	old_attacking = attacking
@@ -29,7 +30,7 @@ func _process(delta: float) -> void:
 			# to make sure this behavior is needed
 			if attacking:
 				# track attacking hand to player position
-				self.position.y = 7
+				#self.position.y = 7
 				self.position.x = lerp(self.position.x, attack_target.position.x, 0.3)
 				self.position.z = lerp(self.position.z, attack_target.position.z, 0.3)
 			elif not attacking:
@@ -48,7 +49,8 @@ func _process(delta: float) -> void:
 		AttackPhase.fifth:
 			self.velocity = Vector3(0, 0, 0)
 			# raise hand
-			self.position = boss.position + Vector3(0, 7, 0)
+			self.position = lerp(position, boss.position, delta * 5)
+			
 	
 	move_and_slide()
 
@@ -66,7 +68,7 @@ func _on_attack_timer_timeout() -> void:
 			AttackPhase.first:
 				# slam hand down and gets player position
 				attack_timer.start(1.75)
-				animation_player.current_animation = "hand_attack"
+				animation_player.play('hand_attack')
 				attack_phase = AttackPhase.second
 				
 			AttackPhase.second:
@@ -77,15 +79,36 @@ func _on_attack_timer_timeout() -> void:
 				attack_phase = AttackPhase.third
 			AttackPhase.third:
 				# hand accelerates towards previous player position
-				attack_timer.start(1)
+				attack_timer.start(2.5)
 				attack_phase = AttackPhase.fourth
 			AttackPhase.fourth:
 				# hand resets to boss position
-				attack_timer.start(.1)
+				attack_timer.start(1.0)
+				animation_player.play('hand_lift')
+				
 				attack_phase = AttackPhase.fifth
 			AttackPhase.fifth:
 				# track attacking hand to player position
 				attack_timer.start(3)
 				attack_phase = AttackPhase.first
+				print('test')
+			AttackPhase.silly:
+				pass
 		
-		
+func reset():
+	$Sprite3D.play("default")
+	animation_player.play('hand_lift')
+	
+	
+	attack_timer.stop()
+	attack_phase = AttackPhase.first
+	attack_timer.start(3)
+	attacking = true
+
+func stun():
+	velocity = Vector3.ZERO
+	attack_phase = AttackPhase.silly
+	attack_timer.stop()
+	attacking = false
+	get_parent().stun()
+	$Sprite3D.play("stunned")

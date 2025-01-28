@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=24 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="12_ltyuy"]
 [ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="13_12324"]
 [ext_resource type="PackedScene" uid="uid://dhktpe40ixw88" path="res://Scenes/armSpecial.tscn" id="14_53ecf"]
+[ext_resource type="PackedScene" uid="uid://doiiw83vgdkis" path="res://Scenes/CutsceneArm.tscn" id="15_joelk"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
 height = 0.941026
@@ -133,7 +134,7 @@ _data = {
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npjvh"]
-albedo_color = Color(1, 1, 0, 1)
+albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_m1r10"]
 material = SubResource("StandardMaterial3D_npjvh")
@@ -277,6 +278,9 @@ tent_length = 20
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 anchor_position = NodePath("../../AnchorPoint1/Marker3D")
 
+[node name="Arm8" parent="Limbs" node_paths=PackedStringArray("anchor_position") instance=ExtResource("15_joelk")]
+anchor_position = NodePath("../../AnchorPoint2/Marker3D")
+
 [node name="AnchorPoint1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.216557, 0, 0, 0, 0.539421, 0, 0, 0, 0.229171, 0, -0.412979, 0)
 top_level = true
@@ -284,5 +288,13 @@ visible = false
 mesh = SubResource("CylinderMesh_m1r10")
 
 [node name="Marker3D" type="Marker3D" parent="AnchorPoint1"]
+
+[node name="AnchorPoint2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.216557, 0, 0, 0, 0.539421, 0, 0, 0, 0.229171, 0, -0.412979, 0)
+top_level = true
+visible = false
+mesh = SubResource("CylinderMesh_m1r10")
+
+[node name="Marker3D" type="Marker3D" parent="AnchorPoint2"]
 
 [connection signal="timeout" from="SlimeCooldown" to="." method="_on_slime_cooldown_timeout"]
