@@ -8,7 +8,7 @@ radius = 13.3299
 
 [node name="Gum" type="Area3D"]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 2048
 script = ExtResource("1_54fuw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

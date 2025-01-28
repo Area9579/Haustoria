@@ -13,6 +13,6 @@ func _process(delta: float) -> void:
 	if ray_cast_3d.is_colliding():
 		decal.position = ray_cast_3d.get_collision_point()
 	
-	decal.modulate.a -= delta * .1
+	decal.modulate.a -= delta * .3
 	if decal.modulate.a <= .01:
 		queue_free()

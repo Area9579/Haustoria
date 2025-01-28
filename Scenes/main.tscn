@@ -1,19 +1,40 @@
-[gd_scene load_steps=14 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=17 format=3 uid="uid://magi1winy2i"]
 
-[ext_resource type="PackedScene" uid="uid://cjv0lrh71kygw" path="res://Scenes/level building/4x4wall.tscn" id="3_bb7qa"]
-[ext_resource type="PackedScene" uid="uid://dqma1iuc5apha" path="res://Scenes/level building/3x6wall.tscn" id="3_s7ccd"]
-[ext_resource type="PackedScene" uid="uid://d81pn2337rgj" path="res://Scenes/level building/2x8wall.tscn" id="5_tgqm2"]
-[ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/Boss.tscn" id="6_u4pk0"]
+[ext_resource type="PackedScene" uid="uid://bmkpfdmdrk7lf" path="res://Scenes/wall.tscn" id="1_vt5yp"]
+[ext_resource type="PackedScene" uid="uid://dxre6ioapqt7q" path="res://Scenes/level building/longwall.tscn" id="2_x83md"]
+[ext_resource type="PackedScene" uid="uid://dq8w0tn5j7bbq" path="res://Scenes/gum.tscn" id="3_chq6w"]
+[ext_resource type="PackedScene" uid="uid://tnvub7y17iua" path="res://Scenes/boss_hand_hit_box.tscn" id="4_d6qjs"]
+[ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/poison.tscn" id="5_6xnfu"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
+[ext_resource type="PackedScene" path="res://Scenes/beer.tscn" id="8_8bnyb"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qfgaq"]
-vertices = PackedVector3Array(-14, -0.05, -14, -14, -0.05, 14, 14, -0.05, 14, 14, -0.05, -14)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-agent_radius = 0.8
-
-[sub_resource type="BoxMesh" id="BoxMesh_j6jtq"]
+vertices = PackedVector3Array(-50.466, 99.285, 49.75, -49.716, 99.285, 49.75, -49.716, 99.285, -49, -50.466, 99.285, -49.75, 48.784, 99.285, -49, 49.784, 99.285, -49.75, 49.034, 99.285, 49.75, 49.784, 99.285, 49.75, -0.466007, 0.034961, 3.5, 0.783993, 0.034961, 3.5, 4.53399, 0.034961, 1.5, -49.216, 0.034961, 4.25, -0.716007, 0.034961, 4.25, 4.53399, 0.034961, -48.5, -49.216, 0.034961, -48.5, 5.03399, 0.034961, 1.5, 5.28399, 0.034961, 2.25, 48.534, 0.034961, 2.25, 48.534, 0.034961, -48.5, 5.03399, 0.034961, 3, 3.28399, 0.034961, 3.5, 3.03399, 0.034961, 4.25, 0.283993, 0.034961, 5, 0.283993, 0.034961, 49.75, 48.534, 0.034961, 49.75, -0.466007, 0.034961, 5, -49.216, 0.034961, 49.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 12, 11), PackedInt32Array(10, 8, 13), PackedInt32Array(13, 8, 11), PackedInt32Array(13, 11, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(18, 15, 13), PackedInt32Array(15, 10, 13), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 17), PackedInt32Array(19, 16, 17), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(24, 21, 17), PackedInt32Array(25, 22, 23), PackedInt32Array(25, 23, 12), PackedInt32Array(12, 23, 11), PackedInt32Array(11, 23, 26)]
+geometry_parsed_geometry_type = 2
+geometry_collision_mask = 4294967040
+agent_radius = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8gs5"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="Gradient" id="Gradient_8fsq7"]
+offsets = PackedFloat32Array(0, 0.785714)
+colors = PackedColorArray(0.155035, 0.181512, 0.194098, 1, 0.697173, 0.602875, 0.735926, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_otad8"]
+gradient = SubResource("Gradient_8fsq7")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.563158, 0.594737)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u8g2"]
+albedo_texture = SubResource("GradientTexture2D_otad8")
+
+[sub_resource type="BoxMesh" id="BoxMesh_j6jtq"]
+material = SubResource("StandardMaterial3D_4u8g2")
+size = Vector3(100, 1, 100)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lims6"]
 sky_top_color = Color(0.285814, 0.440282, 0.73271, 1)
@@ -26,124 +47,165 @@ ground_curve = 0.0131951
 sky_material = SubResource("ProceduralSkyMaterial_lims6")
 
 [sub_resource type="Environment" id="Environment_ibggl"]
-background_mode = 2
+background_color = Color(0.724643, 0.724643, 0.724643, 1)
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_f5vmn")
-ambient_light_color = Color(0.824375, 0.783241, 0.528634, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_q8b48"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0tcdf"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.65
 
 [node name="Main" type="Node3D"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1.17374, 0, 0, 0, 1.17374, 0, 0, 0, 1.17374, 0, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_qfgaq")
 
-[node name="World Objects" type="Node3D" parent="NavigationRegion3D"]
+[node name="FLOOR" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.965039, 0)
+collision_layer = 128
 
-[node name="Floor" type="MeshInstance3D" parent="NavigationRegion3D/World Objects"]
-transform = Transform3D(30, 0, 0, 0, 0.1, 0, 0, 0, 30, 0, -0.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/FLOOR"]
+shape = SubResource("BoxShape3D_o8gs5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/FLOOR"]
 layers = 3
 mesh = SubResource("BoxMesh_j6jtq")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/World Objects/Floor"]
-collision_layer = 129
+[node name="BIGWALL" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 48.7914, -49.4196)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/World Objects/Floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/BIGWALL"]
 shape = SubResource("BoxShape3D_o8gs5")
 
-[node name="MeshInstance3D" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 8, -14, 0, -9)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/BIGWALL"]
+layers = 3
+mesh = SubResource("BoxMesh_j6jtq")
+skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D13" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 8, 0, 0, -11)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/BIGWALL"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -50.216, 49.5056, 0)
+shape = SubResource("BoxShape3D_o8gs5")
 
-[node name="MeshInstance3D14" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
-transform = Transform3D(-8.74228e-08, 0, -8, 0, 1, 0, 2, 0, -3.49691e-07, 7, 0, -8)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/BIGWALL"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -50.216, 49.5056, 0)
+layers = 3
+mesh = SubResource("BoxMesh_j6jtq")
+skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D7" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 8, 14, 0, 3)
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/BIGWALL"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 49.4913, 49.5056, 0)
+shape = SubResource("BoxShape3D_o8gs5")
 
-[node name="MeshInstance3D8" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 8, 14, 0, -5)
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/BIGWALL"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 49.4913, 49.5056, 0)
+layers = 3
+mesh = SubResource("BoxMesh_j6jtq")
+skeleton = NodePath("../../..")
 
-[node name="MeshInstance3D2" parent="NavigationRegion3D/World Objects" instance=ExtResource("5_tgqm2")]
-transform = Transform3D(-8.74228e-08, 0, 8, 0, 1, 0, -2, 0, -3.49691e-07, -11, 0, -14)
+[node name="Wall" parent="NavigationRegion3D" instance=ExtResource("1_vt5yp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0, 3.698)
 
-[node name="MeshInstance3D3" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(-1.31134e-07, 0, 6, 0, 1, 0, -3, 0, -2.62268e-07, -8, 0, -3.5)
+[node name="Wall2" parent="NavigationRegion3D" instance=ExtResource("1_vt5yp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.881, 0, 4.238)
 
-[node name="MeshInstance3D9" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(-1.31134e-07, 0, 6, 0, 1, 0, -3, 0, -2.62268e-07, -0.5, 0, 2)
+[node name="Wall3" parent="NavigationRegion3D" instance=ExtResource("1_vt5yp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.2527)
 
-[node name="MeshInstance3D10" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 6, 4, 0, 3.5)
+[node name="Wall4" parent="NavigationRegion3D" instance=ExtResource("1_vt5yp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5114, 0, 3.37576)
 
-[node name="MeshInstance3D11" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(3.93402e-07, 0, -6, 0, 1, 0, 3, 0, 7.86805e-07, -1, 0, 10.5)
+[node name="Wall5" parent="NavigationRegion3D" instance=ExtResource("1_vt5yp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64073, 0, 2.69669)
 
-[node name="MeshInstance3D12" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(-3, 0, -5.24537e-07, 0, 1, 0, 2.62268e-07, 0, -6, -5.5, 0, 9)
+[node name="Wall6" parent="NavigationRegion3D" instance=ExtResource("1_vt5yp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52319, 0, 2.18476)
 
-[node name="MeshInstance3D4" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_s7ccd")]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 10, -11, 0, 5.5)
+[node name="Longwall" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4499, 0.146985, 1.5724)
 
-[node name="MeshInstance3D5" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_bb7qa")]
-transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 11, 0, 11)
+[node name="Longwall5" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6484, 0.146985, 22.5584)
 
-[node name="MeshInstance3D6" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_bb7qa")]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 9, 0, -3)
+[node name="Longwall6" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7791, 0.146985, 27.3969)
 
-[node name="MeshInstance3D15" parent="NavigationRegion3D/World Objects" instance=ExtResource("3_bb7qa")]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, -5, 0, -9)
+[node name="Longwall8" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3088, 0.146981, 13.0134)
 
-[node name="MobileEnemy" parent="." instance=ExtResource("6_u4pk0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.53397)
+[node name="Longwall9" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6024, 0.146977, 36.1786)
+
+[node name="Longwall7" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.1453, 0.146985, -20.912)
+
+[node name="Longwall2" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.009, 0.146985, -5.3013)
+
+[node name="Longwall3" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8551, 0.146985, -23.4959)
+
+[node name="Longwall4" parent="NavigationRegion3D" instance=ExtResource("2_x83md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8948, 0.146985, -30.2697)
+
+[node name="Gum" parent="NavigationRegion3D" instance=ExtResource("3_chq6w")]
+transform = Transform3D(0.21975, 0, 0.119658, 0, 0.250216, 0, -0.119658, 0, 0.21975, -30.0266, -0.309697, -26.6342)
+
+[node name="Gum2" parent="NavigationRegion3D" instance=ExtResource("3_chq6w")]
+transform = Transform3D(0.225834, 0, -0.107737, 0, 0.250216, 0, 0.107737, 0, 0.225834, -24.2565, -0.309697, -36.4912)
+
+[node name="Gum3" parent="NavigationRegion3D" instance=ExtResource("3_chq6w")]
+transform = Transform3D(0.225834, 0, -0.107737, 0, 0.250216, 0, 0.107737, 0, 0.225834, -32.1805, -0.309697, -35.8748)
+
+[node name="Gum4" parent="NavigationRegion3D" instance=ExtResource("3_chq6w")]
+transform = Transform3D(0.225834, 0, -0.107737, 0, 0.250216, 0, 0.107737, 0, 0.225834, -38.3705, -0.309697, -29.0284)
+
+[node name="Gum5" parent="NavigationRegion3D" instance=ExtResource("3_chq6w")]
+transform = Transform3D(0.225834, 0, -0.107737, 0, 0.250216, 0, 0.107737, 0, 0.225834, -33.8951, 0.356877, -22.468)
+
+[node name="Gum6" parent="NavigationRegion3D" instance=ExtResource("3_chq6w")]
+transform = Transform3D(0.225834, 0, -0.107737, 0, 0.250216, 0, 0.107737, 0, 0.225834, -17.0357, -0.437644, -27.3745)
+
+[node name="Gum7" parent="NavigationRegion3D" instance=ExtResource("3_chq6w")]
+transform = Transform3D(0.225834, 0, -0.107737, 0, 0.250216, 0, 0.107737, 0, 0.225834, -22.5215, -0.309697, -21.5037)
+
+[node name="Gum8" parent="NavigationRegion3D" instance=ExtResource("3_chq6w")]
+transform = Transform3D(0.225834, 0, -0.107737, 0, 0.250216, 0, 0.107737, 0, 0.225834, -41.1616, -0.309697, -38.2808)
+
+[node name="Beer" parent="NavigationRegion3D" instance=ExtResource("8_8bnyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.378, 0.444252, 0.369959)
+
+[node name="Beer2" parent="NavigationRegion3D" instance=ExtResource("8_8bnyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96799, 0.444252, -23.0607)
+
+[node name="Beer3" parent="NavigationRegion3D" instance=ExtResource("8_8bnyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2324, 0.444252, 23.0564)
+
+[node name="Beer4" parent="NavigationRegion3D" instance=ExtResource("8_8bnyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3208, 0.444252, 31.1498)
+
+[node name="Beer5" parent="NavigationRegion3D" instance=ExtResource("8_8bnyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8188, 0.444252, 19.0898)
+
+[node name="Beer6" parent="NavigationRegion3D" instance=ExtResource("8_8bnyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.99363, 0.444252, 29.0499)
 
 [node name="Player" parent="." instance=ExtResource("7_m2bmv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ibggl")
 
-[node name="Walls" type="Node3D" parent="."]
+[node name="BossHandHitBox" parent="." instance=ExtResource("4_d6qjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.50114, -0.448878, -2.43457)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(2, 0, 0, 0, 18, 0, 0, 0, 30, -16, 8.5, 0)
-mesh = SubResource("BoxMesh_q8b48")
-skeleton = NodePath("../..")
+[node name="Poison" parent="." instance=ExtResource("5_6xnfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2495, 0.0883021, -35.8647)
+poison = "Cyanide"
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D"]
+[node name="Poison2" parent="." instance=ExtResource("5_6xnfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5754, -0.465039, -37.4542)
+poison = "Sulfiric Acid"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_0tcdf")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(2, 0, 0, 0, 18, 0, 0, 0, 30, 16, 8.5, 0)
-mesh = SubResource("BoxMesh_q8b48")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D2/StaticBody3D"]
-shape = SubResource("BoxShape3D_0tcdf")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-8.74228e-08, 0, -30, 0, 18, 0, 2, 0, -1.31134e-06, 0, 8.5, -16)
-mesh = SubResource("BoxMesh_q8b48")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D3/StaticBody3D"]
-shape = SubResource("BoxShape3D_0tcdf")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-8.74228e-08, 0, -30, 0, 18, 0, 2, 0, -1.31134e-06, 0, 8.5, 16)
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D4/StaticBody3D"]
-shape = SubResource("BoxShape3D_0tcdf")
+[node name="Poison3" parent="." instance=ExtResource("5_6xnfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.244067, -0.527434, 39.1261)
+poison = "Nitrate"

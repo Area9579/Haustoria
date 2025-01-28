@@ -5,8 +5,6 @@ extends CharacterBody3D
 @onready var slime = preload("res://Scenes/ink.tscn")
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
 
-var clickPositionx
-var clickPositionz
 var frozen = false
 
 const SPEED = 2.0 #used for launching speed
@@ -80,6 +78,7 @@ func getDirectionVector(): #this gets a vector2 in the direction of the mouse fr
 	var playerVector2 = Vector2(position.x,position.z)
 	var degreeAngle = -rad_to_deg(playerVector2.angle_to_point(mousePos))
 	var directionVector = Vector2(cos(deg_to_rad(degreeAngle)),sin(deg_to_rad(degreeAngle)))
+	
 	return directionVector
 
 
@@ -115,6 +114,7 @@ func getGrabPosition(): #gets the position of the grabbed point when you click w
 
 func launch(): #gets the velocity of the mouse to launch the player in
 	launchVelocity = velocity * SPEED
+
 
 func attack(): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.
