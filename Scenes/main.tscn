@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=18 format=3 uid="uid://magi1winy2i"]
 
 [ext_resource type="PackedScene" uid="uid://bmkpfdmdrk7lf" path="res://Scenes/wall.tscn" id="1_vt5yp"]
 [ext_resource type="PackedScene" uid="uid://dxre6ioapqt7q" path="res://Scenes/level building/longwall.tscn" id="2_x83md"]
 [ext_resource type="PackedScene" uid="uid://dq8w0tn5j7bbq" path="res://Scenes/gum.tscn" id="3_chq6w"]
-[ext_resource type="PackedScene" uid="uid://tnvub7y17iua" path="res://Scenes/boss_hand_hit_box.tscn" id="4_d6qjs"]
 [ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/poison.tscn" id="5_6xnfu"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
 [ext_resource type="PackedScene" path="res://Scenes/beer.tscn" id="8_8bnyb"]
@@ -53,6 +52,15 @@ sky = SubResource("Sky_f5vmn")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 1.65
+
+[sub_resource type="Gradient" id="Gradient_lwchb"]
+offsets = PackedFloat32Array(0.311224, 0.581633)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sld6a"]
+gradient = SubResource("Gradient_lwchb")
+fill = 1
+fill_from = Vector2(0.525641, 0.517094)
 
 [node name="Main" type="Node3D"]
 
@@ -195,9 +203,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.99363, 0.444252, 29.0499)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ibggl")
 
-[node name="BossHandHitBox" parent="." instance=ExtResource("4_d6qjs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.50114, -0.448878, -2.43457)
-
 [node name="Poison" parent="." instance=ExtResource("5_6xnfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2495, 0.0883021, -35.8647)
 poison = "Cyanide"
@@ -209,3 +214,10 @@ poison = "Sulfiric Acid"
 [node name="Poison3" parent="." instance=ExtResource("5_6xnfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.244067, -0.527434, 39.1261)
 poison = "Nitrate"
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -6.16137, 3.88567)
+layers = 3
+size = Vector3(2.82751, 5.29681, 6.6897)
+texture_albedo = SubResource("GradientTexture2D_sld6a")
+cull_mask = 1048346

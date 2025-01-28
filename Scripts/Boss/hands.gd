@@ -68,9 +68,12 @@ func _on_attack_timer_timeout() -> void:
 				attack_timer.start(1.75)
 				animation_player.current_animation = "hand_attack"
 				attack_phase = AttackPhase.second
+				
 			AttackPhase.second:
 				# hand pauses for player to dodge
-				attack_timer.start(0.2)
+				attack_timer.start(0.5)
+				look_at(attack_target.global_position)
+				global_rotation *= Vector3(0,1,0)
 				attack_phase = AttackPhase.third
 			AttackPhase.third:
 				# hand accelerates towards previous player position

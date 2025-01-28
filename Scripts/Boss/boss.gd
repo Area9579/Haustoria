@@ -14,6 +14,7 @@ var state = States.walking
 
 
 func _ready():
+	
 	feet.attack_target = movement_target # pass through target node to child
 	hand.attack_target = movement_target # pass through target node to child
 	navigation_actor_setup.call_deferred() # call this function at end of other _ready() functions
@@ -21,8 +22,10 @@ func _ready():
 
 
 func _physics_process(delta):
+	
 	# stunned state while timer running
 	if stun_timer.time_left > 0:
+		
 		state = States.stunned
 	
 	# simple state machine just to keep things a little cleaner
@@ -30,7 +33,9 @@ func _physics_process(delta):
 		States.walking:
 			navigation_physics_procces()
 			hand.attacking = false
+			
 		States.stunned:
+			print('stunned')
 			velocity = Vector3(0, 0, 0)
 			hand.attacking = false
 		States.hand_attacking:
@@ -67,6 +72,7 @@ func navigation_physics_procces():
 	
 	# Change current velocity
 	velocity = current_nav_agent_position.direction_to(next_path_position) * MOVEMENT_SPEED
+	
 
 
 ## Signals (a lot of this is unused)
@@ -89,5 +95,10 @@ func _on_stun_timer_timeout() -> void:
 	state = States.walking
 
 # Detecting incoming damage from player from any child hitbox
-func _on_hitbox_body_entered(body: Node3D) -> void:
-	pass # Replace with function body.
+func _on_hitbox_body_entered(body: Node3D) -> void: #feet
+	if body.has_method('hurt'):
+		body.hurt(Vector3(randf_range(-7,7),0,randf_range(-7,7)) * 2, 10)
+
+func _on_hand_attack_body_entered(body: Node3D) -> void:
+	if body.has_method('hurt'):
+		body.hurt($Hand.velocity + Vector3(randf_range(-.5,.5),0,randf_range(-.5,.5)) * 4, 10)

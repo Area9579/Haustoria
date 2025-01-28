@@ -35,6 +35,9 @@ func _process(delta: float) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	# create a delay before the start of the next attack
+	var direction_to_player = Vector2(global_position.x, global_position.z) - Vector2(attack_target.global_position.x, attack_target.global_position.z)
+	
+	Director.shake_cam(Vector2(direction_to_player.normalized().x, direction_to_player.normalized().y) * .1)
 	attack_timer.start()
 
 func _on_attack_timer_timeout() -> void:
