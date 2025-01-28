@@ -5,6 +5,8 @@ var fullscreen := false
 var score = 0 
 var done = false
 
+signal shake
+
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
@@ -19,3 +21,6 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed('restart'):
 		get_tree().reload_current_scene()
+
+func shake_cam(direction):
+	shake.emit(1, direction)

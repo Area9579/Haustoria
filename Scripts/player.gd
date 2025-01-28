@@ -4,46 +4,57 @@ extends CharacterBody3D
 @onready var ui: Control = $UI
 @onready var slime = preload("res://Scenes/ink.tscn")
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
+@onready var player_camera: Camera3D = $PlayerCamera
 
 var frozen = false
 
 const SPEED = 1.2 #used for launching speed
 const JUMP_VELOCITY = 4.5
 const BOUNCE_MULTIPLIER = 5.0 #how much the player bounces off surfaces
-const VELOCITY_MULTIPLIER = 30.0 #used to calculate how snappy the drag is
+const VELOCITY_MULTIPLIER = 15.0 #used to calculate how snappy the drag is
 
 var oldMousePosition: Vector3
 var oldGrabPosition: Vector2
 var oldPlayerPosition: Vector3
 var launchVelocity: Vector3
 
+var state_grabbed = false
+var attacking = false
+
 func _physics_process(delta: float) -> void:
+	
+	if !attacking:
+		$AnchorPoint2/Marker3D.global_position = global_position
+	else:
+		pass
 	$Limbs.rotation.y = getDirectionVector().angle()
 	
 	if frozen: return #dont move or anything while in the attack animation
 	spawn_slime()
-	#below code for jumping
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
 	
 	if Input.is_action_just_pressed("Left Click"):
 		#all of these variables need to be set before the drag function starts so it has the correct reference
 		oldGrabPosition = getGrabPosition()
 		oldMousePosition = getMouseWorldPosition()
 		oldPlayerPosition = position
-		
+		state_grabbed = true
 	else: #decelerate constantly after initially pressing left click
 		decelerate(delta)
 		
 		
-	if Input.is_action_pressed("Left Click"): #as you hold the mouse button drag the player
+	if state_grabbed: #as you hold the mouse button drag the player
 		launch()
-		dragSelf()
+		dragSelf(delta)
+		global_position.y = lerp(global_position.y, 1.0, delta * 6)
+		$AnchorPoint1.global_position = oldPlayerPosition
+	else:
+		velocity += get_gravity() * delta * 4
+		$AnchorPoint1.global_position = lerp($AnchorPoint1.global_position, global_position, delta * 12)
 		
 	if Input.is_action_just_released("Left Click") and dashCooldown.is_stopped():
 		velocity = launchVelocity
 		dashCooldown.start()
+		state_grabbed = false
 		
 	#move using velocity and check to bounce off surfaces
 	move_and_slide()
@@ -93,14 +104,14 @@ func rebound(): #this function determines how much force to bounce off surfaces 
 		velocity.z += get_wall_normal().z * BOUNCE_MULTIPLIER
 
 
-func dragSelf(): #drags the player around the grabbed point by constantly setting velocity towards where the player should be
+func dragSelf(delta): #drags the player around the grabbed point by constantly setting velocity towards where the player should be
 	var pointx = oldPlayerPosition.x + oldGrabPosition.x - getGrabPosition().x
 	var pointz = oldPlayerPosition.z + oldGrabPosition.y - getGrabPosition().y
 	var vectorDistance: float = (Vector2(pointx,pointz)-Vector2(position.x,position.z)).length()/2
 	var targetPoint = -rad_to_deg(Vector2(pointx,pointz).angle_to_point(Vector2(position.x,position.z)))
 	targetPoint = Vector2(cos(deg_to_rad(targetPoint)),sin(deg_to_rad(targetPoint)))
-	velocity.x = -targetPoint.x * VELOCITY_MULTIPLIER * vectorDistance
-	velocity.z = targetPoint.y * VELOCITY_MULTIPLIER * vectorDistance
+	velocity.x = lerp(velocity.x, -targetPoint.x * VELOCITY_MULTIPLIER * vectorDistance, delta * VELOCITY_MULTIPLIER)
+	velocity.z = lerp(velocity.y,targetPoint.y * VELOCITY_MULTIPLIER * vectorDistance, delta * VELOCITY_MULTIPLIER)
 
 
 func getGrabPosition(): #gets the position of the grabbed point when you click within a circle with a given radius
@@ -118,15 +129,23 @@ func launch(): #gets the velocity of the mouse to launch the player in
 	launchVelocity = velocity * SPEED
 
 
-func attack(): #put tween position as a parameter
+func attack(attack_origin): #put tween position as a parameter
 	#might want to tween to the right position to attack and fit the animation.
-	
+	attacking = true
+	var tween = get_tree().create_tween()
+	tween.tween_property($AnchorPoint2/Marker3D, 'global_position', attack_origin, 2.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
 	frozen = true
+	var tweenc = get_tree().create_tween()
+	tweenc.tween_property(player_camera, 'fov', 25.0, .5).set_trans(Tween.TRANS_CUBIC)
 	sprite_3d.play('Attack')
 	ui.attack_boss()
 	await sprite_3d.animation_finished
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property(player_camera, 'fov', 53.7, .8).set_trans(Tween.TRANS_CUBIC)
+	attacking = false
 	sprite_3d.play('Idle')
 	frozen = false
+	
 
 func collect_item(poison_pickedup):
 	ui.attack_multiplier += 1
@@ -145,3 +164,11 @@ func spawn_slime():
 
 func _on_slime_cooldown_timeout() -> void:
 	can_slime = true
+
+func hurt(direction : Vector3, amount):
+	velocity += direction
+	Director.shake_cam(Vector2(direction.normalized().x, direction.normalized().z) * .05)
+	ui.take_damage(amount)
+	state_grabbed = false
+	dashCooldown.stop()
+	

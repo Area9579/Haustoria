@@ -1,0 +1,75 @@
+[gd_scene load_steps=14 format=3 uid="uid://8jw6qsrgo3uv"]
+
+[ext_resource type="Script" path="res://Scripts/trap.gd" id="1_giv3d"]
+[ext_resource type="Texture2D" uid="uid://bqivb1qljtnke" path="res://Assets/mousearm/close/mousearm1.png" id="1_syvkv"]
+[ext_resource type="Texture2D" uid="uid://chqiq8dyomy2j" path="res://Assets/mousearm/close/mousearm2.png" id="2_satwn"]
+[ext_resource type="Texture2D" uid="uid://cpeeok44m52hq" path="res://Assets/mousearm/close/mousearm3.png" id="3_omexj"]
+[ext_resource type="Texture2D" uid="uid://bafgwgysjkg40" path="res://Assets/mousearm/close/mousearm4.png" id="4_nhwg8"]
+[ext_resource type="Texture2D" uid="uid://c2v12n1d75r8a" path="res://Assets/mousearm/open/mousearmopen1.png" id="6_pi0hj"]
+[ext_resource type="Texture2D" uid="uid://ceux4lyqhd17k" path="res://Assets/mousearm/open/mousearmopen2.png" id="7_6uf2o"]
+[ext_resource type="Texture2D" uid="uid://c0d0vtoyl5kva" path="res://Assets/mousearm/open/mousearmopen3.png" id="8_bfoly"]
+[ext_resource type="Texture2D" uid="uid://dncewqbannb3a" path="res://Assets/mousearm/open/mousearmopen4.png" id="9_jt58k"]
+[ext_resource type="Texture2D" uid="uid://btwjqny3wy24f" path="res://Assets/mousearm/open/mousearmopen5.png" id="10_akmv2"]
+[ext_resource type="Texture2D" uid="uid://dt74gnwd8li4o" path="res://Assets/mousearm/open/mousearmopen6.png" id="11_07xb2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_geon1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlrm3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_syvkv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_satwn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_omexj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nhwg8")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pi0hj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6uf2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bfoly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jt58k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_akmv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_07xb2")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="Trap" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_giv3d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_geon1")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.450865, 0, 0, 0, 0.450865, 0, 0, 0, 0.450865, 0, 0, 0)
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_vlrm3")
+animation = &"open"
+autoplay = "open"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

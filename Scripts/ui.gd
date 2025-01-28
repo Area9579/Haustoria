@@ -28,7 +28,7 @@ func attack_boss():
 		get_tree().change_scene_to_file("res://Scenes/EndScene.tscn")
 
 func take_damage(damage):
-	player_health.value -= damage
-	if player_health.value <= 0:
+	player_health_total -= damage
+	if player_health_total <= 0:
 		#add dying here
 		pass

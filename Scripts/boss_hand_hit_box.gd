@@ -7,7 +7,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group('player'):
 		
 		#BOSS TAKE DAMAGE HERE AND PLAY ANIMATION
-		body.attack()
+		body.attack(global_position)
 		emit_signal('hit')
 		collision_shape_3d.disabled = true
 

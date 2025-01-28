@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://q138lqo8nb6w"]
+
+[sub_resource type="Gradient" id="Gradient_s8fjg"]
+offsets = PackedFloat32Array(0.260204, 0.576531)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5syyl"]
+gradient = SubResource("Gradient_s8fjg")
+fill = 1
+fill_from = Vector2(0.525641, 0.517094)
+
+[node name="DropShadow" type="Decal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -6.16137, 3.88567)
+layers = 3
+size = Vector3(2.82751, 5.29681, 6.6897)
+texture_albedo = SubResource("GradientTexture2D_5syyl")
+cull_mask = 1048346

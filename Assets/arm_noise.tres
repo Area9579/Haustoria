@@ -1,0 +1,10 @@
+[gd_resource type="NoiseTexture3D" load_steps=3 format=3 uid="uid://dgl4j15pjkdfq"]
+
+[sub_resource type="Gradient" id="Gradient_8ni0o"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uncoe"]
+
+[resource]
+seamless_blend_skirt = 0.516
+color_ramp = SubResource("Gradient_8ni0o")
+noise = SubResource("FastNoiseLite_uncoe")

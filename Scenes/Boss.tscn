@@ -1,15 +1,28 @@
-[gd_scene load_steps=21 format=3 uid="uid://fl224xwk37sl"]
+[gd_scene load_steps=34 format=3 uid="uid://fl224xwk37sl"]
 
 [ext_resource type="Script" path="res://Scripts/Boss/boss.gd" id="1_vgxb7"]
 [ext_resource type="Animation" uid="uid://eo1decu4btyf" path="res://Assets/Boss Animations/left_stomp.res" id="3_dkcie"]
 [ext_resource type="Script" path="res://Scripts/Boss/feet.gd" id="3_f4frn"]
 [ext_resource type="Texture2D" uid="uid://cqep6vi2l3ayd" path="res://Assets/bossfeet.png" id="4_27xct"]
 [ext_resource type="Script" path="res://Scripts/Boss/hands.gd" id="4_swuvd"]
+[ext_resource type="PackedScene" uid="uid://q138lqo8nb6w" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
 [ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/Boss Animations/right_stomp.res" id="5_svm4b"]
 [ext_resource type="Texture2D" uid="uid://7gf8cgs5r1nw" path="res://Assets/playerhandhitboxplaceholder.png" id="7_0ri2b"]
+[ext_resource type="Texture2D" uid="uid://diupmw01o68rf" path="res://Assets/hand.png" id="8_uxjh0"]
+[ext_resource type="Texture2D" uid="uid://dd0geblwnhfxf" path="res://Assets/handstun.png" id="9_vpndc"]
+[ext_resource type="Script" path="res://Scripts/boss_hand_hit_box.gd" id="10_ekbqg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypvny"]
+emission_enabled = true
+emission = Color(0.639857, 0, 0.14544, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0n53k"]
+material = SubResource("StandardMaterial3D_ypvny")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjpn8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ackkn"]
-radius = 7.70976
+radius = 1.44877
 
 [sub_resource type="Animation" id="Animation_bkolr"]
 length = 0.001
@@ -109,23 +122,81 @@ tracks/0/keys = {
 "values": [7.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_3jqhi"]
+resource_name = "hand_lift"
+length = 1.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.73333),
+"transitions": PackedFloat32Array(0.464662, 9.81),
+"update": 0,
+"values": [0.0, 7.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epdl0"]
 _data = {
 "RESET": SubResource("Animation_yla34"),
-"hand_attack": SubResource("Animation_6qgbc")
+"hand_attack": SubResource("Animation_6qgbc"),
+"hand_lift": SubResource("Animation_3jqhi")
 }
 
+[sub_resource type="PrismMesh" id="PrismMesh_7rcs5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vonts"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogh61"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_uxjh0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_vpndc")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dij5l"]
+size = Vector3(1.69354, 4.34506, 1.75926)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c5pl4"]
+radius = 0.821734
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2qboq"]
-radius = 12.1169
+radius = 19.0
 
 [node name="Boss" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16462, 0)
 collision_layer = 0
-collision_mask = 132
+collision_mask = 128
 input_ray_pickable = false
 script = ExtResource("1_vgxb7")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_0n53k")
+
+[node name="TestFloor" type="MeshInstance3D" parent="."]
+transform = Transform3D(59.361, 0, 0, 0, 1.6, 0, 0, 0, 7.88194, 4.13705, -5.11212, 0.430877)
+visible = false
+layers = 2
+mesh = SubResource("BoxMesh_fjpn8")
+skeleton = NodePath("../Feet/Left/Sprite3D/DropShadow")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.598361, 0, 0, 0, 0.598361, 0, 0, 0, 0.598361, 0, 0, 0)
 shape = SubResource("CylinderShape3D_ackkn")
 
 [node name="Feet" type="Node3D" parent="."]
@@ -155,9 +226,13 @@ billboard = 1
 render_priority = 8
 texture = ExtResource("4_27xct")
 
+[node name="DropShadow" parent="Feet/Left/Sprite3D" instance=ExtResource("5_cax5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -4.89361, 3.88567)
+size = Vector3(2.828, 4.286, 6.69)
+
 [node name="Hitbox" type="Area3D" parent="Feet/Left"]
 collision_layer = 16
-collision_mask = 32
+collision_mask = 33
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Left/Hitbox"]
@@ -186,9 +261,13 @@ billboard = 1
 render_priority = 8
 texture = ExtResource("4_27xct")
 
+[node name="DropShadow" parent="Feet/Right/Sprite3D" instance=ExtResource("5_cax5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.064, -4.9404, 3.886)
+size = Vector3(2.82751, 4.28561, 6.6897)
+
 [node name="Hitbox" type="Area3D" parent="Feet/Right"]
 collision_layer = 16
-collision_mask = 32
+collision_mask = 33
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Right/Hitbox"]
@@ -206,7 +285,7 @@ shape = SubResource("CylinderShape3D_0mtwb")
 [node name="AttackTimer" type="Timer" parent="Feet"]
 one_shot = true
 
-[node name="Hand" type="CharacterBody3D" parent="."]
+[node name="Hand" type="CharacterBody3D" parent="." groups=["hand"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
 top_level = true
 collision_layer = 2
@@ -225,9 +304,45 @@ libraries = {
 "": SubResource("AnimationLibrary_epdl0")
 }
 
-[node name="Sprite3D" type="Sprite3D" parent="Hand"]
+[node name="debugarrow" type="MeshInstance3D" parent="Hand"]
+transform = Transform3D(2.26861, 0, 0, 0, -9.9164e-08, 2.26861, 0, -2.26861, -9.9164e-08, 0, -0.372209, -1.62866)
+visible = false
+mesh = SubResource("PrismMesh_7rcs5")
+skeleton = NodePath("../Sprite3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hand/debugarrow"]
+transform = Transform3D(0.42901, 0, 0, 0, 1.15825, -1.77636e-15, 0, 7.10543e-15, 0.42901, 0.0289983, -0.956927, 0.0860633)
+mesh = SubResource("BoxMesh_vonts")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.80371, 0)
+render_priority = 10
+sprite_frames = SubResource("SpriteFrames_ogh61")
+
+[node name="DropShadow" parent="Hand/Sprite3D" instance=ExtResource("5_cax5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142204, -10.4858, -0.962459)
+size = Vector3(6.53709, 12.9519, 6.6897)
+
+[node name="BossHandHitBox" type="Area3D" parent="Hand/Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 96.196, 0)
+collision_layer = 0
+script = ExtResource("10_ekbqg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hand/Sprite3D/BossHandHitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103302, -0.202347, -0.200942)
+shape = SubResource("BoxShape3D_dij5l")
+
+[node name="AnimatedSprite3D" type="Sprite3D" parent="Hand/Sprite3D/BossHandHitBox"]
+transform = Transform3D(0.386184, 0, 0, 0, 0.386184, 0, 0, 0, 0.386184, 0, 0, 0)
+visible = false
 billboard = 1
 texture = ExtResource("7_0ri2b")
+
+[node name="HandAttack" type="Area3D" parent="Hand"]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hand/HandAttack"]
+shape = SubResource("CylinderShape3D_c5pl4")
 
 [node name="Hand Proximity" type="Area3D" parent="."]
 collision_layer = 0
@@ -252,6 +367,8 @@ one_shot = true
 [connection signal="body_exited" from="Feet/Feet Bounds" to="Feet" method="_on_feet_bounds_body_exited"]
 [connection signal="timeout" from="Feet/AttackTimer" to="Feet" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Hand/AttackTimer" to="Hand" method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="Hand/Sprite3D/BossHandHitBox" to="Hand/Sprite3D/BossHandHitBox" method="_on_body_entered"]
+[connection signal="body_entered" from="Hand/HandAttack" to="." method="_on_hand_attack_body_entered"]
 [connection signal="body_entered" from="Hand Proximity" to="." method="_on_hand_proximity_body_entered"]
 [connection signal="body_exited" from="Hand Proximity" to="." method="_on_hand_proximity_body_exited"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
