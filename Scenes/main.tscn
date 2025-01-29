@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=26 format=3 uid="uid://magi1winy2i"]
 
 [ext_resource type="PackedScene" uid="uid://bodkn07lr8mwg" path="res://Scenes/level building/brick.tscn" id="2_6bhao"]
 [ext_resource type="PackedScene" uid="uid://d20nd1dm45ntk" path="res://Scenes/level building/shelf.tscn" id="3_57pj4"]
 [ext_resource type="PackedScene" uid="uid://cqilpksvt514c" path="res://Scenes/level building/board.tscn" id="3_citfc"]
+[ext_resource type="PackedScene" uid="uid://duhe605748oxu" path="res://Scenes/beer.tscn" id="4_64s6p"]
 [ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/poison.tscn" id="5_6xnfu"]
 [ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/Boss.tscn" id="6_31op1"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
@@ -220,36 +221,95 @@ shape = SubResource("BoxShape3D_4xjao")
 mesh = SubResource("BoxMesh_6h3sb")
 
 [node name="CollisionShape3D27" type="CollisionShape3D" parent="NavigationRegion3D/BIGWALL"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 4, 28, 4.37109e-07)
+transform = Transform3D(-1, -8.74228e-08, -3.55271e-15, 8.74228e-08, -1, -3.55271e-15, -2.68659e-16, -3.55271e-15, 1, 4, 28, 4.37109e-07)
 shape = SubResource("BoxShape3D_4xjao")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/BIGWALL/CollisionShape3D27"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_6h3sb")
 
 [node name="Board" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, -0.5, -13)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -0.5, -13)
+
+[node name="Board4" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -0.5, 16)
+
+[node name="Board5" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.5, 14)
+
+[node name="Board7" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -0.5, 22)
 
 [node name="Board2" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -0.5, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -0.5, -20)
 
 [node name="Board3" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -0.5, -13)
 
+[node name="Board9" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, -0.5, -3)
+
+[node name="Board10" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -0.5, 1)
+
+[node name="Board6" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, -0.5, 18)
+
+[node name="Board8" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.5, 37)
+
+[node name="Board11" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, -17)
+
+[node name="Board12" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -0.5, -31)
+
 [node name="Brick" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, -0.5, -17)
 
+[node name="Brick6" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -0.5, 21)
+
+[node name="Brick7" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -0.5, 11)
+
+[node name="Brick8" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, 10)
+
+[node name="Brick9" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 23)
+
+[node name="Brick10" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, 18)
+
+[node name="Brick11" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.5, 34)
+
 [node name="Brick2" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -0.5, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -0.5, -10)
 
 [node name="Brick3" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -0.5, 9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -0.5, 6)
 
 [node name="Brick4" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, -0.5, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, -0.5, 4)
 
 [node name="Brick5" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -0.5, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -0.5, 12)
+
+[node name="Brick12" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, -0.5, 2)
+
+[node name="Brick13" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.5, -4)
+
+[node name="Brick14" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -0.5, -21)
+
+[node name="Brick15" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.5, -29)
+
+[node name="Brick16" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -0.5, -37)
 
 [node name="Shelf" parent="NavigationRegion3D" instance=ExtResource("3_57pj4")]
 transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -22, -1, 11)
@@ -260,21 +320,81 @@ transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -28, -1, 21)
 [node name="Shelf3" parent="NavigationRegion3D" instance=ExtResource("3_57pj4")]
 transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -22, -1, 29)
 
+[node name="Shelf4" parent="NavigationRegion3D" instance=ExtResource("3_57pj4")]
+transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -27, -1, -38)
+
+[node name="Beer" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 2)
+
+[node name="Beer14" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 9)
+
+[node name="Beer15" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 4)
+
+[node name="Beer16" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -10)
+
+[node name="Beer17" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -22)
+
+[node name="Beer18" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -24)
+
+[node name="Beer19" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -32)
+
+[node name="Beer11" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, -3)
+
+[node name="Beer12" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 4)
+
+[node name="Beer13" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -5)
+
+[node name="Beer2" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 27)
+
+[node name="Beer3" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, 23)
+
+[node name="Beer4" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 31)
+
+[node name="Beer5" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 34)
+
+[node name="Beer6" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 32)
+
+[node name="Beer7" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 36)
+
+[node name="Beer8" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, 29)
+
+[node name="Beer9" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 18)
+
+[node name="Beer10" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 23)
+
 [node name="Player" parent="." instance=ExtResource("7_m2bmv")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ibggl")
 
 [node name="Poison" parent="." instance=ExtResource("5_6xnfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.7505, 0.0883021, -35.8647)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7505, 0.0883021, -8.8647)
 poison = "Cyanide"
 
 [node name="Poison2" parent="." instance=ExtResource("5_6xnfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4246, -0.465039, 1.5458)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4246, -0.465039, -31.4542)
 poison = "Sulfiric Acid"
 
 [node name="Poison3" parent="." instance=ExtResource("5_6xnfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2441, -0.527434, 4.1261)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2441, -0.527434, -19.8739)
 poison = "Nitrate"
 
 [node name="Boss" parent="." instance=ExtResource("6_31op1")]
