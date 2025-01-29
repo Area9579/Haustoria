@@ -3,16 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://c0hisog6kd4bj" path="res://Assets/icon.svg" id="1_epeqs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cy5jx"]
-size = Vector3(9, 0.5, 2)
+size = Vector3(7, 1, 2)
 
-[node name="Brick" type="StaticBody3D"]
+[node name="Board" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55365, -0.474365)
 shape = SubResource("BoxShape3D_cy5jx")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(7.21, 0, 0, 0, 1.845, 0, 0, 0, 1, 0, 0, 0.355002)
+transform = Transform3D(5.605, 0, 0, 0, 1.695, 0, 0, 0, 1, 0, 0.027, -0.37)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("1_epeqs")

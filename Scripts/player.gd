@@ -7,7 +7,7 @@ extends CharacterBody3D
 
 var frozen = false
 
-const SPEED = 1.2 #used for launching speed
+const SPEED = 1.1 #used for launching speed
 const JUMP_VELOCITY = 4.5
 const BOUNCE_MULTIPLIER = 5.0 #how much the player bounces off surfaces
 const VELOCITY_MULTIPLIER = 30.0 #used to calculate how snappy the drag is
