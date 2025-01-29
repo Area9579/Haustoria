@@ -1,12 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=29 format=3 uid="uid://magi1winy2i"]
 
 [ext_resource type="PackedScene" uid="uid://bodkn07lr8mwg" path="res://Scenes/level building/brick.tscn" id="2_6bhao"]
 [ext_resource type="PackedScene" uid="uid://d20nd1dm45ntk" path="res://Scenes/level building/shelf.tscn" id="3_57pj4"]
 [ext_resource type="PackedScene" uid="uid://cqilpksvt514c" path="res://Scenes/level building/board.tscn" id="3_citfc"]
-[ext_resource type="PackedScene" uid="uid://duhe605748oxu" path="res://Scenes/beer.tscn" id="4_64s6p"]
-[ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/poison.tscn" id="5_6xnfu"]
+[ext_resource type="PackedScene" uid="uid://duhe605748oxu" path="res://Scenes/level building/beer.tscn" id="4_64s6p"]
+[ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/level building/poison.tscn" id="5_6xnfu"]
+[ext_resource type="PackedScene" uid="uid://dq8w0tn5j7bbq" path="res://Scenes/level building/gum.tscn" id="6_3jes3"]
 [ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/Boss.tscn" id="6_31op1"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="7_m2bmv"]
+[ext_resource type="PackedScene" uid="uid://dxre6ioapqt7q" path="res://Scenes/level building/longwall.tscn" id="7_nly47"]
+[ext_resource type="PackedScene" uid="uid://dj70pfgnjq5q2" path="res://Scenes/level building/trap.tscn" id="8_l15q6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qfgaq"]
 vertices = PackedVector3Array(-50.466, 99.285, 49.75, -49.716, 99.285, 49.75, -49.716, 99.285, -49, -50.466, 99.285, -49.75, 48.784, 99.285, -49, 49.784, 99.285, -49.75, 49.034, 99.285, 49.75, 49.784, 99.285, 49.75, -0.466007, 0.034961, 3.5, 0.783993, 0.034961, 3.5, 4.53399, 0.034961, 1.5, -49.216, 0.034961, 4.25, -0.716007, 0.034961, 4.25, 4.53399, 0.034961, -48.5, -49.216, 0.034961, -48.5, 5.03399, 0.034961, 1.5, 5.28399, 0.034961, 2.25, 48.534, 0.034961, 2.25, 48.534, 0.034961, -48.5, 5.03399, 0.034961, 3, 3.28399, 0.034961, 3.5, 3.03399, 0.034961, 4.25, 0.283993, 0.034961, 5, 0.283993, 0.034961, 49.75, 48.534, 0.034961, 49.75, -0.466007, 0.034961, 5, -49.216, 0.034961, 49.75)
@@ -320,9 +323,6 @@ transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -28, -1, 21)
 [node name="Shelf3" parent="NavigationRegion3D" instance=ExtResource("3_57pj4")]
 transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -22, -1, 29)
 
-[node name="Shelf4" parent="NavigationRegion3D" instance=ExtResource("3_57pj4")]
-transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -27, -1, -38)
-
 [node name="Beer" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 2)
 
@@ -380,6 +380,67 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 18)
 [node name="Beer10" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 23)
 
+[node name="Poison4" parent="NavigationRegion3D" instance=ExtResource("5_6xnfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, -0.456, -35)
+poison = "Nitrate"
+
+[node name="Gum4" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.189885, 0, -0.0757335, 0, 0.204431, 0, 0.0757335, 0, 0.189885, -16.7277, -0.9, -22.5303)
+
+[node name="Gum5" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.0926443, 0, 0.182233, 0, 0.204431, 0, -0.182233, 0, 0.0926443, -22.2446, -0.9, -18.8076)
+
+[node name="Gum6" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.157992, 0, 0.310774, 0, 0.348629, 0, -0.310774, 0, 0.157992, -28.576, -0.9, -19.8953)
+
+[node name="Gum7" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.0831808, 0, 0.163618, 0, 0.183549, 0, -0.163618, 0, 0.0831808, -26.6943, -0.9, -28.0482)
+
+[node name="Gum8" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.113559, 0, 0.223373, 0, 0.250582, 0, -0.223373, 0, 0.113559, -32.9453, -0.9, -34.7822)
+
+[node name="Gum9" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.0850954, 0, -0.235691, 0, 0.250582, 0, 0.235691, 0, 0.0850954, -11.506, -0.9, -29.9885)
+
+[node name="Gum10" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.0850954, 0, -0.235691, 0, 0.250582, 0, 0.235691, 0, 0.0850954, -36.1065, -0.9, -26.0886)
+
+[node name="Gum11" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.0850954, 0, -0.235691, 0, 0.250582, 0, 0.235691, 0, 0.0850954, -8.9215, -0.9, -39.0057)
+
+[node name="Gum12" parent="NavigationRegion3D" instance=ExtResource("6_3jes3")]
+transform = Transform3D(0.0850954, 0, -0.235691, 0, 0.250582, 0, 0.235691, 0, 0.0850954, -10.4218, -0.9, -22.901)
+
+[node name="Brick17" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.225, -0.456, -36.9666)
+
+[node name="Brick18" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.225, -0.456, -33.3421)
+
+[node name="Longwall" parent="NavigationRegion3D" instance=ExtResource("7_nly47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.963, -0.456, -34.1883)
+
+[node name="Board13" parent="NavigationRegion3D" instance=ExtResource("3_citfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.8063, -0.456, -21.5593)
+
+[node name="Beer20" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6025, -0.456, -27.8616)
+
+[node name="Beer21" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.6567, -0.456, -31.6143)
+
+[node name="Beer22" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.8111, -0.456, -32.4492)
+
+[node name="Beer23" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5418, -0.456, -36.1811)
+
+[node name="Beer24" parent="NavigationRegion3D" instance=ExtResource("4_64s6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4465, -0.456, -34.2062)
+
+[node name="Trap" parent="NavigationRegion3D" instance=ExtResource("8_l15q6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6707, -0.456, -25.5069)
+
 [node name="Player" parent="." instance=ExtResource("7_m2bmv")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -388,14 +449,6 @@ environment = SubResource("Environment_ibggl")
 [node name="Poison" parent="." instance=ExtResource("5_6xnfu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7505, 0.0883021, -8.8647)
 poison = "Cyanide"
-
-[node name="Poison2" parent="." instance=ExtResource("5_6xnfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4246, -0.465039, -31.4542)
-poison = "Sulfiric Acid"
-
-[node name="Poison3" parent="." instance=ExtResource("5_6xnfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2441, -0.527434, -19.8739)
-poison = "Nitrate"
 
 [node name="Boss" parent="." instance=ExtResource("6_31op1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.16462, 7)

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cqilpksvt514c" path="res://Scenes/level building/board.tscn" id="1_fkum1"]
 [ext_resource type="PackedScene" uid="uid://bodkn07lr8mwg" path="res://Scenes/level building/brick.tscn" id="2_l7030"]
-[ext_resource type="PackedScene" path="res://Scenes/level building/shelf.tscn" id="3_0nkv4"]
+[ext_resource type="PackedScene" uid="uid://d20nd1dm45ntk" path="res://Scenes/level building/shelf.tscn" id="3_0nkv4"]
 [ext_resource type="PackedScene" uid="uid://skk7130cpcoh" path="res://Scenes/Player.tscn" id="4_gfqtd"]
 [ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/level building/poison.tscn" id="5_5tykl"]
 [ext_resource type="PackedScene" uid="uid://fl224xwk37sl" path="res://Scenes/Boss.tscn" id="6_wr26h"]

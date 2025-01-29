@@ -23,8 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="18_o3lnb"]
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="19_5fxju"]
 [ext_resource type="Script" path="res://Scripts/armSpecial.gd" id="23_tp86a"]
-[ext_resource type="NoiseTexture3D" path="res://Assets/arm_noise.tres" id="24_bw3yd"]
-[ext_resource type="PackedScene" path="res://Scenes/tent.tscn" id="25_s54fk"]
+[ext_resource type="NoiseTexture3D" uid="uid://dgl4j15pjkdfq" path="res://Assets/arm_noise.tres" id="24_bw3yd"]
+[ext_resource type="PackedScene" uid="uid://c4ho3agy0ktao" path="res://Scenes/tent.tscn" id="25_s54fk"]
 [ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="26_a5hah"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gor8"]
@@ -650,7 +650,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.20398, -1.12231, 0.947037)
 shape = SubResource("BoxShape3D_7knul")
 
 [node name="Hand" type="Sprite3D" parent="MainAnimation/DecoyBoss"]
-transform = Transform3D(1.58237, 0.144697, 0.0816004, -0.139995, 1.58228, -0.0910245, -0.0894275, 0.0833469, 1.58637, -5.46025, 18.4029, 0)
+transform = Transform3D(1.58237, 0.144697, 0.0816005, -0.139995, 1.58228, -0.0910246, -0.0894275, 0.0833469, 1.58637, -5.46025, 18.4029, 0)
 texture = ExtResource("9_8gh20")
 
 [node name="Cutscene_Point" type="Marker3D" parent="MainAnimation/DecoyBoss/Hand"]
