@@ -17,7 +17,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		$Area3D/CollisionShape3D.disabled = true
 		label_3d.show()
-		body.collect_item(self)
+		body.collect_item(poison)
+		$AnimatedSprite3D.hide()
+		$Sprite3D.hide()
 	
 	
 	var tween = get_tree().create_tween()

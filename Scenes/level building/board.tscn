@@ -3,12 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://c0hisog6kd4bj" path="res://Assets/icon.svg" id="1_epeqs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cy5jx"]
-size = Vector3(7, 1, 2)
+size = Vector3(7, 2.10559, 2)
 
 [node name="Board" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55365, -0.474365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10645, -0.474365)
 shape = SubResource("BoxShape3D_cy5jx")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

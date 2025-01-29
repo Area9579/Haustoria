@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Boss/feet.gd" id="3_f4frn"]
 [ext_resource type="Texture2D" uid="uid://cqep6vi2l3ayd" path="res://Assets/bossfeet.png" id="4_27xct"]
 [ext_resource type="Script" path="res://Scripts/Boss/hands.gd" id="4_swuvd"]
-[ext_resource type="PackedScene" uid="uid://q138lqo8nb6w" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
+[ext_resource type="PackedScene" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
 [ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/Boss Animations/right_stomp.res" id="5_svm4b"]
 [ext_resource type="Texture2D" uid="uid://7gf8cgs5r1nw" path="res://Assets/playerhandhitboxplaceholder.png" id="7_0ri2b"]
 [ext_resource type="Texture2D" uid="uid://diupmw01o68rf" path="res://Assets/hand.png" id="8_uxjh0"]
@@ -289,7 +289,7 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
 top_level = true
 collision_layer = 2
-collision_mask = 128
+collision_mask = 132
 script = ExtResource("4_swuvd")
 
 [node name="AttackTimer" type="Timer" parent="Hand"]
@@ -354,7 +354,7 @@ shape = SubResource("CylinderShape3D_2qboq")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="StunTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 8.0
 one_shot = true
 
 [connection signal="animation_finished" from="Feet/Left/AnimationPlayer" to="Feet" method="_on_animation_player_animation_finished"]

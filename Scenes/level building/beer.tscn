@@ -7,9 +7,15 @@ radius = 1.29268
 height = 3.61475
 
 [node name="Beer" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-0.00890437, -0.756166, -0.654319, 0.999885, -0.0147515, 0.00344061, -0.0122538, -0.654213, 0.756211, 0, -0.521608, 0)
+shape = SubResource("CapsuleShape3D_5ap5c")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.00890437, -0.756166, -0.654319, 0.999885, -0.0147515, 0.00344061, -0.0122538, -0.654213, 0.756211, 0, 0.733302, 0)
 shape = SubResource("CapsuleShape3D_5ap5c")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

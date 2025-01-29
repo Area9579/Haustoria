@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://8jw6qsrgo3uv"]
+[gd_scene load_steps=14 format=3 uid="uid://dj70pfgnjq5q2"]
 
 [ext_resource type="Script" path="res://Scripts/trap.gd" id="1_giv3d"]
 [ext_resource type="Texture2D" uid="uid://bqivb1qljtnke" path="res://Assets/mousearm/close/mousearm1.png" id="1_syvkv"]
@@ -72,4 +72,9 @@ sprite_frames = SubResource("SpriteFrames_vlrm3")
 animation = &"open"
 autoplay = "open"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

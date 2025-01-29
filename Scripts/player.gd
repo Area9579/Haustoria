@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	if state_grabbed: #as you hold the mouse button drag the player
 		launch()
 		dragSelf(delta)
-		global_position.y = lerp(global_position.y, 1.0, delta * 6)
+		global_position.y = lerp(global_position.y, .1, delta * 6)
 		$AnchorPoint1.global_position = oldPlayerPosition
 	else:
 		velocity += get_gravity() * delta * 4
@@ -149,10 +149,15 @@ func attack(attack_origin): #put tween position as a parameter
 
 func collect_item(poison_pickedup):
 	ui.attack_multiplier += 1
+	var text_new = RichTextLabel.new()
+	text_new.text = poison_pickedup
+	text_new.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	$UI/Control/VBoxContainer.add_child(text_new)
+	$UI/Control/AnimationPlayer.play("collect_new")
 
 
 func slow_down(delta):
-	velocity = lerp(velocity, Vector3.ZERO, delta * 4)
+	velocity = lerp(velocity, Vector3.ZERO, delta * 40)
 
 
 var can_slime = false

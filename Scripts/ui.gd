@@ -5,6 +5,7 @@ extends Control
 @onready var player_health: TextureProgressBar = $PlayerHealth
 @onready var animation_player: AnimationPlayer = $"../UI2/AnimationPlayer"
 
+
 var player_health_total = 70.0
 var boss_health_total = 0.0
 
@@ -30,5 +31,7 @@ func attack_boss():
 func take_damage(damage):
 	player_health_total -= damage
 	if player_health_total <= 0:
-		#add dying here
-		pass
+		$"..".hide()
+		animation_player.play('end')
+		await animation_player.animation_finished
+		get_tree().change_scene_to_file("res://Scenes/main.tscn")
