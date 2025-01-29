@@ -10,6 +10,7 @@ size = Vector3(7.125, 0.64, 0.52)
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01396, 0)
 billboard = 1
+render_priority = 7
 texture = ExtResource("1_vk03l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
