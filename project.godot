@@ -77,3 +77,7 @@ fullscreen={
 3d_physics/layer_6="trap"
 3d_physics/layer_8="floor"
 3d_physics/layer_12="RealPlayer"
+
+[physics]
+
+common/physics_ticks_per_second=30

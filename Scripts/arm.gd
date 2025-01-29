@@ -41,14 +41,13 @@ func tendon_puller(delta):
 		if i != tendons[0]  or i == tendons[-1]:
 			var distance = i.global_position - tendons[tendons.find(i) - 1].global_position
 			if distance.length() > rest_length or distance.length() < squeeze_length:
-				tendons[tendons.find(i) - 1].velocity += distance * delta * tension
+				tendons[tendons.find(i) - 1].velocity += distance * .0333 * tension
 				#var dist_mult = (distance - (Vector3(rest_length, rest_length,rest_length) * distance.normalized())) #somehow gives more weight to the end
-				i.velocity -= distance * delta * tension
-			
+				i.velocity -= distance * .0333 * tension
 			starting_point += delta
 			var noise_point = noise.noise.get_noise_3d(starting_point,starting_point,starting_point)
 			
-			i.velocity += Vector3.ONE * noise_point * delta * 2
+			i.velocity += Vector3.ONE * noise_point * .0333 * 2
 			i.velocity.y = clamp(i.velocity.y, 0, 1)
 			i.velocity *= damping
 		if i == tendons[0] or i == tendons[-1]:
@@ -58,7 +57,7 @@ func tendon_puller(delta):
 				i.global_position = global_position
 			if i == tendons[-1]: 
 				i.velocity -= get_parent().get_parent().velocity * .05
-				i.velocity += (trail.global_position - i.global_position) * delta * tent_length
+				i.velocity += (trail.global_position - i.global_position) * .0333 * tent_length
 		if i.global_position != tendons[tendons.find(i) - 1].global_position: i.look_at(tendons[tendons.find(i) - 1].global_position)
 		i.velocity *= Vector3(1,0,1)
 func titler_puller(delta):

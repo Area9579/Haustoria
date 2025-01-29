@@ -172,7 +172,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="SlimeCooldown" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.3
 autostart = true
 
 [node name="UI" type="Control" parent="."]
@@ -260,17 +260,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0957307, 0)
 transform = Transform3D(0.760658, 0, 0.323053, 0, 0.826416, 0, -0.323053, 0, 0.760658, 0, 0, 0)
 tent_length = 9
 
-[node name="Arm6" parent="Limbs" instance=ExtResource("12_ltyuy")]
-transform = Transform3D(0.782827, 0, 0.26485, 0, 0.826416, 0, -0.26485, 0, 0.782827, 0, 0, 0)
-tent_length = 23
-
 [node name="Arm3" parent="Limbs" instance=ExtResource("12_ltyuy")]
 transform = Transform3D(1.17014, 0, -0.173605, 0, 1.18295, 0, 0.173605, 0, 1.17014, 0, 0, 0)
 tent_length = 5
-
-[node name="Arm4" parent="Limbs" instance=ExtResource("12_ltyuy")]
-transform = Transform3D(0.825929, 0, -0.0283658, 0, 0.826416, 0, 0.0283658, 0, 0.825929, 0, 0, 0)
-tent_length = 4
 
 [node name="Arm5" parent="Limbs" instance=ExtResource("12_ltyuy")]
 transform = Transform3D(0.739652, 0.00541318, -0.368576, -0.00673772, 0.826388, -0.0013842, 0.368554, 0.00424387, 0.739671, 0, 0, 0)

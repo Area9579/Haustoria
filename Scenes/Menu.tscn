@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://djr66pvfmqq7k"]
+[gd_scene load_steps=66 format=3 uid="uid://djr66pvfmqq7k"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_i28t0"]
 [ext_resource type="Texture2D" uid="uid://ddffootr8l1nr" path="res://Assets/JarAnimations/jar1.png" id="2_2byc2"]
@@ -22,6 +22,10 @@
 [ext_resource type="Texture2D" uid="uid://cqxsixhv7tq2x" path="res://Assets/barholderplaceholder.png" id="17_66xvd"]
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="18_o3lnb"]
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="19_5fxju"]
+[ext_resource type="Script" path="res://Scripts/armSpecial.gd" id="23_tp86a"]
+[ext_resource type="NoiseTexture3D" path="res://Assets/arm_noise.tres" id="24_bw3yd"]
+[ext_resource type="PackedScene" path="res://Scenes/tent.tscn" id="25_s54fk"]
+[ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="26_a5hah"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gor8"]
 sky_top_color = Color(0.285814, 0.440282, 0.73271, 1)
@@ -74,7 +78,7 @@ material = SubResource("StandardMaterial3D_8lc6p")
 size = Vector3(37.875, 5.56, 2.89)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2m3kh"]
-size = Vector3(55.4301, 3.35748, 3.32861)
+size = Vector3(55.4301, 3.35748, 2400.27)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v12l4"]
 animations = [{
@@ -127,6 +131,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_r7gk4"]
+size = Vector3(4.65601, 1, 1.79317)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_15rcw"]
+size = Vector3(1, 4.83826, 3.81641)
+
 [sub_resource type="Animation" id="Animation_h86vx"]
 length = 0.001
 tracks/0/type = "value"
@@ -168,14 +178,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MainAnimation/DecoyBoss/Hand2/Syringe:rotation")
+tracks/3/path = NodePath("MainAnimation/DecoyBoss/Hand:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0703438, -0.0385918, 0.135403)]
+"values": [Vector3(0.0572408, 0.0513932, -0.088247)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("2DPlayer/SyringeHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0787538, 1.33468, 1.14598)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MainAnimation/StaticBody3D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(52.2117, 1.44233, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_iocm8"]
@@ -188,11 +222,14 @@ tracks/0/path = NodePath("2DPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1, 3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1, 2.93333, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"set_cutscene_true"
+}, {
+"args": [],
+"method": &"grab_syringe"
 }, {
 "args": [],
 "method": &"grab_syringe"
@@ -205,10 +242,10 @@ tracks/1/path = NodePath("MainAnimation/DecoyBoss/Hand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 1.76667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1, 1.76667, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-5.46025, 17.0587, 0), Vector3(-7.13015, 5.23155, 0), Vector3(-7.13015, 9.48727, 0)]
+"values": [Vector3(-5.46025, 17.0587, 0), Vector3(-7.13015, 5.23155, 0), Vector3(-7.13015, 9.48727, 0), Vector3(-7.13015, 9.48727, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -217,10 +254,10 @@ tracks/2/path = NodePath("MainAnimation/DecoyBoss/Hand2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.6, 3.06667),
-"transitions": PackedFloat32Array(0.353553, 1),
+"times": PackedFloat32Array(1.6, 3.06667, 3.1, 3.4, 4.53333),
+"transitions": PackedFloat32Array(0.353553, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-2.14025, 18.9485, 1.14598), Vector3(-6.03672, 11.0587, 1.14598)]
+"values": [Vector3(-2.14025, 18.9485, 1.14598), Vector3(-6.03672, 11.0587, 1.14598), Vector3(-3.49231, 12.3864, 1.14598), Vector3(-5.24142, 11.2937, 1.14598), Vector3(-5.24142, 6.06603, 1.14598)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -237,14 +274,38 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MainAnimation/DecoyBoss/Hand2/Syringe:rotation")
+tracks/4/path = NodePath("MainAnimation/DecoyBoss/Hand:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(3.1, 3.13333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(3.1),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0703438, -0.0385918, 0.135403), Vector3(-0.0353834, -0.0748971, -3.05548)]
+"values": [Vector3(0.0572408, 0.0513932, -0.088247)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("2DPlayer/SyringeHand:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.06667, 3.2, 3.43333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(47.7543, 6.87548, 1.14598), Vector3(51.7467, 8.88217, 1.14598), Vector3(48.5464, 7.36742, 1.14598)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainAnimation/StaticBody3D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3, 3.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(52.2117, 1.44233, 0), Vector3(52.2117, 1.44233, 0), Vector3(52.2117, -7.4661, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt5jo"]
@@ -255,6 +316,9 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7knul"]
 size = Vector3(4.3938, 3.24463, 3.88712)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gmgnb"]
+size = Vector3(1, 5.24597, 3.64374)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
 height = 0.941026
@@ -373,6 +437,38 @@ _data = {
 "start": SubResource("Animation_7fvta")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncaih"]
+albedo_color = Color(0.835611, 0, 0.198014, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4slfo"]
+material = SubResource("StandardMaterial3D_ncaih")
+
+[sub_resource type="PrismMesh" id="PrismMesh_ubyrm"]
+
+[sub_resource type="Curve3D" id="Curve3D_1d7jp"]
+_data = {
+"points": PackedVector3Array(-0.190328, -0.154985, -0.0120578, 0.190328, 0.154985, 0.0120578, 0, 0, 0, -0.45109, 0.550339, 0.0374427, 0.45109, -0.550339, -0.0374427, 4.35439, -0.0618787, -0.148745),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gx147"]
+albedo_color = Color(0.835611, 0, 0.198014, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqqq3"]
+material = SubResource("StandardMaterial3D_gx147")
+
+[sub_resource type="PrismMesh" id="PrismMesh_3p818"]
+
+[sub_resource type="Curve3D" id="Curve3D_my26f"]
+_data = {
+"points": PackedVector3Array(-0.190328, -0.154985, -0.0120578, 0.190328, 0.154985, 0.0120578, 0, 0, 0, -0.45109, 0.550339, 0.0374427, 0.45109, -0.550339, -0.0374427, 4.35439, -0.0618787, -0.148745),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oulh3"]
+
 [sub_resource type="Animation" id="Animation_50e12"]
 resource_name = "RESET"
 tracks/0/type = "bezier"
@@ -469,7 +565,7 @@ mesh = SubResource("BoxMesh_50via")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(-1.55553e-08, -1, 2.19162e-08, 0, -4.37114e-08, -0.501384, 0.355864, -4.37114e-08, 9.57988e-16, 36.9947, 22.8165, -16.2752)
+transform = Transform3D(-1.55553e-08, -1, 2.19162e-08, 0, -4.37114e-08, -0.501384, 0.355864, -4.37114e-08, 9.57988e-16, 80.2455, 26.5303, -16.2752)
 layers = 3
 mesh = SubResource("BoxMesh_50via")
 skeleton = NodePath("../../..")
@@ -479,9 +575,10 @@ transform = Transform3D(3.01262, 0, 0, 0, 1, 0, 0, 0, 1, 24.7818, -2.41178, 0)
 mesh = SubResource("BoxMesh_gi7bd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Table"]
+collision_layer = 129
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Table/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87506, 1.17874, 0.123779)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87506, 1.17874, -1019.9)
 shape = SubResource("BoxShape3D_2m3kh")
 
 [node name="Label3D" type="Label3D" parent="."]
@@ -492,6 +589,40 @@ text = "Use left click to start"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76478, 0)
 sprite_frames = SubResource("SpriteFrames_v12l4")
 animation = &"1"
+
+[node name="LabelClick" type="RigidBody3D" parent="Jar"]
+transform = Transform3D(0.924858, -0.380312, 0, 0.380312, 0.924858, 0, 0, 0, 1, -0.069469, -0.429408, -2.41667)
+visible = false
+collision_layer = 0
+collision_mask = 128
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jar/LabelClick"]
+transform = Transform3D(1, -2.45869e-07, 0, 2.45869e-07, 1, 0, 0, 0, 1, 0.0963135, 0, -0.813454)
+shape = SubResource("BoxShape3D_r7gk4")
+
+[node name="Label3D" type="Label3D" parent="Jar/LabelClick"]
+transform = Transform3D(3.97868, 0, 0, 0, 3.97868, 0, 0, 0, 3.97868, 0, 0, 0)
+text = "Click to Drag!"
+
+[node name="Jar" type="StaticBody3D" parent="Jar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19621, -0.957397, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jar/Jar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.591842, 1.39545, 0.50293)
+shape = SubResource("BoxShape3D_15rcw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Jar/Jar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.20221, 1.39545, 0.50293)
+shape = SubResource("BoxShape3D_15rcw")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Jar/Jar"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.21841, 3.62488, 0.50293)
+shape = SubResource("BoxShape3D_15rcw")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Jar/Jar"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.21841, -0.419737, 0.50293)
+shape = SubResource("BoxShape3D_15rcw")
 
 [node name="MainAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -519,7 +650,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.20398, -1.12231, 0.947037)
 shape = SubResource("BoxShape3D_7knul")
 
 [node name="Hand" type="Sprite3D" parent="MainAnimation/DecoyBoss"]
-transform = Transform3D(1.58237, 0.144698, 0.0816001, -0.139995, 1.58228, -0.0910241, -0.0894275, 0.0833468, 1.58637, -5.46025, 18.4029, 0)
+transform = Transform3D(1.58237, 0.144697, 0.0816004, -0.139995, 1.58228, -0.0910245, -0.0894275, 0.0833469, 1.58637, -5.46025, 18.4029, 0)
 texture = ExtResource("9_8gh20")
 
 [node name="Cutscene_Point" type="Marker3D" parent="MainAnimation/DecoyBoss/Hand"]
@@ -531,12 +662,19 @@ render_priority = 1
 texture = ExtResource("9_8gh20")
 
 [node name="Syringe" type="Sprite3D" parent="MainAnimation/DecoyBoss/Hand2"]
-transform = Transform3D(0.990476, -0.132202, -0.0384868, 0.134656, 0.988397, 0.0702858, 0.0287483, -0.0747989, 0.996784, -0.659468, -4.08728, 1.91292)
+transform = Transform3D(0.990476, -0.132202, -0.0384868, 0.134656, 0.988397, 0.0702858, 0.0287483, -0.0747989, 0.996784, -0.559437, -4.18051, 0.138463)
 render_priority = 2
 texture = ExtResource("10_8isue")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="MainAnimation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2117, 1.44233, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainAnimation/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998474, 0.386322)
+shape = SubResource("BoxShape3D_gmgnb")
+
 [node name="2DPlayer" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(1.59107, 0, 0, 0, 1.59107, 0, 0, 0, 1.59107, 0.0787538, 1.33468, 1.14598)
+transform = Transform3D(1.59107, 0, 0, 0, 1.59107, 0, 0, 0, 1.59107, 0.0787538, 1.90514, 1.14598)
 collision_layer = 3
 script = ExtResource("8_7r8i7")
 
@@ -666,10 +804,281 @@ tent_length = 4
 transform = Transform3D(0.739652, 0.00541318, -0.368576, -0.00673772, 0.826388, -0.0013842, 0.368554, 0.00424387, 0.739671, 0, -0.00899699, 0.0722671)
 tent_length = 20
 
+[node name="Arm7" type="Marker3D" parent="2DPlayer/Limbs" node_paths=PackedStringArray("anchor_position")]
+transform = Transform3D(3.22196, 0, 0, 0, -1.40837e-07, -3.22196, 0, 3.22196, -1.40837e-07, 0, -0.00899702, 0)
+script = ExtResource("23_tp86a")
+noise = ExtResource("24_bw3yd")
+anchor_position = NodePath("../../SyringeHand")
+
+[node name="IKTarget" type="Marker3D" parent="2DPlayer/Limbs/Arm7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0252413, 0.0648627, 0)
+top_level = true
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="2DPlayer/Limbs/Arm7/IKTarget"]
+transform = Transform3D(0.276084, 0, 0, 0, 0.276084, 0, 0, 0, 0.276084, 0, 0.439509, 0)
+mesh = SubResource("CapsuleMesh_4slfo")
+
+[node name="DistanceDirection" type="Marker3D" parent="2DPlayer/Limbs/Arm7"]
+transform = Transform3D(0.275028, 0, 0, 0, 0.275028, 0, 0, 0, 0.275028, 1, 0.651552, 0)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="2DPlayer/Limbs/Arm7/DistanceDirection"]
+mesh = SubResource("PrismMesh_ubyrm")
+skeleton = NodePath("../../..")
+
+[node name="Trail" type="Marker3D" parent="2DPlayer/Limbs/Arm7"]
+transform = Transform3D(0.30369, 0, 0, 0, 0.30369, 0, 0, 0, 0.30369, -1.63564, 0.561342, 0)
+top_level = true
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="2DPlayer/Limbs/Arm7/Trail"]
+mesh = SubResource("PrismMesh_ubyrm")
+skeleton = NodePath("../../..")
+
+[node name="TentHolder" type="Node3D" parent="2DPlayer/Limbs/Arm7"]
+transform = Transform3D(1.11527, 0, 0, 0, 1, 0, 0, 0, 2.09596, 0, 0.649279, 0)
+visible = false
+
+[node name="Tent" parent="2DPlayer/Limbs/Arm7/TentHolder" instance=ExtResource("25_s54fk")]
+
+[node name="Tent2" parent="2DPlayer/Limbs/Arm7/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22458, 0, 0)
+
+[node name="Tent3" parent="2DPlayer/Limbs/Arm7/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55204, 0, 0)
+
+[node name="Tent4" parent="2DPlayer/Limbs/Arm7/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent5" parent="2DPlayer/Limbs/Arm7/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent6" parent="2DPlayer/Limbs/Arm7/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent7" parent="2DPlayer/Limbs/Arm7/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent8" parent="2DPlayer/Limbs/Arm7/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="TitlerHolder" type="Path3D" parent="2DPlayer/Limbs/Arm7"]
+transform = Transform3D(0.890708, 0, 0, 0, 0.141487, -6.70634, 0, 2.32461, 0.40818, 0, -0.00899699, 0)
+top_level = true
+curve = SubResource("Curve3D_1d7jp")
+
+[node name="PathFollow3D3" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369303, 0.992936, -0.112409, 0.99901, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
+
+[node name="PathFollow3D4" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0264827, -0.090201, -0.995538, 0.0372348, 0.995268, -0.0891891, 0.998914, -0.0347075, 0.0297178, 1.07728, 0.171954, -0.0238061)
+progress = 1.0954
+
+[node name="PathFollow3D5" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0277743, -0.079367, -0.996433, 0.0373434, 0.996198, -0.0783083, 0.998873, -0.0350365, 0.030634, 1.2651, 0.187729, -0.0295006)
+progress = 1.28379
+
+[node name="PathFollow3D6" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.0692606, 0.99887, -0.0353168, 0.0313379, 1.42968, 0.199907, -0.0346192)
+progress = 1.44877
+
+[node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0298164, -0.0608971, -0.997679, 0.0374862, 0.997475, -0.0597661, 0.998839, -0.0356172, 0.0320248, 1.60607, 0.211318, -0.0402237)
+progress = 1.62546
+
+[node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0317741, -0.0415425, -0.99861, 0.0375847, 0.998448, -0.0403407, 0.998775, -0.0362508, 0.0332868, 1.96108, 0.229167, -0.0518421)
+progress = 1.98081
+
+[node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0333443, -0.0249416, -0.999111, 0.0376351, 0.998979, -0.0236828, 0.998722, -0.0368121, 0.0342497, 2.24394, 0.238291, -0.0614046)
+progress = 2.26379
+
+[node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0350356, -0.00607726, -0.999345, 0.0376593, 0.999246, -0.00475653, 0.998663, -0.0374681, 0.0352389, 2.52694, 0.242407, -0.0712428)
+progress = 2.54676
+
+[node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0369366, 0.0159895, -0.999169, 0.0376474, 0.999109, 0.0173806, 0.998594, -0.0382582, 0.0363026, 2.80966, 0.240759, -0.0813591)
+progress = 2.82973
+
+[node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0405576, 0.0599333, -0.997356, 0.037505, 0.997372, 0.0614607, 0.998459, -0.0398987, 0.0382042, 3.22756, 0.224939, -0.0969304)
+progress = 3.24778
+
+[node name="PathFollow3D17" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0461906, 0.13092, -0.990294, 0.0369558, 0.99044, 0.132665, 0.998233, -0.0427252, 0.0409118, 3.64278, 0.186022, -0.113397)
+progress = 3.66534
+
+[node name="PathFollow3D18" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0582583, 0.287234, -0.956063, 0.0343419, 0.956537, 0.289474, 0.997696, -0.0496976, 0.0458632, 4.05105, 0.103498, -0.131371)
+progress = 4.08289
+
+[node name="PathFollow3D19" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0947786, 0.768253, -0.633045, 0.0099627, 0.635137, 0.7723, 0.995433, -0.0795048, 0.0525449, 4.35439, -0.0618767, -0.148745)
+progress = 4.43262
+
+[node name="PathFollow3D8" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123722, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
+progress = 0.624339
+
+[node name="PathFollow3D9" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362702, 0.988434, -0.147136, 0.999144, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
+progress = 0.424082
+
+[node name="PathFollow3D10" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0133142, -0.180524, -0.983443, 0.0354166, 0.982996, -0.179963, 0.999242, -0.0324355, 0.0194822, 0.252031, 0.0700715, -0.00191475)
+progress = 0.259098
+
+[node name="PathFollow3D11" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.00103784, -0.254508, -0.967033, 0.0326815, 0.96652, -0.254341, 0.999421, -0.0313414, 0.00932127, 0.106747, 0.0390801, 0.000415763)
+progress = 0.117683
+
+[node name="Arm8" type="Marker3D" parent="2DPlayer/Limbs" node_paths=PackedStringArray("anchor_position")]
+script = ExtResource("23_tp86a")
+noise = ExtResource("24_bw3yd")
+anchor_position = NodePath("../../Marker3D")
+
+[node name="IKTarget" type="Marker3D" parent="2DPlayer/Limbs/Arm8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0252413, 0.0648627, 0)
+top_level = true
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="2DPlayer/Limbs/Arm8/IKTarget"]
+transform = Transform3D(0.276084, 0, 0, 0, 0.276084, 0, 0, 0, 0.276084, 0, 0.439509, 0)
+mesh = SubResource("CapsuleMesh_hqqq3")
+
+[node name="DistanceDirection" type="Marker3D" parent="2DPlayer/Limbs/Arm8"]
+transform = Transform3D(0.275028, 0, 0, 0, 0.275028, 0, 0, 0, 0.275028, 1, 0.651552, 0)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="2DPlayer/Limbs/Arm8/DistanceDirection"]
+mesh = SubResource("PrismMesh_3p818")
+skeleton = NodePath("../../..")
+
+[node name="Trail" type="Marker3D" parent="2DPlayer/Limbs/Arm8"]
+transform = Transform3D(0.30369, 0, 0, 0, 0.30369, 0, 0, 0, 0.30369, -1.63564, 0.561342, 0)
+top_level = true
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="2DPlayer/Limbs/Arm8/Trail"]
+mesh = SubResource("PrismMesh_3p818")
+skeleton = NodePath("../../..")
+
+[node name="TentHolder" type="Node3D" parent="2DPlayer/Limbs/Arm8"]
+transform = Transform3D(1.11527, 0, 0, 0, 1, 0, 0, 0, 2.09596, 0, 0.649279, 0)
+visible = false
+
+[node name="Tent" parent="2DPlayer/Limbs/Arm8/TentHolder" instance=ExtResource("25_s54fk")]
+
+[node name="Tent2" parent="2DPlayer/Limbs/Arm8/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22458, 0, 0)
+
+[node name="Tent3" parent="2DPlayer/Limbs/Arm8/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55204, 0, 0)
+
+[node name="Tent4" parent="2DPlayer/Limbs/Arm8/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent5" parent="2DPlayer/Limbs/Arm8/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent6" parent="2DPlayer/Limbs/Arm8/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent7" parent="2DPlayer/Limbs/Arm8/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="Tent8" parent="2DPlayer/Limbs/Arm8/TentHolder" instance=ExtResource("25_s54fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.767383, 0, 0)
+
+[node name="TitlerHolder" type="Path3D" parent="2DPlayer/Limbs/Arm8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00899699, 0)
+top_level = true
+curve = SubResource("Curve3D_my26f")
+
+[node name="PathFollow3D3" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369303, 0.992936, -0.112409, 0.999011, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
+
+[node name="PathFollow3D4" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0264827, -0.0902011, -0.995539, 0.0372348, 0.995269, -0.0891892, 0.998915, -0.0347075, 0.0297178, 1.07728, 0.171954, -0.0238061)
+progress = 1.0954
+
+[node name="PathFollow3D5" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0277743, -0.079367, -0.996433, 0.0373434, 0.996198, -0.0783083, 0.998873, -0.0350365, 0.030634, 1.2651, 0.187729, -0.0295006)
+progress = 1.28379
+
+[node name="PathFollow3D6" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.0692606, 0.99887, -0.0353168, 0.0313379, 1.42968, 0.199907, -0.0346192)
+progress = 1.44877
+
+[node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0298164, -0.0608972, -0.99768, 0.0374862, 0.997476, -0.0597661, 0.998839, -0.0356172, 0.0320248, 1.60607, 0.211318, -0.0402237)
+progress = 1.62546
+
+[node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0317741, -0.0415425, -0.99861, 0.0375847, 0.998449, -0.0403407, 0.998776, -0.0362508, 0.0332869, 1.96108, 0.229167, -0.0518421)
+progress = 1.98081
+
+[node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0333443, -0.0249416, -0.999112, 0.0376351, 0.99898, -0.0236828, 0.998723, -0.0368121, 0.0342498, 2.24394, 0.238291, -0.0614046)
+progress = 2.26379
+
+[node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0350356, -0.00607726, -0.999346, 0.0376593, 0.999247, -0.00475653, 0.998663, -0.0374681, 0.0352389, 2.52694, 0.242407, -0.0712428)
+progress = 2.54676
+
+[node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0369367, 0.0159895, -0.999169, 0.0376474, 0.99911, 0.0173806, 0.998595, -0.0382583, 0.0363026, 2.80966, 0.240759, -0.0813591)
+progress = 2.82973
+
+[node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0405576, 0.0599333, -0.997357, 0.037505, 0.997373, 0.0614607, 0.998459, -0.0398987, 0.0382042, 3.22756, 0.224939, -0.0969304)
+progress = 3.24778
+
+[node name="PathFollow3D17" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0461906, 0.13092, -0.990294, 0.0369558, 0.99044, 0.132665, 0.998234, -0.0427252, 0.0409118, 3.64278, 0.186022, -0.113397)
+progress = 3.66534
+
+[node name="PathFollow3D18" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0582583, 0.287234, -0.956063, 0.0343419, 0.956537, 0.289474, 0.997696, -0.0496976, 0.0458632, 4.05105, 0.103498, -0.131371)
+progress = 4.08289
+
+[node name="PathFollow3D19" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0947787, 0.768254, -0.633045, 0.00996271, 0.635137, 0.7723, 0.995434, -0.0795048, 0.0525449, 4.35439, -0.0618767, -0.148745)
+progress = 4.43262
+
+[node name="PathFollow3D8" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123723, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
+progress = 0.624339
+
+[node name="PathFollow3D9" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0184539, -0.147873, -0.988799, 0.0362703, 0.988434, -0.147136, 0.999145, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
+progress = 0.424082
+
+[node name="PathFollow3D10" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.0133143, -0.180524, -0.983443, 0.0354167, 0.982996, -0.179963, 0.999243, -0.0324355, 0.0194822, 0.252031, 0.0700715, -0.00191475)
+progress = 0.259098
+
+[node name="PathFollow3D11" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
+transform = Transform3D(0.00103784, -0.254508, -0.967032, 0.0326815, 0.96652, -0.254341, 0.999421, -0.0313414, 0.00932126, 0.106747, 0.0390801, 0.000415763)
+progress = 0.117683
+
 [node name="Camera3D" type="Camera3D" parent="2DPlayer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37041, 7.3496)
 
 [node name="SyringeHand" type="Marker3D" parent="2DPlayer"]
+transform = Transform3D(1.59107, 0, 0, 0, 1.59107, 0, 0, 0, 1.59107, 0.0787538, 1.33468, 1.14598)
+top_level = true
+
+[node name="Marker3D" type="Marker3D" parent="2DPlayer"]
+top_level = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="2DPlayer/Marker3D"]
+transform = Transform3D(0.606159, 0, 0, 0, 2.22492, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_oulh3")
 
 [node name="UI" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001
@@ -693,6 +1102,21 @@ autoplay = "start"
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
+
+[node name="Credits" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6937, 11.2782, 0)
+
+[node name="Label3D2" type="Label3D" parent="Credits"]
+transform = Transform3D(4.49337, -0.919496, 0, 0.919496, 4.49337, 0, 0, 0, 4.58648, 0, 0, 0)
+text = "Music and sounds by Camrynnr"
+
+[node name="Label3D3" type="Label3D" parent="Credits"]
+transform = Transform3D(4.35142, 1.44947, 0, -1.44947, 4.35142, 0, 0, 0, 4.58648, 15.9328, -3.87496, 0)
+text = "Programming by Aria, Alex the slave, and Phoenix"
+
+[node name="Label3D4" type="Label3D" parent="Credits"]
+transform = Transform3D(4.58634, 0.0361021, 0, -0.0361021, 4.58634, 0, 0, 0, 4.58648, 48.7718, -6.80398, 0)
+text = "Art by Rowan and Aria"
 
 [connection signal="animation_finished" from="MainAnimation" to="." method="start_level" unbinds=1]
 [connection signal="body_entered" from="MainAnimation/DecoyBoss/Area3D" to="." method="start_anim" unbinds=1]
