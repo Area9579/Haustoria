@@ -235,7 +235,7 @@ size = Vector3(1.69354, 4.34506, 1.75926)
 radius = 0.821734
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2qboq"]
-radius = 19.0
+radius = 16.5168
 
 [node name="Boss" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16462, 0)
@@ -351,7 +351,7 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
 top_level = true
 collision_layer = 2
-collision_mask = 132
+collision_mask = 16516
 script = ExtResource("4_swuvd")
 
 [node name="AttackTimer" type="Timer" parent="Hand"]

@@ -9,8 +9,8 @@ func _ready() -> void:
 
 func  _input(event: InputEvent) -> void:
 	var mousePos = get_viewport().get_mouse_position()
-	if event is InputEventMouseMotion: #calls the function for adjusting the camera location whenever you move the mouse
-		adjustCamera(0.1,0.05,mousePos)
+#	if event is InputEventMouseMotion: #calls the function for adjusting the camera location whenever you move the mouse
+	#	adjustCamera(0.1,0.05,mousePos)
 
 #this function moves the camera ahead of the player by the limits when the mouse position gets towards the viewport borders
 func adjustCamera(limitX,limitY,mousePos): 
@@ -24,11 +24,13 @@ func adjustCamera(limitX,limitY,mousePos):
 	var newPosZ: float
 	#both of these just do some math so that the center of the viewport is equal to 0 and the edges are equal to the limit, then set the position there
 	if mousePos.x != centerX:
-		newPosX = ((mousePos.x-centerX)/divFactorX)*2
+		newPosX = ((mousePos.x-centerX)/divFactorX)*2 + get_parent().global_position.x
 		position.x = newPosX
+		
 	if mousePos.y != centerY:
-		newPosZ = ((mousePos.y-centerY)/divFactorY)*2
+		newPosZ = ((mousePos.y-centerY)/divFactorY)*2  + get_parent().global_position.z
 		position.z = newPosZ + defaultZPos
+	position.y = 7.277
 
 
 var decay := .8 #How quickly shaking will stop [0,1].
@@ -54,6 +56,9 @@ func transition(point : Vector2): #ig just position
 	tween.tween_property(self, 'position', point + Vector2(160, 90), .5)
 
 func _process(delta):
+	var mousePos = get_viewport().get_mouse_position()
+	adjustCamera(0.1,0.05,mousePos)
+	#global_position = (get_parent().global_position * Vector3(1,0,1)) + Vector3(0,7.277, 4.245)
 	if trauma: 
 		trauma = max(trauma - decay * delta, 0)
 		shake()

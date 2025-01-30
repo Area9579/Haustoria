@@ -56,24 +56,22 @@ collision_mask = 3
 shape = SubResource("BoxShape3D_obbhc")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.263429, 0, 0, 0, 0.263429, 0, 0, 0, 0.263429, 0, 0, 0)
+transform = Transform3D(0.263429, 0, 0, 0, 0.263429, 0, 0, 0, 0.263429, 0, -0.264813, 0)
 billboard = 1
 render_priority = 12
 sprite_frames = SubResource("SpriteFrames_amppj")
 animation = &"Sulfiric Acid"
 
 [node name="Label3D" type="Label3D" parent="AnimatedSprite3D"]
-transform = Transform3D(6.93605, 0, 0, 0, 6.93605, 0, 0, 0, 6.93605, 0, 4.354, 0)
+transform = Transform3D(6.93605, 0, 0, 0, 6.93605, 0, 0, 0, 6.93605, 0, 3.53223, -1.41688)
 visible = false
 billboard = 1
+render_priority = 12
 text = "test text"
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(2.8301, 0, 0, 0, 24.413, 0, 0, 0, 1, -0.0112045, 6.74889, -0.344123)
 billboard = 2
 texture = ExtResource("5_3mxpi")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.822725, 4.24776)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

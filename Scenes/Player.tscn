@@ -203,6 +203,7 @@ transform = Transform3D(-0.428824, 0, 0.0135663, 0, 0.429039, 0, -0.0135663, 0, 
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.494124, 0.869391, 0, -0.869391, 0.494124, 0, 7.27733, 4.24484)
+top_level = true
 current = true
 fov = 53.9261
 script = ExtResource("3_iy2vu")
