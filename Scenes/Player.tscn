@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="12_ltyuy"]
 [ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="13_12324"]
 [ext_resource type="Texture2D" uid="uid://b5ae42smc721h" path="res://Assets/slimeblob.png" id="13_r464h"]
-[ext_resource type="PackedScene" path="res://Scenes/armSpecial.tscn" id="14_53ecf"]
-[ext_resource type="PackedScene" path="res://Scenes/CutsceneArm.tscn" id="15_joelk"]
+[ext_resource type="PackedScene" uid="uid://dhktpe40ixw88" path="res://Scenes/armSpecial.tscn" id="14_53ecf"]
+[ext_resource type="PackedScene" uid="uid://doiiw83vgdkis" path="res://Scenes/CutsceneArm.tscn" id="15_joelk"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
 height = 0.941026

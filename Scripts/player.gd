@@ -116,7 +116,7 @@ func dragSelf(delta): #drags the player around the grabbed point by constantly s
 	var targetPoint = -rad_to_deg(Vector2(pointx,pointz).angle_to_point(Vector2(position.x,position.z)))
 	targetPoint = Vector2(cos(deg_to_rad(targetPoint)),sin(deg_to_rad(targetPoint)))
 	velocity.x = lerp(velocity.x, -targetPoint.x * VELOCITY_MULTIPLIER * vectorDistance, delta * VELOCITY_MULTIPLIER)
-	velocity.z = lerp(velocity.y,targetPoint.y * VELOCITY_MULTIPLIER * vectorDistance, delta * VELOCITY_MULTIPLIER)
+	velocity.z = lerp(velocity.z,targetPoint.y * VELOCITY_MULTIPLIER * vectorDistance, delta * VELOCITY_MULTIPLIER)
 
 
 func getGrabPosition(): #gets the position of the grabbed point when you click within a circle with a given radius

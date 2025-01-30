@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dthcmdg2t6jf8"]
+
+[ext_resource type="Texture2D" uid="uid://2ytcoqifp6sn" path="res://Assets/rock1.png" id="1_uf24i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yb0q"]
+size = Vector3(6.68, 3.96, 1.355)
+
+[node name="rock" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+render_priority = 7
+texture = ExtResource("1_uf24i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5yb0q")

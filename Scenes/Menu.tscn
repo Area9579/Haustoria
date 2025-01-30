@@ -27,8 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="18_o3lnb"]
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="19_5fxju"]
 [ext_resource type="Script" path="res://Scripts/armSpecial.gd" id="23_tp86a"]
-[ext_resource type="NoiseTexture3D" path="res://Assets/arm_noise.tres" id="24_bw3yd"]
-[ext_resource type="PackedScene" path="res://Scenes/tent.tscn" id="25_s54fk"]
+[ext_resource type="NoiseTexture3D" uid="uid://dgl4j15pjkdfq" path="res://Assets/arm_noise.tres" id="24_bw3yd"]
+[ext_resource type="PackedScene" uid="uid://c4ho3agy0ktao" path="res://Scenes/tent.tscn" id="25_s54fk"]
 [ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="26_a5hah"]
 [ext_resource type="Script" path="res://Scenes/camera_3dmenu.gd" id="30_yotbj"]
 

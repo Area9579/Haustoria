@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1gu2stbvprcg"]
+
+[ext_resource type="Texture2D" uid="uid://cklp6xk6ihooi" path="res://Assets/meduim garb.png" id="1_c6frx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xutu8"]
+height = 4.19
+radius = 1.54
+
+[node name="MedGarb" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165, 0, 0)
+shape = SubResource("CylinderShape3D_xutu8")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -0.3)
+billboard = 1
+texture = ExtResource("1_c6frx")
