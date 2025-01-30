@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Boss/feet.gd" id="3_f4frn"]
 [ext_resource type="Texture2D" uid="uid://cqep6vi2l3ayd" path="res://Assets/bossfeet.png" id="4_27xct"]
 [ext_resource type="Script" path="res://Scripts/Boss/hands.gd" id="4_swuvd"]
-[ext_resource type="PackedScene" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
+[ext_resource type="PackedScene" uid="uid://q138lqo8nb6w" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
 [ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/Boss Animations/right_stomp.res" id="5_svm4b"]
 [ext_resource type="Texture2D" uid="uid://7gf8cgs5r1nw" path="res://Assets/playerhandhitboxplaceholder.png" id="7_0ri2b"]
 [ext_resource type="Texture2D" uid="uid://diupmw01o68rf" path="res://Assets/hand.png" id="8_uxjh0"]

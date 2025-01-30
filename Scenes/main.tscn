@@ -439,7 +439,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5418, -0.456, -36.1811)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4465, -0.456, -34.2062)
 
 [node name="Trap" parent="NavigationRegion3D" instance=ExtResource("8_l15q6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6707, -0.456, -25.5069)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6707, -0.456, -31.5069)
+
+[node name="Trap2" parent="NavigationRegion3D" instance=ExtResource("8_l15q6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3293, -0.456, -16.5069)
+
+[node name="Trap3" parent="NavigationRegion3D" instance=ExtResource("8_l15q6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3293, -0.456, 8.4931)
+
+[node name="Trap4" parent="NavigationRegion3D" instance=ExtResource("8_l15q6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.6707, -0.456, 35.4931)
+
+[node name="Trap5" parent="NavigationRegion3D" instance=ExtResource("8_l15q6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.3293, -0.456, 18.4931)
 
 [node name="Player" parent="." instance=ExtResource("7_m2bmv")]
 
@@ -451,4 +463,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7505, 0.0883021, -8.8647)
 poison = "Cyanide"
 
 [node name="Boss" parent="." instance=ExtResource("6_31op1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.16462, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.16462, 30)
