@@ -1,16 +1,23 @@
-[gd_scene load_steps=34 format=3 uid="uid://fl224xwk37sl"]
+[gd_scene load_steps=42 format=3 uid="uid://fl224xwk37sl"]
 
 [ext_resource type="Script" path="res://Scripts/Boss/boss.gd" id="1_vgxb7"]
 [ext_resource type="Animation" uid="uid://eo1decu4btyf" path="res://Assets/Boss Animations/left_stomp.res" id="3_dkcie"]
 [ext_resource type="Script" path="res://Scripts/Boss/feet.gd" id="3_f4frn"]
-[ext_resource type="Texture2D" uid="uid://cqep6vi2l3ayd" path="res://Assets/bossfeet.png" id="4_27xct"]
+[ext_resource type="Texture2D" uid="uid://ueh2y5jtprdy" path="res://Assets/feet/image2.png" id="4_snq0g"]
 [ext_resource type="Script" path="res://Scripts/Boss/hands.gd" id="4_swuvd"]
-[ext_resource type="PackedScene" uid="uid://q138lqo8nb6w" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
+[ext_resource type="PackedScene" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
+[ext_resource type="Texture2D" uid="uid://cq46ysxpdat52" path="res://Assets/feet/image3.png" id="5_sf7jt"]
 [ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/Boss Animations/right_stomp.res" id="5_svm4b"]
+[ext_resource type="Texture2D" uid="uid://cdsiufe1sf76u" path="res://Assets/feet/image4.png" id="6_nl7s4"]
 [ext_resource type="Texture2D" uid="uid://7gf8cgs5r1nw" path="res://Assets/playerhandhitboxplaceholder.png" id="7_0ri2b"]
-[ext_resource type="Texture2D" uid="uid://diupmw01o68rf" path="res://Assets/hand.png" id="8_uxjh0"]
+[ext_resource type="Texture2D" uid="uid://bb7v7b77ycmve" path="res://Assets/feet/image.png" id="7_mgmcy"]
+[ext_resource type="Texture2D" uid="uid://cq16b7ippomii" path="res://Assets/hand/IMG_0048.png" id="8_5nv0t"]
+[ext_resource type="Texture2D" uid="uid://dxso5nx45l2si" path="res://Assets/hand/IMG_0049.png" id="9_r6gr2"]
 [ext_resource type="Texture2D" uid="uid://dd0geblwnhfxf" path="res://Assets/handstun.png" id="9_vpndc"]
 [ext_resource type="Script" path="res://Scripts/boss_hand_hit_box.gd" id="10_ekbqg"]
+[ext_resource type="Texture2D" uid="uid://bhen5seai7r4m" path="res://Assets/hand/IMG_0050.png" id="10_p7haa"]
+[ext_resource type="Texture2D" uid="uid://dhb3y04fdw8x6" path="res://Assets/hand/IMG_0051.png" id="11_5syif"]
+[ext_resource type="Script" path="res://Scripts/DirectionalSprite.gd" id="13_usk8e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypvny"]
 emission_enabled = true
@@ -38,6 +45,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(4, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Left/Hitbox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3ckr"]
 _data = {
@@ -47,6 +66,26 @@ _data = {
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dkcf5"]
 radius = 3.0562
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jckke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_mgmcy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nl7s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_snq0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sf7jt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
 
 [sub_resource type="Animation" id="Animation_6e2d2"]
 length = 0.001
@@ -61,6 +100,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-4, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uxr3h"]
@@ -132,10 +183,10 @@ tracks/0/path = NodePath(".:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 1.73333),
+"times": PackedFloat32Array(0, 1.73333),
 "transitions": PackedFloat32Array(0.464662, 9.81),
 "update": 0,
-"values": [0.0, 7.0]
+"values": [1.0, 7.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epdl0"]
@@ -153,11 +204,20 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_uxjh0")
+"texture": ExtResource("8_5nv0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_r6gr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_p7haa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5syif")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -219,12 +279,13 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Left"]
 shape = SubResource("CylinderShape3D_dkcf5")
 
-[node name="Sprite3D" type="Sprite3D" parent="Feet/Left"]
-transform = Transform3D(2.15278, 0, 0, 0, 1.6, 0, 0, 0, 1, 0, 2.65953, -3.45479)
-modulate = Color(0.891854, 0.00108814, 0.955406, 1)
+[node name="Sprite3D" type="AnimatedSprite3D" parent="Feet/Left"]
+transform = Transform3D(0.705831, 0, 0, 0, 0.524591, 0, 0, 0, 0.327869, 0, 1.85704, -3.45479)
 billboard = 1
 render_priority = 8
-texture = ExtResource("4_27xct")
+sprite_frames = SubResource("SpriteFrames_jckke")
+frame_progress = 0.724073
+script = ExtResource("13_usk8e")
 
 [node name="DropShadow" parent="Feet/Left/Sprite3D" instance=ExtResource("5_cax5e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -4.89361, 3.88567)
@@ -254,16 +315,17 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Right"]
 shape = SubResource("CylinderShape3D_tl6ao")
 
-[node name="Sprite3D" type="Sprite3D" parent="Feet/Right"]
-transform = Transform3D(2.16177, 0, 0, 0, 1.6, 0, 0, 0, 1, 0, 2.65953, -3.45479)
-modulate = Color(0.931858, 0.000935277, 0.965965, 1)
+[node name="Sprite3D" type="AnimatedSprite3D" parent="Feet/Right"]
+transform = Transform3D(0.705831, 0, 0, 0, 0.524591, 0, 0, 0, 0.327869, 0, 1.85704, -3.45479)
 billboard = 1
 render_priority = 8
-texture = ExtResource("4_27xct")
+sprite_frames = SubResource("SpriteFrames_jckke")
+frame_progress = 0.724073
+script = ExtResource("13_usk8e")
 
 [node name="DropShadow" parent="Feet/Right/Sprite3D" instance=ExtResource("5_cax5e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.064, -4.9404, 3.886)
-size = Vector3(2.82751, 4.28561, 6.6897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -4.89361, 3.88567)
+size = Vector3(2.828, 4.286, 6.69)
 
 [node name="Hitbox" type="Area3D" parent="Feet/Right"]
 collision_layer = 16
@@ -315,9 +377,11 @@ transform = Transform3D(0.42901, 0, 0, 0, 1.15825, -1.77636e-15, 0, 7.10543e-15,
 mesh = SubResource("BoxMesh_vonts")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="Hand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.80371, 0)
+transform = Transform3D(0.580084, 0, 0, 0, 0.580084, 0, 0, 0, 0.580084, 0, 3.80371, 0)
+billboard = 2
 render_priority = 10
 sprite_frames = SubResource("SpriteFrames_ogh61")
+script = ExtResource("13_usk8e")
 
 [node name="DropShadow" parent="Hand/Sprite3D" instance=ExtResource("5_cax5e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142204, -10.4858, -0.962459)

@@ -34,4 +34,4 @@ func take_damage(damage):
 		$"..".hide()
 		animation_player.play('end')
 		await animation_player.animation_finished
-		get_tree().change_scene_to_file("res://Scenes/main.tscn")
+		get_tree().reload_current_scene()

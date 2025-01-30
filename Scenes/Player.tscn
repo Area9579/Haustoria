@@ -283,11 +283,6 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Slime Potency"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UI/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "test text"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Control"]
 libraries = {
 "": SubResource("AnimationLibrary_12oy0")
@@ -360,4 +355,7 @@ visible = false
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AnchorPoint2/Marker3D"]
 mesh = SubResource("BoxMesh_an7aj")
 
+[node name="Stun" type="Timer" parent="."]
+
 [connection signal="timeout" from="SlimeCooldown" to="." method="_on_slime_cooldown_timeout"]
+[connection signal="timeout" from="Stun" to="." method="_on_stun_timeout"]

@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 		AttackPhase.second:
 			# slam hand down and get player position
 			swipe_target_position = (attack_target.position - self.position) * Vector3(5, 0, 5)
+			$Sprite3D.change_direction(Vector2(swipe_target_position.x, -swipe_target_position.z))
 		AttackPhase.third:
 			# pause for player dodge
 			pass
@@ -52,7 +53,7 @@ func _process(delta: float) -> void:
 			self.velocity = Vector3(0, 0, 0)
 			# raise hand
 			self.position = lerp(position, boss.position, delta * 5)
-			
+	
 	move_and_slide()
 
 

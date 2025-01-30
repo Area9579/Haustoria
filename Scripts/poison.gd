@@ -3,7 +3,7 @@ extends Node3D
 #animate the player taking this item
 @onready var animated_sprite_3d: AnimatedSprite3D = $AnimatedSprite3D
 @onready var label_3d: Label3D = $Label3D
-
+var collected = false
 @export_enum('Cyanide','Sulfiric Acid', 'Nitrate') var poison: String
 
 func _ready() -> void:
@@ -14,12 +14,14 @@ func _ready() -> void:
 	label_3d.text = poison + ' get!'
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
+	if body.name == "Player" and !collected:
 		$Area3D/CollisionShape3D.disabled = true
 		label_3d.show()
 		body.collect_item(poison)
 		$AnimatedSprite3D.hide()
 		$Sprite3D.hide()
+		collected = true
+		
 	
 	
 	var tween = get_tree().create_tween()
