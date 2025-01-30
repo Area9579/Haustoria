@@ -1,15 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://eb354oelrc8q"]
+[gd_scene load_steps=9 format=3 uid="uid://eb354oelrc8q"]
 
 [ext_resource type="Script" path="res://Scripts/poison.gd" id="1_e0pka"]
+[ext_resource type="Texture2D" uid="uid://dsncaqlsqxd6r" path="res://Assets/arsenic.png" id="2_mo4fs"]
 [ext_resource type="Texture2D" uid="uid://ne5a6gx7ft8m" path="res://Assets/cyanide.png" id="2_xy1sj"]
-[ext_resource type="Texture2D" uid="uid://l5wyl5a6s5r1" path="res://Assets/nitrate.png" id="3_ibm6l"]
-[ext_resource type="Texture2D" uid="uid://cs1i81gs11t5w" path="res://Assets/acid.png" id="4_kkpw0"]
+[ext_resource type="Texture2D" uid="uid://66j0ep2s7ujl" path="res://Assets/bleach.png" id="3_66v3c"]
 [ext_resource type="Texture2D" uid="uid://c6pbnxm46un01" path="res://Assets/lighttexture'.tres" id="5_3mxpi"]
+[ext_resource type="Texture2D" uid="uid://ciiekn4fgvslb" path="res://Assets/sulfiricacid.png" id="5_w38mk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_obbhc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_amppj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mo4fs")
+}],
+"loop": true,
+"name": &"Arsenic",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_66v3c")
+}],
+"loop": true,
+"name": &"Bleach",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_xy1sj")
@@ -20,15 +37,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ibm6l")
-}],
-"loop": true,
-"name": &"Nitrate",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_kkpw0")
+"texture": ExtResource("5_w38mk")
 }],
 "loop": true,
 "name": &"Sulfiric Acid",
@@ -47,18 +56,24 @@ collision_mask = 3
 shape = SubResource("BoxShape3D_obbhc")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.263429, 0, 0, 0, 0.263429, 0, 0, 0, 0.263429, 0, 0, 0)
 billboard = 1
+render_priority = 12
 sprite_frames = SubResource("SpriteFrames_amppj")
-animation = &"Cyanide"
+animation = &"Sulfiric Acid"
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="AnimatedSprite3D"]
+transform = Transform3D(6.93605, 0, 0, 0, 6.93605, 0, 0, 0, 6.93605, 0, 4.354, 0)
 visible = false
 billboard = 1
 text = "test text"
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 24.413, 0, 0, 0, 1, -0.0112045, 6.74889, -0.344123)
+transform = Transform3D(2.8301, 0, 0, 0, 24.413, 0, 0, 0, 1, -0.0112045, 6.74889, -0.344123)
 billboard = 2
 texture = ExtResource("5_3mxpi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.822725, 4.24776)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

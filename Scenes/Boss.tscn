@@ -288,8 +288,8 @@ frame_progress = 0.724073
 script = ExtResource("13_usk8e")
 
 [node name="DropShadow" parent="Feet/Left/Sprite3D" instance=ExtResource("5_cax5e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -4.89361, 3.88567)
-size = Vector3(2.828, 4.286, 6.69)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -15.6856, 3.88568)
+size = Vector3(2.828, 9.80034, 6.69)
 
 [node name="Hitbox" type="Area3D" parent="Feet/Left"]
 collision_layer = 16
@@ -323,9 +323,9 @@ sprite_frames = SubResource("SpriteFrames_jckke")
 frame_progress = 0.724073
 script = ExtResource("13_usk8e")
 
-[node name="DropShadow" parent="Feet/Right/Sprite3D" instance=ExtResource("5_cax5e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -4.89361, 3.88567)
-size = Vector3(2.828, 4.286, 6.69)
+[node name="DropShadow2" parent="Feet/Right/Sprite3D" instance=ExtResource("5_cax5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0636597, -15.6856, 3.88568)
+size = Vector3(2.828, 9.80034, 6.69)
 
 [node name="Hitbox" type="Area3D" parent="Feet/Right"]
 collision_layer = 16
@@ -384,7 +384,7 @@ sprite_frames = SubResource("SpriteFrames_ogh61")
 script = ExtResource("13_usk8e")
 
 [node name="DropShadow" parent="Hand/Sprite3D" instance=ExtResource("5_cax5e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142204, -10.4858, -0.962459)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142204, -18.6317, -0.962459)
 size = Vector3(6.53709, 12.9519, 6.6897)
 
 [node name="BossHandHitBox" type="Area3D" parent="Hand/Sprite3D"]

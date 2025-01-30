@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://magi1winy2i"]
+[gd_scene load_steps=30 format=3 uid="uid://magi1winy2i"]
 
+[ext_resource type="Texture2D" uid="uid://clmk48qnybnue" path="res://Assets/floor.png" id="1_agput"]
 [ext_resource type="PackedScene" uid="uid://bodkn07lr8mwg" path="res://Scenes/level building/brick.tscn" id="2_6bhao"]
-[ext_resource type="PackedScene" uid="uid://d20nd1dm45ntk" path="res://Scenes/level building/shelf.tscn" id="3_57pj4"]
+[ext_resource type="PackedScene" path="res://Scenes/level building/shelf.tscn" id="3_57pj4"]
 [ext_resource type="PackedScene" uid="uid://cqilpksvt514c" path="res://Scenes/level building/board.tscn" id="3_citfc"]
 [ext_resource type="PackedScene" uid="uid://duhe605748oxu" path="res://Scenes/level building/beer.tscn" id="4_64s6p"]
 [ext_resource type="PackedScene" uid="uid://eb354oelrc8q" path="res://Scenes/level building/poison.tscn" id="5_6xnfu"]
@@ -23,6 +24,10 @@ size = Vector3(75, 1, 75)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxsjk"]
 albedo_color = Color(0.517184, 0.517184, 0.517184, 1)
+albedo_texture = ExtResource("1_agput")
+uv1_scale = Vector3(1.115, 1.115, 1.115)
+uv1_offset = Vector3(0, -0.145, 0)
+texture_filter = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_j6jtq"]
 material = SubResource("StandardMaterial3D_gxsjk")

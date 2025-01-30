@@ -21,6 +21,8 @@ var launchVelocity: Vector3
 var state_grabbed = false
 var attacking = false
 var stunned = false
+var cursor_open = load("res://Assets/CursorWOW_optimized.png"	)
+var cursor_closed = load("res://Assets/cursor_closed.png")
 func _physics_process(delta: float) -> void:
 	
 	if !attacking:
@@ -47,8 +49,11 @@ func _physics_process(delta: float) -> void:
 		dragSelf(delta)
 		global_position.y = lerp(global_position.y, .1, delta * 6)
 		$AnchorPoint1.global_position = oldPlayerPosition
+		
+		Input.set_custom_mouse_cursor(cursor_closed)
 	else:
 		velocity += get_gravity() * delta * 4
+		Input.set_custom_mouse_cursor(cursor_open)
 		$AnchorPoint1.global_position = lerp($AnchorPoint1.global_position, global_position, delta * 12)
 		
 	if Input.is_action_just_released("Left Click") and dashCooldown.is_stopped():

@@ -23,6 +23,7 @@ Director="*res://Scripts/Director.gd"
 
 window/size/always_on_top=true
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://Assets/CursorWOW_optimized.png"
 
 [dotnet]
 
