@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=29 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
@@ -49,6 +49,9 @@ animations = [{
 "name": &"Idle",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sptb"]
+bg_color = Color(0.124121, 0.230111, 0.0786795, 1)
 
 [sub_resource type="Animation" id="Animation_wfkw0"]
 length = 0.001
@@ -281,7 +284,19 @@ offset_bottom = 260.0
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Slime Potency"
+text = "Liquids Absorbed"
+
+[node name="Panel" type="Panel" parent="UI/Control/VBoxContainer/RichTextLabel"]
+z_index = -1
+layout_mode = 0
+offset_right = 109.0
+offset_bottom = 45.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7sptb")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Water"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Control"]
 libraries = {

@@ -105,10 +105,12 @@ func reset():
 	attack_phase = AttackPhase.first
 	attack_timer.start(3)
 	attacking = true
+	$Sprite3D/BossHandHitBox/CollisionShape3D.disabled = false
 	$Sprite3D/BossHandHitBox.position.y += 100
 
 func stun():
 	$Sprite3D/BossHandHitBox.position.y -= 100
+	$Sprite3D/BossHandHitBox/CollisionShape3D.disabled = true
 	velocity = Vector3.ZERO
 	attack_phase = AttackPhase.silly
 	attack_timer.stop()
