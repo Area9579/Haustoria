@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Boss/feet.gd" id="3_f4frn"]
 [ext_resource type="Texture2D" uid="uid://ueh2y5jtprdy" path="res://Assets/feet/image2.png" id="4_snq0g"]
 [ext_resource type="Script" path="res://Scripts/Boss/hands.gd" id="4_swuvd"]
-[ext_resource type="PackedScene" uid="uid://q138lqo8nb6w" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
+[ext_resource type="PackedScene" path="res://Scenes/drop_shadow.tscn" id="5_cax5e"]
 [ext_resource type="Texture2D" uid="uid://cq46ysxpdat52" path="res://Assets/feet/image3.png" id="5_sf7jt"]
 [ext_resource type="Animation" uid="uid://dfy0wfcf44ltg" path="res://Assets/Boss Animations/right_stomp.res" id="5_svm4b"]
 [ext_resource type="Texture2D" uid="uid://cdsiufe1sf76u" path="res://Assets/feet/image4.png" id="6_nl7s4"]
@@ -254,6 +254,8 @@ collision_layer = 0
 collision_mask = 128
 input_ray_pickable = false
 script = ExtResource("1_vgxb7")
+color = Color(1, 1, 1, 1)
+final_color = Color(0.131618, 0.228768, 0.0733036, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

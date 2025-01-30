@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dj70pfgnjq5q2"]
+[gd_scene load_steps=15 format=3 uid="uid://dj70pfgnjq5q2"]
 
 [ext_resource type="Script" path="res://Scripts/trap.gd" id="1_giv3d"]
 [ext_resource type="Texture2D" uid="uid://bqivb1qljtnke" path="res://Assets/mousearm/close/mousearm1.png" id="1_syvkv"]
@@ -11,8 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dncewqbannb3a" path="res://Assets/mousearm/open/mousearmopen4.png" id="9_jt58k"]
 [ext_resource type="Texture2D" uid="uid://btwjqny3wy24f" path="res://Assets/mousearm/open/mousearmopen5.png" id="10_akmv2"]
 [ext_resource type="Texture2D" uid="uid://dt74gnwd8li4o" path="res://Assets/mousearm/open/mousearmopen6.png" id="11_07xb2"]
+[ext_resource type="Script" path="res://Scripts/sinwave.gd" id="12_5e148"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_geon1"]
+size = Vector3(1.67419, 1, 2.3811)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vlrm3"]
 animations = [{
@@ -63,6 +65,7 @@ collision_mask = 2
 script = ExtResource("1_giv3d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194641, 0, 0.00354004)
 shape = SubResource("BoxShape3D_geon1")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
@@ -76,5 +79,18 @@ autoplay = "open"
 wait_time = 12.0
 one_shot = true
 
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.61151, 0.553958, -0.627263)
+billboard = 1
+text = "Make the boss' hand hit this
+
+then go in for the kill >:)"
+script = ExtResource("12_5e148")
+scale_move = 0.2
+
+[node name="Timer" type="Timer" parent="Label3D"]
+wait_time = 25.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Label3D/Timer" to="Label3D" method="hide"]

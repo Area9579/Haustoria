@@ -14,8 +14,13 @@ func _process(delta: float) -> void:
 			Director.shake_cam(Vector2(3,3) * .1)
 			
 			$Jar/LabelClick.freeze = false
-			$Jar/LabelClick.apply_impulse(Vector3(9,9,0))
+			$Jar/LabelClick.apply_impulse(Vector3(6,6,0))
 			$Jar/LabelClick.show()
+			
+			$Jar/LabelClick2.freeze = false
+			$Jar/LabelClick2.apply_impulse(Vector3(15,15,0))
+			$Jar/LabelClick2.show()
+			
 			$Label3D.hide()
 			$Jar/LabelClick/Label3D.show()
 			_2d_player.velocity += Vector3(9,9,0)

@@ -13,6 +13,7 @@ enum States {stunned, hand_attacking, walking}
 var state = States.walking
 
 
+
 func _ready():
 	
 	feet.attack_target = movement_target # pass through target node to child
@@ -118,5 +119,11 @@ func _on_hand_attack_body_entered(body: Node3D) -> void:
 	if body.has_method('hurt'):
 		body.hurt($Hand.velocity + Vector3(randf_range(-.5,.5),0,randf_range(-.5,.5)) * 4, 10)
 
+@export var color : Color
+@export var final_color : Color
 func hurt():
 	_on_stun_timer_timeout()
+	color = lerp(color, final_color, .1)
+	$Hand/Sprite3D.modulate = color
+	$Feet/Right/Sprite3D.modulate = color
+	$Feet/Left/Sprite3D.modulate = color

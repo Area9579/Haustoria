@@ -12,7 +12,7 @@ func _ready() -> void:
 	animated_sprite_3d.play(poison)
 	
 	#label_3d.top_level = true
-	label_3d.text = poison + ' get!'
+	label_3d.text = poison + ' absorbed!'
 	
 	
 
