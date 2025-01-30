@@ -310,9 +310,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.5, -29)
 [node name="Brick16" parent="NavigationRegion3D" instance=ExtResource("2_6bhao")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -0.5, -37)
 
-[node name="Shelf" parent="NavigationRegion3D" instance=ExtResource("3_57pj4")]
-transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -22, -1, 11)
-
 [node name="Shelf2" parent="NavigationRegion3D" instance=ExtResource("3_57pj4")]
 transform = Transform3D(2.46, 0, 0, 0, 2.46, 0, 0, 0, 2.46, -28, -1, 21)
 
