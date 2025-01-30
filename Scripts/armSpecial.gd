@@ -58,7 +58,8 @@ func tendon_puller(delta):
 			if i == tendons[-1]: 
 				i.velocity -= get_parent().get_parent().velocity * .05
 				i.velocity += (trail.global_position - i.global_position) * delta * tent_strength
-		if i.global_position != tendons[tendons.find(i) - 1].global_position: i.look_at(tendons[tendons.find(i) - 1].global_position)
+		if i.global_position != tendons[tendons.find(i) - 1].global_position:
+			i.look_at(tendons[tendons.find(i) - 1].global_position + Vector3(0.01,0,0))
 
 func titler_puller(delta):
 	#titler_holder.global_position = global_position

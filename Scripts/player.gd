@@ -20,7 +20,7 @@ var launchVelocity: Vector3
 
 var state_grabbed = false
 var attacking = false
-
+var stunned = false
 func _physics_process(delta: float) -> void:
 	
 	if !attacking:
@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	if frozen: return #dont move or anything while in the attack animation
 	spawn_slime()
 	
-	if Input.is_action_just_pressed("Left Click"):
+	if Input.is_action_just_pressed("Left Click") and !stunned:
 		#all of these variables need to be set before the drag function starts so it has the correct reference
 		oldGrabPosition = getGrabPosition()
 		oldMousePosition = getMouseWorldPosition()
@@ -157,7 +157,7 @@ func collect_item(poison_pickedup):
 
 
 func slow_down(delta):
-	velocity = lerp(velocity, Vector3.ZERO, delta * 40)
+	velocity = lerp(velocity, Vector3.ZERO, .95)
 
 
 var can_slime = false
@@ -171,9 +171,15 @@ func _on_slime_cooldown_timeout() -> void:
 	can_slime = true
 
 func hurt(direction : Vector3, amount):
+	stunned = true
+	$Stun.start()
 	velocity += direction
 	Director.shake_cam(Vector2(direction.normalized().x, direction.normalized().z) * .05)
 	ui.take_damage(amount)
 	state_grabbed = false
 	dashCooldown.stop()
 	
+
+
+func _on_stun_timeout() -> void:
+	stunned = false

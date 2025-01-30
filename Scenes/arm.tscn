@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c7x20hq3ju2re"]
 
 [ext_resource type="Script" path="res://Scripts/arm.gd" id="1_gdipq"]
-[ext_resource type="PackedScene" path="res://Assets/tent.tscn" id="2_ghqqy"]
+[ext_resource type="PackedScene" uid="uid://c3r0fjpk5gkvg" path="res://Assets/tent.tscn" id="2_ghqqy"]
 [ext_resource type="NoiseTexture3D" path="res://Assets/arm_noise.tres" id="2_u38dh"]
 [ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="3_fv42r"]
 
@@ -108,7 +108,7 @@ transform = Transform3D(0.219604, 0.742289, -0.633031, 0.114084, 0.624876, 0.772
 progress = 1.28379
 
 [node name="PathFollow3D6" parent="TitlerHolder" instance=ExtResource("3_fv42r")]
-transform = Transform3D(0.219611, 0.74229, -0.633033, 0.114087, 0.624878, 0.772313, 0.968882, -0.24183, 0.0525448, 1.08819, -0.0618787, -0.148745)
+transform = Transform3D(0.21961, 0.74229, -0.633033, 0.114087, 0.624878, 0.772313, 0.968882, -0.24183, 0.0525448, 1.08819, -0.0618787, -0.148745)
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="TitlerHolder" instance=ExtResource("3_fv42r")]

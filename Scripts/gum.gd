@@ -6,3 +6,6 @@ func _process(delta: float) -> void:
 		for i in get_overlapping_bodies():
 			if i.has_method('slow_down'):
 				i.slow_down(delta)
+				$AnimatedSprite3D.play("default")
+			else:
+				$AnimatedSprite3D.stop()

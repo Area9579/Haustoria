@@ -40,20 +40,28 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	var direction_to_player = Vector2(global_position.x, global_position.z) - Vector2(attack_target.global_position.x, attack_target.global_position.z)
 	
 	Director.shake_cam(Vector2(direction_to_player.normalized().x, direction_to_player.normalized().y) * .1)
+	
 	attack_timer.start()
 
 func _on_attack_timer_timeout() -> void:
 	if stunned: return
+	var direction_to_player = Vector2(global_position.x, global_position.z) - Vector2(attack_target.global_position.x, attack_target.global_position.z)
+	direction_to_player *= Vector2(-1,1)
 	attack_timer.stop()
 	# switch which foot is attacking and set correct animation
 	if attacking_foot == right:
 		left_animation_player.current_animation = "left_stomp"
 		attacking_foot = left
 		resting_foot = right
+		$Left/Sprite3D.change_direction(direction_to_player)
 	elif attacking_foot == left:
 		right_animation_player.current_animation = "right_stomp"
 		attacking_foot = right
 		resting_foot = left
+		$Right/Sprite3D.change_direction(direction_to_player)
+	
+	
+	
 
 func reset():
 	attack_timer.stop()

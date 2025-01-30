@@ -1,11 +1,74 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq8w0tn5j7bbq"]
+[gd_scene load_steps=13 format=3 uid="uid://dq8w0tn5j7bbq"]
 
 [ext_resource type="Script" path="res://Scripts/gum.gd" id="1_54fuw"]
-[ext_resource type="Texture2D" uid="uid://crgq5qaj3nf1k" path="res://Assets/gum.png" id="1_ka5ia"]
+[ext_resource type="Texture2D" uid="uid://d67bw62y5ex2" path="res://Assets/407595322-5b462144-e915-4609-8070-05aec7f64586.png" id="2_pr6ki"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_4u2hb"]
-height = 10.5066
-radius = 13.3299
+[sub_resource type="BoxShape3D" id="BoxShape3D_e044y"]
+size = Vector3(33.5938, 2.78711, 6.77344)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5neag"]
+atlas = ExtResource("2_pr6ki")
+region = Rect2(803, 0, 803, 616)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iqf2"]
+atlas = ExtResource("2_pr6ki")
+region = Rect2(1606, 0, 803, 616)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_antl7"]
+atlas = ExtResource("2_pr6ki")
+region = Rect2(2409, 0, 803, 616)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr2bx"]
+atlas = ExtResource("2_pr6ki")
+region = Rect2(0, 0, 803, 616)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpt4d"]
+atlas = ExtResource("2_pr6ki")
+region = Rect2(3212, 0, 803, 616)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t7j3"]
+atlas = ExtResource("2_pr6ki")
+region = Rect2(4015, 0, 803, 616)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m17sh"]
+atlas = ExtResource("2_pr6ki")
+region = Rect2(4818, 0, 803, 616)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp4fd"]
+atlas = ExtResource("2_pr6ki")
+region = Rect2(5621, 0, 803, 616)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lckpk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5neag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iqf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_antl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr2bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpt4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t7j3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m17sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp4fd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="Gum" type="Area3D"]
 collision_layer = 0
@@ -13,10 +76,11 @@ collision_mask = 3
 script = ExtResource("1_54fuw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_4u2hb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.227539, 0.893555, 1.1709)
+shape = SubResource("BoxShape3D_e044y")
 
-[node name="Sprite3D" type="Decal" parent="."]
-transform = Transform3D(2.66261, 0, 0, 0, 2.66261, 0, 0, 0, 2.66261, -0.0888948, -0.640428, 1.23831)
-size = Vector3(10.5219, 1.174, 11.3198)
-texture_albedo = ExtResource("1_ka5ia")
-cull_mask = 1047554
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(12.6068, 0, 0, 0, 12.6068, 0, 0, 0, 12.6068, -0.0888948, -0.640428, 6.34466)
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_lckpk")
+frame_progress = 0.918875
