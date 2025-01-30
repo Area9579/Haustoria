@@ -117,3 +117,6 @@ func _on_hand_attack_body_entered(body: Node3D) -> void:
 		return
 	if body.has_method('hurt'):
 		body.hurt($Hand.velocity + Vector3(randf_range(-.5,.5),0,randf_range(-.5,.5)) * 4, 10)
+
+func hurt():
+	_on_stun_timer_timeout()

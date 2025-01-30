@@ -8,8 +8,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('Left Click'):
 		jar.play(str(int(str(jar.animation)) + 1))
 		$"2DPlayer".velocity += Vector3(6,6,0)
+		if _2d_player.frozen: Director.shake_cam(Vector2(1,.5) * .1)
 		if int(str(jar.animation)) >= 6 and _2d_player.frozen != false:
 			$Jar/Jar.process_mode = Node.PROCESS_MODE_DISABLED
+			Director.shake_cam(Vector2(3,3) * .1)
 			
 			$Jar/LabelClick.freeze = false
 			$Jar/LabelClick.apply_impulse(Vector3(9,9,0))

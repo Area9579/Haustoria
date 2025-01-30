@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bodkn07lr8mwg"]
 
-[ext_resource type="Texture2D" uid="uid://c0hisog6kd4bj" path="res://Assets/icon.svg" id="1_a2qha"]
+[ext_resource type="Texture2D" uid="uid://cyd53fv30cskf" path="res://Assets/brick.png" id="1_4k55u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_awj0h"]
 size = Vector3(5, 2.8501, 2)
@@ -14,6 +14,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67505, 0)
 shape = SubResource("BoxShape3D_awj0h")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(4.445, 0, 0, 0, 2.02, 0, 0, 0, 1, 0, 0, 0.43)
+transform = Transform3D(0.725069, 0, 0, 0, 0.575375, 0, 0, 0, 0.284839, 0, 0.408417, 0.43)
 billboard = 1
-texture = ExtResource("1_a2qha")
+texture = ExtResource("1_4k55u")

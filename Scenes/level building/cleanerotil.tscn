@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://8ardrhqxep28"]
+
+[ext_resource type="Texture2D" uid="uid://ca1dxmlldumet" path="res://Assets/toilet_brush.png" id="1_13f4t"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t2ffg"]
+height = 4.18118
+radius = 1.0196
+
+[node name="Book" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.860262, 0, 0.509852, 0, 1, 0, -0.509852, 0, 0.860262, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0916759, -2.38419e-07, 0.240217)
+shape = SubResource("CylinderShape3D_t2ffg")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.702375, 0, 0, 0, 0.702375, 0, 0, 0, 0.702375, 0, 1.01058, 0)
+billboard = 1
+texture = ExtResource("1_13f4t")

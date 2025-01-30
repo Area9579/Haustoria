@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dswm0tyixh67o"]
+
+[ext_resource type="Texture2D" uid="uid://dkf7xka3au3p0" path="res://Assets/book1.png" id="1_uvsp8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qv026"]
+size = Vector3(1, 2.01758, 1.52887)
+
+[node name="Brush" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.860262, 0, 0.509852, 0, 1, 0, -0.509852, 0, 0.860262, -1.15544, 0, 0.0241977)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.985923, 0, 0.167199, 0, 1, 0, -0.167199, 0, 0.985923, 0.135181, 0.508789, 0.192068)
+shape = SubResource("BoxShape3D_qv026")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.985923, 0, 0.167199, 0, 1, 0, -0.167199, 0, 0.985923, 1.65816, 0.508789, 1.15327)
+shape = SubResource("BoxShape3D_qv026")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.578926, 0, 0.815381, 0, 1, 0, -0.815381, 0, 0.578926, 0.81425, 0.545665, 1.15276)
+shape = SubResource("BoxShape3D_qv026")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.526006, 0, 0.850481, 0, 1, 0, -0.850481, 0, 0.526006, 0.937813, 0.545665, 0.229602)
+shape = SubResource("BoxShape3D_qv026")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("1_uvsp8")

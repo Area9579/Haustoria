@@ -28,7 +28,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		body.collect_item(poison)
 		$Sprite3D.hide()
 		collected = true
-		
 	
 	
 	var tween = get_tree().create_tween()
@@ -40,3 +39,5 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	ttween.tween_property(animated_sprite_3d, 'modulate:a', 0, 1.0)
 	var ttween2 = get_tree().create_tween()
 	ttween2.tween_property(animated_sprite_3d, 'position', Vector3(0,1.5,0), 1)
+	await ttween2.finished
+	$AnimatedSprite3D/DropShadow.hide()

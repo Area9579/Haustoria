@@ -17,8 +17,8 @@ func _process(delta: float) -> void:
 	player_health.value = round(player_health_total)
 	boss_health.value = round(boss_health_total)
 	
-	
-func attack_boss():
+
+func take_damage_real():
 	boss_health_total += (player_health_total * .1) * attack_multiplier
 	player_health_total -= player_health_total * .3
 	if boss_health_total >= 100:
@@ -26,7 +26,11 @@ func attack_boss():
 		#do the await
 		animation_player.play('end')
 		await animation_player.animation_finished
-		get_tree().change_scene_to_file("res://Scenes/EndScene.tscn")
+		get_tree().change_scene_to_file("res://Scenes/EndScene.tscn")	
+
+func attack_boss():
+	$HealthTransferAnim.play('damage')
+
 
 func take_damage(damage):
 	player_health_total -= damage

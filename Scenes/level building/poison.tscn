@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://eb354oelrc8q"]
+[gd_scene load_steps=11 format=3 uid="uid://eb354oelrc8q"]
 
 [ext_resource type="Script" path="res://Scripts/poison.gd" id="1_e0pka"]
 [ext_resource type="Texture2D" uid="uid://dsncaqlsqxd6r" path="res://Assets/arsenic.png" id="2_mo4fs"]
@@ -44,6 +44,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_dcddx"]
+offsets = PackedFloat32Array(0.260204, 0.576531)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5syyl"]
+gradient = SubResource("Gradient_dcddx")
+fill = 1
+fill_from = Vector2(0.525641, 0.517094)
+
 [node name="Poison" type="Node3D"]
 script = ExtResource("1_e0pka")
 poison = "cyanide"
@@ -61,6 +70,13 @@ billboard = 1
 render_priority = 12
 sprite_frames = SubResource("SpriteFrames_amppj")
 animation = &"Sulfiric Acid"
+
+[node name="DropShadow" type="Decal" parent="AnimatedSprite3D"]
+transform = Transform3D(0.957738, 0, 0, 0, 0.957738, 0, 0, 0, 0.957738, -0.00148118, -7.78543, 2.60186)
+layers = 3
+size = Vector3(4.70199, 11.1704, 4.00647)
+texture_albedo = SubResource("GradientTexture2D_5syyl")
+cull_mask = 1048346
 
 [node name="Label3D" type="Label3D" parent="AnimatedSprite3D"]
 transform = Transform3D(6.93605, 0, 0, 0, 6.93605, 0, 0, 0, 6.93605, 0, 3.53223, -1.41688)

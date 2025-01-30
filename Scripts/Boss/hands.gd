@@ -99,17 +99,15 @@ func _on_attack_timer_timeout() -> void:
 func reset():
 	$Sprite3D.play("default")
 	#animation_player.play('hand_lift')
-	
-	
 	attack_timer.stop()
 	attack_phase = AttackPhase.first
 	attack_timer.start(3)
 	attacking = true
 	$Sprite3D/BossHandHitBox/CollisionShape3D.disabled = false
-	$Sprite3D/BossHandHitBox.position.y += 100
+	$Sprite3D/BossHandHitBox.position.y = 100
 
 func stun():
-	$Sprite3D/BossHandHitBox.position.y -= 100
+	$Sprite3D/BossHandHitBox.position.y = -5
 	$Sprite3D/BossHandHitBox/CollisionShape3D.disabled = true
 	velocity = Vector3.ZERO
 	attack_phase = AttackPhase.silly

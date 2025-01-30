@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 #endregion
 	if cutscene:
 		state_grabbed = false
-		velocity += (cutscene_point.global_position - global_position) * delta * 20
+		velocity += (cutscene_point.global_position - global_position) * delta * 50
 		velocity *= .95
 	else:
 		velocity = lerp(velocity, Vector3.ZERO, delta)
