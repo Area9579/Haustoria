@@ -24,3 +24,8 @@ func _process(delta: float) -> void:
 		$Label3D2.text = "Reset In: " + str($Timer.time_left)
 	else:
 		$Label3D2.hide()
+
+
+func _on_animated_sprite_3d_frame_changed() -> void:
+	if animated_sprite_3d.frame == 3:
+		$AudioStreamPlayer3D.play()
