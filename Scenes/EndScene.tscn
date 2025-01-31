@@ -137,7 +137,7 @@ offset_bottom = 263.0
 scale = Vector2(0.724533, 0.724533)
 text = "Credits:
 
-Music: Camrynn
+Musicq: Camrynn
 
 Programming: Phoenix, Alex the slave, Aria
 
@@ -182,7 +182,7 @@ libraries = {
 autoplay = "start"
 
 [node name="dissolve" type="ColorRect" parent="UI2"]
-offset_right = 1152.0
+offset_left = -1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
