@@ -1,16 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://dj70pfgnjq5q2"]
+[gd_scene load_steps=11 format=3 uid="uid://dj70pfgnjq5q2"]
 
 [ext_resource type="Script" path="res://Scripts/trap.gd" id="1_giv3d"]
 [ext_resource type="Texture2D" uid="uid://bqivb1qljtnke" path="res://Assets/mousearm/close/mousearm1.png" id="1_syvkv"]
 [ext_resource type="Texture2D" uid="uid://chqiq8dyomy2j" path="res://Assets/mousearm/close/mousearm2.png" id="2_satwn"]
 [ext_resource type="Texture2D" uid="uid://cpeeok44m52hq" path="res://Assets/mousearm/close/mousearm3.png" id="3_omexj"]
 [ext_resource type="Texture2D" uid="uid://bafgwgysjkg40" path="res://Assets/mousearm/close/mousearm4.png" id="4_nhwg8"]
-[ext_resource type="Texture2D" uid="uid://c2v12n1d75r8a" path="res://Assets/mousearm/open/mousearmopen1.png" id="6_pi0hj"]
-[ext_resource type="Texture2D" uid="uid://ceux4lyqhd17k" path="res://Assets/mousearm/open/mousearmopen2.png" id="7_6uf2o"]
-[ext_resource type="Texture2D" uid="uid://c0d0vtoyl5kva" path="res://Assets/mousearm/open/mousearmopen3.png" id="8_bfoly"]
-[ext_resource type="Texture2D" uid="uid://dncewqbannb3a" path="res://Assets/mousearm/open/mousearmopen4.png" id="9_jt58k"]
-[ext_resource type="Texture2D" uid="uid://btwjqny3wy24f" path="res://Assets/mousearm/open/mousearmopen5.png" id="10_akmv2"]
-[ext_resource type="Texture2D" uid="uid://dt74gnwd8li4o" path="res://Assets/mousearm/open/mousearmopen6.png" id="11_07xb2"]
+[ext_resource type="Texture2D" uid="uid://vh0mfv2vn1fn" path="res://Assets/mousearm/close/mousearm5.png" id="6_5o32p"]
+[ext_resource type="Texture2D" uid="uid://dky22gbor3xhn" path="res://Assets/mousearm/close/mousearm6.png" id="7_6egjd"]
 [ext_resource type="Script" path="res://Scripts/sinwave.gd" id="12_5e148"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_geon1"]
@@ -30,6 +26,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_nhwg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5o32p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6egjd")
 }],
 "loop": false,
 "name": &"close",
@@ -37,22 +39,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_pi0hj")
+"texture": ExtResource("3_omexj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_6uf2o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_bfoly")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_jt58k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_akmv2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_07xb2")
+"texture": ExtResource("1_syvkv")
 }],
 "loop": false,
 "name": &"open",
@@ -72,8 +62,10 @@ shape = SubResource("BoxShape3D_geon1")
 transform = Transform3D(0.450865, 0, 0, 0, 0.450865, 0, 0, 0, 0.450865, 0, 0, 0)
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_vlrm3")
-animation = &"open"
+animation = &"close"
 autoplay = "open"
+frame = 5
+frame_progress = 1.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 12.0

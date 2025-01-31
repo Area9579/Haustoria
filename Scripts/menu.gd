@@ -9,7 +9,8 @@ func _process(delta: float) -> void:
 		jar.play(str(int(str(jar.animation)) + 1))
 		$"2DPlayer".velocity += Vector3(6,6,0)
 		if _2d_player.frozen: Director.shake_cam(Vector2(1,.5) * .1)
-		if int(str(jar.animation)) >= 6 and _2d_player.frozen != false:
+		if int(str(jar.animation)) >= 5 and _2d_player.frozen != false:
+			jar.scale = Vector3.ONE * .5
 			$Jar/Jar.process_mode = Node.PROCESS_MODE_DISABLED
 			Director.shake_cam(Vector2(3,3) * .1)
 			

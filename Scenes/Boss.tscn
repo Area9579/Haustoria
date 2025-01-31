@@ -429,6 +429,9 @@ visible = false
 billboard = 1
 texture = ExtResource("7_0ri2b")
 
+[node name="ClimbPoint" type="Marker3D" parent="Hand/Sprite3D"]
+transform = Transform3D(1.72389, 0, 0, 0, 1.72389, 0, 0, 0, 1.72389, 0, -4.10755, 0)
+
 [node name="HandAttack" type="Area3D" parent="Hand"]
 collision_layer = 0
 
