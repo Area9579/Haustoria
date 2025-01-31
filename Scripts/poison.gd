@@ -21,6 +21,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 	
 	if body.name == "Player" and !collected:
+		$AudioStreamPlayer3D.play()
 		$Area3D/CollisionShape3D.disabled = true
 		label_3d.show()
 		body.collect_item(poison)

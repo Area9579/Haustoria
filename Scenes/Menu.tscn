@@ -811,7 +811,7 @@ mesh = SubResource("BoxMesh_50via")
 skeleton = NodePath("../../..")
 
 [node name="Table" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.01262, 0, 0, 0, 1, 0, 0, 0, 1, 24.7818, -2.41178, 0)
+transform = Transform3D(3.01259, 0.00358505, -0.0021301, -0.010801, 0.999994, -9.64943e-05, 0.00641608, 0.000104132, 0.999998, 24.7818, -2.41178, 0)
 mesh = SubResource("BoxMesh_gi7bd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Table"]
@@ -1200,7 +1200,7 @@ curve = SubResource("Curve3D_1d7jp")
 transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369302, 0.992936, -0.112409, 0.999008, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
 
 [node name="PathFollow3D4" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0264827, -0.0902008, -0.995537, 0.0372347, 0.995266, -0.089189, 0.998912, -0.0347074, 0.0297177, 1.07728, 0.171954, -0.0238061)
+transform = Transform3D(0.0264826, -0.0902007, -0.995537, 0.0372347, 0.995265, -0.089189, 0.998911, -0.0347074, 0.0297177, 1.07728, 0.171954, -0.0238061)
 progress = 1.0954
 
 [node name="PathFollow3D5" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1212,27 +1212,27 @@ transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0298163, -0.0608969, -0.997677, 0.0374861, 0.997472, -0.0597659, 0.998837, -0.035617, 0.0320247, 1.60607, 0.211318, -0.0402237)
+transform = Transform3D(0.0298163, -0.0608969, -0.997676, 0.0374861, 0.997471, -0.0597659, 0.998836, -0.035617, 0.0320247, 1.60607, 0.211318, -0.0402237)
 progress = 1.62546
 
 [node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998446, -0.0403407, 0.998773, -0.0362507, 0.0332869, 1.96108, 0.229167, -0.0518421)
+transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998446, -0.0403407, 0.998772, -0.0362507, 0.0332868, 1.96108, 0.229167, -0.0518421)
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0.0236827, 0.99872, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333442, -0.0249416, -0.999108, 0.037635, 0.998979, -0.0236827, 0.998719, -0.036812, 0.0342496, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350355, -0.00607724, -0.999343, 0.0376592, 0.999244, -0.00475652, 0.998661, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350355, -0.00607724, -0.999342, 0.0376592, 0.999243, -0.00475652, 0.99866, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0369364, 0.0159895, -0.999169, 0.0376472, 0.999107, 0.0173806, 0.99859, -0.0382581, 0.0363026, 2.80966, 0.240759, -0.0813591)
+transform = Transform3D(0.0369364, 0.0159895, -0.999169, 0.0376472, 0.999106, 0.0173806, 0.998588, -0.0382581, 0.0363026, 2.80966, 0.240759, -0.0813591)
 progress = 2.82973
 
 [node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0405576, 0.0599332, -0.997354, 0.037505, 0.99737, 0.0614605, 0.998459, -0.0398986, 0.0382041, 3.22756, 0.224939, -0.0969304)
+transform = Transform3D(0.0405576, 0.0599332, -0.997353, 0.037505, 0.99737, 0.0614605, 0.998459, -0.0398986, 0.0382041, 3.22756, 0.224939, -0.0969304)
 progress = 3.24778
 
 [node name="PathFollow3D17" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1244,15 +1244,15 @@ transform = Transform3D(0.0582583, 0.287234, -0.956063, 0.0343419, 0.956537, 0.2
 progress = 4.08289
 
 [node name="PathFollow3D19" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0947784, 0.768253, -0.633045, 0.00996268, 0.635137, 0.7723, 0.995431, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
+transform = Transform3D(0.0947783, 0.768253, -0.633045, 0.00996268, 0.635137, 0.7723, 0.99543, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
 progress = 4.43262
 
 [node name="PathFollow3D8" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123723, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
+transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123722, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
 progress = 0.624339
 
 [node name="PathFollow3D9" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362702, 0.988434, -0.147136, 0.999142, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
+transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362701, 0.988434, -0.147136, 0.999141, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
 progress = 0.424082
 
 [node name="PathFollow3D10" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1327,10 +1327,10 @@ top_level = true
 curve = SubResource("Curve3D_my26f")
 
 [node name="PathFollow3D3" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369302, 0.992936, -0.112409, 0.999009, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
+transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369302, 0.992936, -0.112409, 0.999008, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
 
 [node name="PathFollow3D4" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0264827, -0.0902009, -0.995537, 0.0372347, 0.995267, -0.089189, 0.998913, -0.0347075, 0.0297177, 1.07728, 0.171954, -0.0238061)
+transform = Transform3D(0.0264827, -0.0902008, -0.995537, 0.0372347, 0.995266, -0.089189, 0.998912, -0.0347074, 0.0297177, 1.07728, 0.171954, -0.0238061)
 progress = 1.0954
 
 [node name="PathFollow3D5" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1342,27 +1342,27 @@ transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0298163, -0.060897, -0.997678, 0.0374861, 0.997473, -0.059766, 0.998837, -0.0356171, 0.0320247, 1.60607, 0.211318, -0.0402237)
+transform = Transform3D(0.0298163, -0.0608969, -0.997677, 0.0374861, 0.997472, -0.0597659, 0.998836, -0.035617, 0.0320247, 1.60607, 0.211318, -0.0402237)
 progress = 1.62546
 
 [node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998447, -0.0403407, 0.998774, -0.0362507, 0.0332869, 1.96108, 0.229167, -0.0518421)
+transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998446, -0.0403407, 0.998773, -0.0362507, 0.0332868, 1.96108, 0.229167, -0.0518421)
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333443, -0.0249416, -0.99911, 0.0376351, 0.998979, -0.0236828, 0.998721, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0.0236828, 0.99872, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350355, -0.00607725, -0.999344, 0.0376592, 0.999245, -0.00475652, 0.998661, -0.037468, 0.0352389, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350355, -0.00607725, -0.999343, 0.0376592, 0.999244, -0.00475652, 0.99866, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0369365, 0.0159895, -0.999169, 0.0376473, 0.999108, 0.0173806, 0.998591, -0.0382582, 0.0363026, 2.80966, 0.240759, -0.0813591)
+transform = Transform3D(0.0369364, 0.0159895, -0.999169, 0.0376472, 0.999107, 0.0173806, 0.998589, -0.0382582, 0.0363026, 2.80966, 0.240759, -0.0813591)
 progress = 2.82973
 
 [node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0405576, 0.0599332, -0.997355, 0.037505, 0.997371, 0.0614606, 0.998459, -0.0398986, 0.0382042, 3.22756, 0.224939, -0.0969304)
+transform = Transform3D(0.0405576, 0.0599332, -0.997354, 0.037505, 0.99737, 0.0614605, 0.998459, -0.0398986, 0.0382041, 3.22756, 0.224939, -0.0969304)
 progress = 3.24778
 
 [node name="PathFollow3D17" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1374,15 +1374,15 @@ transform = Transform3D(0.0582583, 0.287234, -0.956063, 0.0343419, 0.956537, 0.2
 progress = 4.08289
 
 [node name="PathFollow3D19" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0947785, 0.768253, -0.633045, 0.00996269, 0.635137, 0.7723, 0.995432, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
+transform = Transform3D(0.0947784, 0.768253, -0.633045, 0.00996269, 0.635137, 0.7723, 0.995431, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
 progress = 4.43262
 
 [node name="PathFollow3D8" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123723, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
+transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123722, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
 progress = 0.624339
 
 [node name="PathFollow3D9" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362702, 0.988434, -0.147136, 0.999143, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
+transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362702, 0.988434, -0.147136, 0.999142, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
 progress = 0.424082
 
 [node name="PathFollow3D10" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]

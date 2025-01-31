@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c17ntp2foggih"]
+
+[ext_resource type="Script" path="res://Scripts/loop_audio.gd" id="1_2mex1"]
+
+[node name="LoopAudio" type="AudioStreamPlayer3D"]
+script = ExtResource("1_2mex1")

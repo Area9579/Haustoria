@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dq8w0tn5j7bbq"]
+[gd_scene load_steps=15 format=3 uid="uid://dq8w0tn5j7bbq"]
 
 [ext_resource type="Script" path="res://Scripts/gum.gd" id="1_54fuw"]
 [ext_resource type="Texture2D" uid="uid://d67bw62y5ex2" path="res://Assets/407595322-5b462144-e915-4609-8070-05aec7f64586.png" id="2_pr6ki"]
+[ext_resource type="PackedScene" uid="uid://c17ntp2foggih" path="res://Scenes/loop_audio.tscn" id="3_rlccc"]
+[ext_resource type="AudioStream" uid="uid://bnljstrmkonjm" path="res://Assets/sounds/gum.wav" id="4_enhvg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e044y"]
 size = Vector3(33.5938, 2.78711, 6.77344)
@@ -84,3 +86,7 @@ transform = Transform3D(12.6068, 0, 0, 0, 12.6068, 0, 0, 0, 12.6068, -0.0888948,
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_lckpk")
 frame_progress = 0.918875
+
+[node name="LoopAudio" parent="." instance=ExtResource("3_rlccc")]
+stream = ExtResource("4_enhvg")
+custom_audio = -10

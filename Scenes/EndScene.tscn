@@ -1,4 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjmkg56pabp1c"]
+[gd_scene load_steps=9 format=3 uid="uid://bjmkg56pabp1c"]
+
+[ext_resource type="Texture2D" uid="uid://clmk48qnybnue" path="res://Assets/floor.png" id="1_f3qgr"]
+[ext_resource type="Texture2D" uid="uid://dek4bv06go32l" path="res://Assets/WATTT.png" id="2_o4gp0"]
+[ext_resource type="Texture2D" uid="uid://5uds5fhuvt23" path="res://Assets/d o o r/door1.png" id="3_qdgfa"]
+[ext_resource type="Texture2D" uid="uid://bb7v7b77ycmve" path="res://Assets/feet/image.png" id="4_qao5f"]
+
+[sub_resource type="Gradient" id="Gradient_oxk4a"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sf31s"]
+gradient = SubResource("Gradient_oxk4a")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfs51"]
 
@@ -7,16 +18,28 @@ size = Vector2(273, 20)
 
 [node name="Node3D" type="Node2D"]
 
-[node name="Label" type="Label" parent="."]
-offset_left = 373.0
-offset_top = 93.0
-offset_right = 513.0
-offset_bottom = 116.0
-scale = Vector2(3.20142, 3.20142)
-text = "Absorbed Human!"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(605.5, 326)
+scale = Vector2(19.9219, 11.1875)
+texture = SubResource("GradientTexture2D_sf31s")
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(553, 1188)
+scale = Vector2(3.31095, 1.55095)
+texture = ExtResource("1_f3qgr")
+
+[node name="Wattt" type="Sprite2D" parent="."]
+position = Vector2(588, 233)
+scale = Vector2(0.45955, 0.45955)
+texture = ExtResource("2_o4gp0")
+
+[node name="Door1" type="Sprite2D" parent="."]
+position = Vector2(149, 365)
+scale = Vector2(0.566079, 0.566079)
+texture = ExtResource("3_qdgfa")
 
 [node name="CharacterBody2D" type="RigidBody2D" parent="."]
-position = Vector2(494, 694)
+position = Vector2(1016, 667)
 gravity_scale = 0.0
 linear_velocity = Vector2(0, -100)
 
@@ -24,8 +47,11 @@ linear_velocity = Vector2(0, -100)
 shape = SubResource("RectangleShape2D_rfs51")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CharacterBody2D"]
-offset_right = 220.0
-offset_bottom = 268.0
+offset_left = -2.00002
+offset_top = -5.0
+offset_right = 218.0
+offset_bottom = 263.0
+scale = Vector2(0.724533, 0.724533)
 text = "Credits:
 
 Music/Sounds: Camrynn
@@ -35,8 +61,20 @@ Programming: Phoenix, Alex the slave, Aria
 Art: Aria, Rowan"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(494, 234)
+position = Vector2(1021, 117)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(126.5, 0)
 shape = SubResource("RectangleShape2D_wdhw6")
+
+[node name="Image" type="Sprite2D" parent="."]
+modulate = Color(0.0533327, 0.228924, 0.125924, 1)
+position = Vector2(922, 459)
+scale = Vector2(0.415436, 0.415436)
+texture = ExtResource("4_qao5f")
+
+[node name="Image2" type="Sprite2D" parent="Image"]
+position = Vector2(-1605.54, -36.1067)
+scale = Vector2(0.961948, 0.961948)
+texture = ExtResource("4_qao5f")
+flip_h = true

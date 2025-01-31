@@ -34,11 +34,14 @@ func _process(delta: float) -> void:
 			_2d_player.velocity += Vector3(9,9,0)
 			await get_tree().create_timer(.2).timeout
 			_2d_player.frozen = false
+			
 func start_anim():
 	$MainAnimation.play("Start")
+	
 func start_level():
 	animation_player.play('end')
 	
 	await animation_player.animation_finished
 	
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=41 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
@@ -14,8 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="12_ltyuy"]
 [ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="13_12324"]
 [ext_resource type="Texture2D" uid="uid://b5ae42smc721h" path="res://Assets/slimeblob.png" id="13_r464h"]
-[ext_resource type="PackedScene" uid="uid://dhktpe40ixw88" path="res://Scenes/armSpecial.tscn" id="14_53ecf"]
-[ext_resource type="PackedScene" uid="uid://doiiw83vgdkis" path="res://Scenes/CutsceneArm.tscn" id="15_joelk"]
+[ext_resource type="PackedScene" path="res://Scenes/armSpecial.tscn" id="14_53ecf"]
+[ext_resource type="PackedScene" path="res://Scenes/CutsceneArm.tscn" id="15_joelk"]
+[ext_resource type="PackedScene" uid="uid://di7fnpdrorskf" path="res://Scenes/spamplay.tscn" id="17_qertg"]
+[ext_resource type="AudioStream" uid="uid://ngkmuogjmfra" path="res://Assets/sounds/grip.wav" id="18_m7fax"]
+[ext_resource type="AudioStream" uid="uid://cscq8y6kfqsa6" path="res://Assets/sounds/throw.wav" id="19_dthms"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdxv1"]
 transparency = 1
@@ -694,6 +697,12 @@ mesh = SubResource("BoxMesh_an7aj")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
+
+[node name="Grip" parent="." instance=ExtResource("17_qertg")]
+stream = ExtResource("18_m7fax")
+
+[node name="Throw" parent="." instance=ExtResource("17_qertg")]
+stream = ExtResource("19_dthms")
 
 [connection signal="timeout" from="SlimeCooldown" to="." method="_on_slime_cooldown_timeout"]
 [connection signal="timeout" from="Stun" to="." method="_on_stun_timeout"]

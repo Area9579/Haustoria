@@ -7,5 +7,7 @@ func _process(delta: float) -> void:
 			if i.has_method('slow_down'):
 				i.slow_down(delta)
 				$AnimatedSprite3D.play("default")
+				$LoopAudio.play_loop()
 			else:
 				$AnimatedSprite3D.stop()
+				$LoopAudio.stop_loop()

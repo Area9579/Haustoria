@@ -48,11 +48,13 @@ func _process(delta: float) -> void:
 		AttackPhase.fourth:
 			# swipe hand accross ground towards previous player position
 			self.velocity = lerp(self.velocity, swipe_target_position, 0.05)
+			$slide.play_loop()
 			
 		AttackPhase.fifth:
 			self.velocity = Vector3(0, 0, 0)
 			# raise hand
 			self.position = lerp(position, boss.position, delta * 5)
+			$slide.stop_loop()
 	
 	move_and_slide()
 
@@ -115,3 +117,4 @@ func stun():
 	attacking = false
 	get_parent().stun()
 	$Sprite3D.play("stunned")
+	$slide.stop_loop()

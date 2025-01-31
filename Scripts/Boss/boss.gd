@@ -43,7 +43,7 @@ func _physics_process(delta):
 		$Feet/Right/Sprite3D.position.x += randf_range(-.1,.1)
 		$Feet/Left/Sprite3D.position.x += randf_range(-.1,.1)
 	if climb:
-		climb_point.global_position.y += delta * 3
+		climb_point.global_position.y += delta * 1
 		movement_target.velocity = (climb_point.global_position - movement_target.global_position) * delta * 200
 	
 	if stun_timer.time_left > 0:

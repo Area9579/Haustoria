@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		oldMousePosition = getMouseWorldPosition()
 		oldPlayerPosition = position
 		state_grabbed = true
+		$Grip.spam_play()
 	elif is_on_floor(): #decelerate constantly after initially pressing left click
 		decelerate(delta)
 		
@@ -59,6 +60,7 @@ func _physics_process(delta: float) -> void:
 		velocity = launchVelocity
 		dashCooldown.start()
 		state_grabbed = false
+		$Throw.spam_play()
 		
 	#move using velocity and check to bounce off surfaces
 	move_and_slide()
@@ -144,7 +146,6 @@ func attack(attack_origin): #put tween position as a parameter
 	sprite_3d.play('Attack')
 	ui.attack_boss()
 	$CPUParticles3D.emitting = true
-	print($CPUParticles3D.emitting)
 	await sprite_3d.animation_finished
 	$CPUParticles3D.emitting = false
 	var tween2 = get_tree().create_tween()
