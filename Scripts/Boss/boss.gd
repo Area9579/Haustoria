@@ -12,7 +12,23 @@ const MOVEMENT_SPEED: float = 2.0
 enum States {stunned, hand_attacking, walking}
 var state = States.walking
 
+var dead = false
+var climb = false
+@onready var climb_point: Marker3D = $Hand/Sprite3D/ClimbPoint
 
+func die():
+	print('dead')
+	stun_timer.start(50.0)
+	feet.stun()
+	dead = true
+	await get_tree().create_timer(2.0).timeout
+	climb = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(climb_point, 'position', 5.0, 4)
+	$Hand/Sprite3D/BossHandHitBox/CollisionShape3D.disabled = true
+	
+	#have player climb up arm
+	
 func _ready():
 	
 	feet.attack_target = movement_target # pass through target node to child
@@ -20,9 +36,16 @@ func _ready():
 	navigation_actor_setup.call_deferred() # call this function at end of other _ready() functions
 	
 
-
 func _physics_process(delta):
 	# stunned state while timer running
+	if dead:
+		$Hand/Sprite3D.position.x += randf_range(-.1,.1)
+		$Feet/Right/Sprite3D.position.x += randf_range(-.1,.1)
+		$Feet/Left/Sprite3D.position.x += randf_range(-.1,.1)
+	if climb:
+		climb_point.global_position.y += delta * 3
+		movement_target.velocity = (climb_point.global_position - movement_target.global_position) * delta * 200
+	
 	if stun_timer.time_left > 0:
 		state = States.stunned
 
@@ -118,5 +141,11 @@ func _on_hand_attack_body_entered(body: Node3D) -> void:
 	if body.has_method('hurt'):
 		body.hurt($Hand.velocity + Vector3(randf_range(-.5,.5),0,randf_range(-.5,.5)) * 4, 10)
 
+@export var color : Color
+@export var final_color : Color
 func hurt():
 	_on_stun_timer_timeout()
+	color = lerp(color, final_color, .1)
+	$Hand/Sprite3D.modulate = color
+	$Feet/Right/Sprite3D.modulate = color
+	$Feet/Left/Sprite3D.modulate = color

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=38 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
@@ -14,8 +14,20 @@
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="12_ltyuy"]
 [ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="13_12324"]
 [ext_resource type="Texture2D" uid="uid://b5ae42smc721h" path="res://Assets/slimeblob.png" id="13_r464h"]
-[ext_resource type="PackedScene" uid="uid://dhktpe40ixw88" path="res://Scenes/armSpecial.tscn" id="14_53ecf"]
-[ext_resource type="PackedScene" uid="uid://doiiw83vgdkis" path="res://Scenes/CutsceneArm.tscn" id="15_joelk"]
+[ext_resource type="PackedScene" path="res://Scenes/armSpecial.tscn" id="14_53ecf"]
+[ext_resource type="PackedScene" path="res://Scenes/CutsceneArm.tscn" id="15_joelk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdxv1"]
+transparency = 1
+albedo_texture = ExtResource("13_r464h")
+heightmap_scale = -3.16
+billboard_mode = 1
+grow = true
+grow_amount = -10.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_12ich"]
+material = SubResource("StandardMaterial3D_sdxv1")
+orientation = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0kq8h"]
 height = 0.941026
@@ -420,6 +432,17 @@ collision_layer = 3
 collision_mask = 133
 script = ExtResource("1_05xm5")
 
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00762743, 2.76795, -0.172251)
+emitting = false
+amount = 25
+lifetime = 3.0
+mesh = SubResource("PlaneMesh_12ich")
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_0kq8h")
@@ -495,6 +518,30 @@ offset_left = 16.0
 offset_top = 22.0
 offset_right = 316.0
 offset_bottom = 622.0
+scale = Vector2(0.21552, 0.488654)
+value = 20.0
+fill_mode = 3
+texture_over = ExtResource("4_ysrak")
+texture_progress = ExtResource("5_x6hvr")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/PlayerHealth"]
+visible = false
+layout_mode = 0
+offset_left = 23.1998
+offset_top = 607.791
+offset_right = 359.2
+offset_bottom = 657.791
+scale = Vector2(2.17141, 2.17141)
+text = "boss health
+"
+
+[node name="PlayerHealthw" type="TextureProgressBar" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 22.0
+offset_right = 316.0
+offset_bottom = 622.0
 scale = Vector2(0.22927, 0.519832)
 value = 90.0
 fill_mode = 3
@@ -502,7 +549,7 @@ texture_over = ExtResource("4_ysrak")
 texture_progress = ExtResource("5_x6hvr")
 tint_progress = Color(0.244776, 0.244776, 0.244776, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/PlayerHealth"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/PlayerHealthw"]
 visible = false
 layout_mode = 0
 offset_left = 39.255

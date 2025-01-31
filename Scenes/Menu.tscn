@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://djr66pvfmqq7k"]
+[gd_scene load_steps=78 format=3 uid="uid://djr66pvfmqq7k"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_i28t0"]
 [ext_resource type="Texture2D" uid="uid://ddffootr8l1nr" path="res://Assets/JarAnimations/jar1.png" id="2_2byc2"]
@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cc4b22gsb4uat" path="res://Assets/JarAnimations/jar3.png" id="3_n15i3"]
 [ext_resource type="Texture2D" uid="uid://ba7xs6utq4bk5" path="res://Assets/JarAnimations/jar4.png" id="4_1wmgm"]
 [ext_resource type="Texture2D" uid="uid://c0xis0qqfl6l4" path="res://Assets/JarAnimations/jar5.png" id="5_fduop"]
-[ext_resource type="Texture2D" uid="uid://dc0kl110r800s" path="res://Assets/JarAnimations/jar6.png" id="7_qmmgm"]
 [ext_resource type="Script" path="res://Scripts/2Dplayer.gd" id="8_7r8i7"]
+[ext_resource type="Texture2D" uid="uid://ck0n5xet51sfh" path="res://Assets/glassshard.png" id="9_3ixwi"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="9_5mcuo"]
 [ext_resource type="Texture2D" uid="uid://ueh2y5jtprdy" path="res://Assets/feet/image2.png" id="9_xc34x"]
 [ext_resource type="Texture2D" uid="uid://bgsykpdnc2pur" path="res://Assets/syringe.png" id="10_8isue"]
@@ -22,15 +22,17 @@
 [ext_resource type="Texture2D" uid="uid://ccm12uv71w2o3" path="res://Assets/PlayerAnimations/attack/GoopyGoober4.png" id="12_k0s7g"]
 [ext_resource type="Texture2D" uid="uid://bqk50iwcx2kjs" path="res://Assets/PlayerAnimations/attack/GoopyGoober5.png" id="13_mgauf"]
 [ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="15_tluda"]
+[ext_resource type="Texture2D" uid="uid://dhb3y04fdw8x6" path="res://Assets/hand/IMG_0051.png" id="16_5pvqf"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="16_ecw48"]
 [ext_resource type="Texture2D" uid="uid://cqxsixhv7tq2x" path="res://Assets/barholderplaceholder.png" id="17_66xvd"]
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="18_o3lnb"]
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="19_5fxju"]
 [ext_resource type="Script" path="res://Scripts/armSpecial.gd" id="23_tp86a"]
-[ext_resource type="NoiseTexture3D" uid="uid://dgl4j15pjkdfq" path="res://Assets/arm_noise.tres" id="24_bw3yd"]
-[ext_resource type="PackedScene" uid="uid://c4ho3agy0ktao" path="res://Scenes/tent.tscn" id="25_s54fk"]
+[ext_resource type="NoiseTexture3D" path="res://Assets/arm_noise.tres" id="24_bw3yd"]
+[ext_resource type="PackedScene" path="res://Scenes/tent.tscn" id="25_s54fk"]
 [ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="26_a5hah"]
 [ext_resource type="Script" path="res://Scenes/camera_3dmenu.gd" id="30_yotbj"]
+[ext_resource type="PackedScene" uid="uid://dj70pfgnjq5q2" path="res://Scenes/level building/trap.tscn" id="32_a5ssa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gor8"]
 sky_top_color = Color(0.285814, 0.440282, 0.73271, 1)
@@ -122,14 +124,6 @@ animations = [{
 "loop": true,
 "name": &"5",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_qmmgm")
-}],
-"loop": true,
-"name": &"6",
-"speed": 5.0
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r7gk4"]
@@ -137,6 +131,137 @@ size = Vector3(4.65601, 1, 1.79317)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_15rcw"]
 size = Vector3(1, 4.83826, 3.81641)
+
+[sub_resource type="Animation" id="Animation_ypdum"]
+resource_name = "hit"
+length = 0.2425
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.233333),
+"transitions": PackedFloat32Array(0.258816, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0523599), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gigtm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.148122, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.70199, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_27exy"]
+resource_name = "open"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.166667, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.1886), Vector3(0, 0, 0.0523599), Vector3(0, 0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.148122, -0.25, 0, 0.0333333, 0.655983, 1, -0.266667, -0.0255248, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0),
+"points": PackedFloat32Array(2.70199, 0, 0, 0, 0.0722489, 3.00023, -0.0438038, -0.0144255, 0.0666667, -0.0240424, 2.70199, -0.00555556, 0.0545165, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.233333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67trh"]
+_data = {
+"RESET": SubResource("Animation_gigtm"),
+"hit": SubResource("Animation_ypdum"),
+"open": SubResource("Animation_27exy")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7av2"]
+transparency = 1
+albedo_color = Color(0.65098, 0.65098, 0.65098, 0.431373)
+albedo_texture = ExtResource("9_3ixwi")
+texture_filter = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ipbu7"]
+material = SubResource("StandardMaterial3D_h7av2")
+size = Vector2(0.5, 0.5)
+orientation = 2
 
 [sub_resource type="Animation" id="Animation_h86vx"]
 length = 0.001
@@ -212,10 +337,46 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector3(52.2117, 1.44233, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainAnimation/Trap/Sprite3D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-20.7154, -9, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainAnimation/Trap/Sprite3D:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_5pvqf")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MainAnimation/Trap/Sprite3D:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 1.60768)]
+}
 
 [sub_resource type="Animation" id="Animation_iocm8"]
 resource_name = "Start"
-length = 6.3015
+length = 12.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -267,10 +428,10 @@ tracks/3/path = NodePath("MainAnimation/DecoyBoss/Hand/Cutscene_Point:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(3.03333, 3.1, 3.16667, 3.5, 3.7, 6.26667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1.86607, 1),
+"times": PackedFloat32Array(3.03333, 3.1, 3.16667, 3.5, 3.66667, 11.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1.7411, 1),
 "update": 0,
-"values": [Vector3(2.79565, -4.90011, 0.469055), Vector3(3.09411, -2.20239, 0.344143), Vector3(2.79565, -4.90011, 0.469055), Vector3(2.79565, -4.90011, 0.469055), Vector3(2.74328, -12.9149, 0.887197), Vector3(53.5524, -7.93988, 3.49005)]
+"values": [Vector3(2.79565, -4.90011, 0.469055), Vector3(3.09411, -2.20239, 0.344143), Vector3(2.79565, -4.90011, 0.469055), Vector3(2.79565, -4.90011, 0.469055), Vector3(2.74328, -12.9149, 0.887197), Vector3(194.727, 4.08624, 10.7976)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -308,6 +469,56 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(52.2117, 1.44233, 0), Vector3(52.2117, 1.44233, 0), Vector3(52.2117, -7.4661, 0)]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainAnimation/Trap")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(10.2333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_play"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MainAnimation/Trap/Sprite3D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(8.53333, 8.56667, 10.2333),
+"transitions": PackedFloat32Array(1, 1.33187, 1),
+"update": 0,
+"values": [Vector3(-59.5081, -8.99979, 0), Vector3(-61.1072, 1.246, 0), Vector3(-6.09348, 1.24611, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MainAnimation/Trap/Sprite3D:texture")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(10.2333, 10.2667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("16_5pvqf"), ExtResource("12_0s6eu")]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MainAnimation/Trap/Sprite3D:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(10.2667, 10.3, 10.3333, 10.4, 10.4333, 10.4667, 10.5, 10.5333, 10.6, 10.6333, 10.6667, 10.7, 10.7333, 10.8, 10.8333, 10.8667, 10.9, 10.9333, 10.9667, 11.0333, 11.0667, 11.1333, 11.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.55278), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.76282), Vector3(0, 0, 1.55278)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt5jo"]
 _data = {
@@ -317,6 +528,8 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7knul"]
 size = Vector3(4.3938, 3.24463, 3.88712)
+
+[sub_resource type="BoxMesh" id="BoxMesh_85rsj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gmgnb"]
 size = Vector3(1, 5.24597, 3.64374)
@@ -560,13 +773,13 @@ script = ExtResource("1_i28t0")
 environment = SubResource("Environment_ae8ic")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(1.42348, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 36.9947, 0, -16.2752)
+transform = Transform3D(3.46752, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 36.9947, 0, -16.2752)
 layers = 3
 mesh = SubResource("BoxMesh_50via")
 skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(-1.55553e-08, -1, 2.19162e-08, 0, -4.37114e-08, -0.501384, 0.355864, -4.37114e-08, 9.57988e-16, 80.2455, 26.5303, -16.2752)
+transform = Transform3D(-1.55553e-08, -1, 2.19162e-08, 0, -4.37114e-08, -0.501384, 0.355864, -4.37114e-08, 9.57988e-16, 176.543, 26.5303, -16.2752)
 layers = 3
 mesh = SubResource("BoxMesh_50via")
 skeleton = NodePath("../../..")
@@ -582,6 +795,17 @@ collision_layer = 129
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87506, 1.17874, -1019.9)
 shape = SubResource("BoxShape3D_2m3kh")
 
+[node name="Table2" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.01262, 0, 0, 0, 1, 0, 0, 0, 1, 123.629, -2.63139, 0)
+mesh = SubResource("BoxMesh_gi7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Table2"]
+collision_layer = 129
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87506, 1.17874, -1019.9)
+shape = SubResource("BoxShape3D_2m3kh")
+
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(6.18658, 0, 0, 0, 6.18658, 0, 0, 0, 6.18658, 0, 7.10776, 0)
 text = "Use left click to start"
@@ -593,12 +817,15 @@ script = ExtResource("3_438ew")
 scale_move = 0.1
 
 [node name="Jar" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76478, 0)
+transform = Transform3D(0.464549, 0, 0, 0, 0.464549, 0, 0, 0, 0.464549, 0.148122, 2.70199, 0)
+modulate = Color(1, 1, 1, 0.784314)
+render_priority = 50
 sprite_frames = SubResource("SpriteFrames_v12l4")
 animation = &"1"
 
 [node name="LabelClick" type="RigidBody3D" parent="Jar"]
-transform = Transform3D(0.924858, -0.380312, 0, 0.380312, 0.924858, 0, 0, 0, 1, -0.069469, -0.429408, -2.41667)
+transform = Transform3D(0.924858, -0.380312, 0, 0.380312, 0.924858, 0, 0, 0, 1, -0.069469, 1.33537, -2.41667)
+top_level = true
 visible = false
 collision_layer = 0
 collision_mask = 128
@@ -612,8 +839,25 @@ shape = SubResource("BoxShape3D_r7gk4")
 transform = Transform3D(3.97868, 0, 0, 0, 3.97868, 0, 0, 0, 3.97868, 0, 0, 0)
 text = "Click to Drag!"
 
+[node name="LabelClick2" type="RigidBody3D" parent="Jar"]
+transform = Transform3D(0.924858, -0.380312, 0, 0.380312, 0.924858, 0, 0, 0, 1, -0.069469, 3.06799, -2.41667)
+top_level = true
+visible = false
+collision_layer = 0
+collision_mask = 128
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jar/LabelClick2"]
+transform = Transform3D(1, -2.45869e-07, 0, 2.45869e-07, 1, 0, 0, 0, 1, 0.0963135, 0, -0.813454)
+shape = SubResource("BoxShape3D_r7gk4")
+
+[node name="Label3D" type="Label3D" parent="Jar/LabelClick2"]
+transform = Transform3D(3.97868, 0, 0, 0, 3.97868, 0, 0, 0, 3.97868, 0, 0, 0)
+text = "try to click drag and fling ;)"
+
 [node name="Jar" type="StaticBody3D" parent="Jar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19621, -0.957397, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19621, 0.807383, 0)
+top_level = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jar/Jar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.591842, 1.39545, 0.50293)
@@ -628,8 +872,27 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.218
 shape = SubResource("BoxShape3D_15rcw")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Jar/Jar"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.21841, -0.419737, 0.50293)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.21841, -0.424376, 0.50293)
 shape = SubResource("BoxShape3D_15rcw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Jar"]
+libraries = {
+"": SubResource("AnimationLibrary_67trh")
+}
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Jar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.405178, 2.00149, 5.4153)
+emitting = false
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("PlaneMesh_ipbu7")
+emission_shape = 3
+emission_box_extents = Vector3(1.595, 3.07, 1)
+initial_velocity_min = 3.0
+initial_velocity_max = 12.0
+angle_min = -409.8
+angle_max = 468.2
 
 [node name="MainAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -662,7 +925,11 @@ flip_h = true
 texture = ExtResource("11_jsjiu")
 
 [node name="Cutscene_Point" type="Marker3D" parent="MainAnimation/DecoyBoss/Hand"]
-transform = Transform3D(1, -1.16415e-09, -2.23517e-08, 4.44707e-08, 0.999999, -2.6077e-08, -6.70552e-08, 4.09782e-08, 1, 0.347799, -3.96235, 0.281794)
+transform = Transform3D(1, -9.84874e-08, -2.6077e-08, 4.02797e-08, 0.999999, -2.23517e-08, -1.37836e-07, 4.09782e-08, 1, 0.347799, -3.96235, 0.281794)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainAnimation/DecoyBoss/Hand/Cutscene_Point"]
+transform = Transform3D(2.89978, 4.47035e-08, 0, 1.86265e-08, 2.89978, -1.49012e-08, 0, 0, 2.89978, 0, 0, 0)
+mesh = SubResource("BoxMesh_85rsj")
 
 [node name="Hand2" type="Sprite3D" parent="MainAnimation/DecoyBoss"]
 transform = Transform3D(0.544375, -0.119881, 0.0369862, 0.121464, 0.544846, -0.0217786, -0.0313991, 0.0292641, 0.556994, -2.14025, 18.9485, 1.14598)
@@ -681,8 +948,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2117, 1.44233, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998474, 0.386322)
 shape = SubResource("BoxShape3D_gmgnb")
 
+[node name="Trap" parent="MainAnimation" instance=ExtResource("32_a5ssa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.848, 1.52306, 1.57504)
+
+[node name="Sprite3D" type="Sprite3D" parent="MainAnimation/Trap"]
+transform = Transform3D(-0.0265926, -0.720755, 0, 0.720755, -0.0265926, 0, 0, 0, 0.721245, -20.7154, -9, 0)
+texture = ExtResource("16_5pvqf")
+
 [node name="2DPlayer" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(1.59107, 0, 0, 0, 1.59107, 0, 0, 0, 1.59107, 0.0787538, 1.90514, 1.14598)
+transform = Transform3D(1.59107, 0, 0, 0, 1.59107, 0, 0, 0, 1.59107, 0.0787538, 1.90514, 0.900107)
 collision_layer = 3
 script = ExtResource("8_7r8i7")
 
@@ -713,6 +987,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="UI" type="Control" parent="2DPlayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -877,10 +1152,10 @@ top_level = true
 curve = SubResource("Curve3D_1d7jp")
 
 [node name="PathFollow3D3" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369302, 0.992936, -0.112409, 0.999009, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
+transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369302, 0.992936, -0.112409, 0.999008, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
 
 [node name="PathFollow3D4" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0264827, -0.0902009, -0.995537, 0.0372347, 0.995267, -0.0891891, 0.998913, -0.0347075, 0.0297177, 1.07728, 0.171954, -0.0238061)
+transform = Transform3D(0.0264827, -0.0902008, -0.995537, 0.0372347, 0.995266, -0.089189, 0.998912, -0.0347074, 0.0297177, 1.07728, 0.171954, -0.0238061)
 progress = 1.0954
 
 [node name="PathFollow3D5" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -892,31 +1167,31 @@ transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0298164, -0.0608971, -0.997678, 0.0374862, 0.997474, -0.059766, 0.998838, -0.0356171, 0.0320247, 1.60607, 0.211318, -0.0402237)
+transform = Transform3D(0.0298163, -0.0608969, -0.997677, 0.0374861, 0.997472, -0.0597659, 0.998837, -0.0356171, 0.0320247, 1.60607, 0.211318, -0.0402237)
 progress = 1.62546
 
 [node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.031774, -0.0415425, -0.99861, 0.0375846, 0.998447, -0.0403407, 0.998774, -0.0362507, 0.0332868, 1.96108, 0.229167, -0.0518421)
+transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998446, -0.0403407, 0.998773, -0.0362507, 0.0332868, 1.96108, 0.229167, -0.0518421)
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333443, -0.0249416, -0.99911, 0.0376351, 0.998979, -0.0236828, 0.998721, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0.0236827, 0.99872, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350356, -0.00607725, -0.999344, 0.0376593, 0.999245, -0.00475653, 0.998662, -0.0374681, 0.0352389, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350355, -0.00607724, -0.999343, 0.0376592, 0.999244, -0.00475652, 0.998661, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0369366, 0.0159895, -0.999169, 0.0376473, 0.999108, 0.0173806, 0.998593, -0.0382582, 0.0363026, 2.80966, 0.240759, -0.0813591)
+transform = Transform3D(0.0369365, 0.0159895, -0.999169, 0.0376473, 0.999107, 0.0173806, 0.998591, -0.0382581, 0.0363026, 2.80966, 0.240759, -0.0813591)
 progress = 2.82973
 
 [node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0405576, 0.0599333, -0.997355, 0.037505, 0.997371, 0.0614606, 0.998459, -0.0398986, 0.0382042, 3.22756, 0.224939, -0.0969304)
+transform = Transform3D(0.0405576, 0.0599332, -0.997354, 0.037505, 0.99737, 0.0614605, 0.998459, -0.0398986, 0.0382041, 3.22756, 0.224939, -0.0969304)
 progress = 3.24778
 
 [node name="PathFollow3D17" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0461905, 0.13092, -0.990294, 0.0369558, 0.99044, 0.132665, 0.998232, -0.0427252, 0.0409118, 3.64278, 0.186022, -0.113397)
+transform = Transform3D(0.0461905, 0.13092, -0.990294, 0.0369557, 0.99044, 0.132665, 0.998232, -0.0427252, 0.0409118, 3.64278, 0.186022, -0.113397)
 progress = 3.66534
 
 [node name="PathFollow3D18" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -924,7 +1199,7 @@ transform = Transform3D(0.0582583, 0.287234, -0.956063, 0.0343419, 0.956537, 0.2
 progress = 4.08289
 
 [node name="PathFollow3D19" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0947786, 0.768253, -0.633045, 0.0099627, 0.635137, 0.7723, 0.995432, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
+transform = Transform3D(0.0947784, 0.768253, -0.633045, 0.00996268, 0.635137, 0.7723, 0.995431, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
 progress = 4.43262
 
 [node name="PathFollow3D8" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -932,7 +1207,7 @@ transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0
 progress = 0.624339
 
 [node name="PathFollow3D9" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362702, 0.988434, -0.147136, 0.999143, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
+transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362702, 0.988434, -0.147136, 0.999142, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
 progress = 0.424082
 
 [node name="PathFollow3D10" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1007,10 +1282,10 @@ top_level = true
 curve = SubResource("Curve3D_my26f")
 
 [node name="PathFollow3D3" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369303, 0.992936, -0.112409, 0.99901, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
+transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369302, 0.992936, -0.112409, 0.999009, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
 
 [node name="PathFollow3D4" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0264827, -0.090201, -0.995538, 0.0372348, 0.995268, -0.0891892, 0.998914, -0.0347075, 0.0297178, 1.07728, 0.171954, -0.0238061)
+transform = Transform3D(0.0264827, -0.0902009, -0.995537, 0.0372347, 0.995267, -0.0891891, 0.998913, -0.0347075, 0.0297177, 1.07728, 0.171954, -0.0238061)
 progress = 1.0954
 
 [node name="PathFollow3D5" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1022,31 +1297,31 @@ transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0298164, -0.0608971, -0.997679, 0.0374862, 0.997475, -0.0597661, 0.998838, -0.0356172, 0.0320248, 1.60607, 0.211318, -0.0402237)
+transform = Transform3D(0.0298163, -0.060897, -0.997678, 0.0374861, 0.997474, -0.059766, 0.998837, -0.0356171, 0.0320247, 1.60607, 0.211318, -0.0402237)
 progress = 1.62546
 
 [node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0317741, -0.0415425, -0.99861, 0.0375847, 0.998448, -0.0403407, 0.998775, -0.0362508, 0.0332868, 1.96108, 0.229167, -0.0518421)
+transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998447, -0.0403407, 0.998774, -0.0362507, 0.0332868, 1.96108, 0.229167, -0.0518421)
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333443, -0.0249416, -0.999111, 0.0376351, 0.998979, -0.0236828, 0.998722, -0.0368121, 0.0342497, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333443, -0.0249416, -0.99911, 0.0376351, 0.998979, -0.0236828, 0.998721, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350356, -0.00607726, -0.999345, 0.0376593, 0.999246, -0.00475653, 0.998662, -0.0374681, 0.0352389, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350355, -0.00607725, -0.999344, 0.0376592, 0.999245, -0.00475652, 0.998661, -0.037468, 0.0352389, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0369366, 0.0159895, -0.999169, 0.0376474, 0.999109, 0.0173806, 0.998594, -0.0382582, 0.0363026, 2.80966, 0.240759, -0.0813591)
+transform = Transform3D(0.0369365, 0.0159895, -0.999169, 0.0376473, 0.999108, 0.0173806, 0.998592, -0.0382582, 0.0363026, 2.80966, 0.240759, -0.0813591)
 progress = 2.82973
 
 [node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0405576, 0.0599333, -0.997356, 0.037505, 0.997372, 0.0614607, 0.998459, -0.0398987, 0.0382042, 3.22756, 0.224939, -0.0969304)
+transform = Transform3D(0.0405576, 0.0599332, -0.997355, 0.037505, 0.997371, 0.0614606, 0.998459, -0.0398986, 0.0382042, 3.22756, 0.224939, -0.0969304)
 progress = 3.24778
 
 [node name="PathFollow3D17" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0461906, 0.13092, -0.990294, 0.0369558, 0.99044, 0.132665, 0.998233, -0.0427252, 0.0409118, 3.64278, 0.186022, -0.113397)
+transform = Transform3D(0.0461905, 0.13092, -0.990294, 0.0369557, 0.99044, 0.132665, 0.998232, -0.0427252, 0.0409118, 3.64278, 0.186022, -0.113397)
 progress = 3.66534
 
 [node name="PathFollow3D18" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1054,7 +1329,7 @@ transform = Transform3D(0.0582583, 0.287234, -0.956063, 0.0343419, 0.956537, 0.2
 progress = 4.08289
 
 [node name="PathFollow3D19" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0947787, 0.768253, -0.633045, 0.00996271, 0.635137, 0.7723, 0.995433, -0.0795048, 0.0525449, 4.35439, -0.0618767, -0.148745)
+transform = Transform3D(0.0947785, 0.768253, -0.633045, 0.00996269, 0.635137, 0.7723, 0.995432, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
 progress = 4.43262
 
 [node name="PathFollow3D8" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1062,11 +1337,11 @@ transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0
 progress = 0.624339
 
 [node name="PathFollow3D9" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362703, 0.988434, -0.147136, 0.999144, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
+transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362702, 0.988434, -0.147136, 0.999143, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
 progress = 0.424082
 
 [node name="PathFollow3D10" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0133143, -0.180524, -0.983443, 0.0354167, 0.982996, -0.179963, 0.999242, -0.0324355, 0.0194822, 0.252031, 0.0700715, -0.00191475)
+transform = Transform3D(0.0133142, -0.180524, -0.983443, 0.0354166, 0.982996, -0.179963, 0.999242, -0.0324355, 0.0194822, 0.252031, 0.0700715, -0.00191475)
 progress = 0.259098
 
 [node name="PathFollow3D11" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1116,15 +1391,15 @@ color = Color(0, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6937, 11.2782, 0)
 
 [node name="Label3D2" type="Label3D" parent="Credits"]
-transform = Transform3D(4.49337, -0.919496, 0, 0.919496, 4.49337, 0, 0, 0, 4.58648, 0, 0, 0)
+transform = Transform3D(4.49337, -0.919496, 0, 0.919496, 4.49337, 0, 0, 0, 4.58648, 64.2081, -3.50865, 0)
 text = "Music and sounds by Camrynnr"
 
 [node name="Label3D3" type="Label3D" parent="Credits"]
-transform = Transform3D(4.35142, 1.44947, 0, -1.44947, 4.35142, 0, 0, 0, 4.58648, 15.9328, -3.87496, 0)
+transform = Transform3D(4.35142, 1.44947, 0, -1.44947, 4.35142, 0, 0, 0, 4.58648, 94.6211, -3.87496, 0)
 text = "Programming by Aria, Alex the slave, and Phoenix"
 
 [node name="Label3D4" type="Label3D" parent="Credits"]
-transform = Transform3D(4.58634, 0.0361021, 0, -0.0361021, 4.58634, 0, 0, 0, 4.58648, 48.7718, -6.80398, 0)
+transform = Transform3D(4.58634, 0.0361021, 0, -0.0361021, 4.58634, 0, 0, 0, 4.58648, 136.166, -6.80398, 0)
 text = "Art by Rowan and Aria"
 
 [connection signal="animation_finished" from="MainAnimation" to="." method="start_level" unbinds=1]

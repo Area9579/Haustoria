@@ -1,8 +1,42 @@
-[gd_scene format=3 uid="uid://bjmkg56pabp1c"]
+[gd_scene load_steps=3 format=3 uid="uid://bjmkg56pabp1c"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfs51"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdhw6"]
+size = Vector2(273, 20)
+
+[node name="Node3D" type="Node2D"]
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "yuh"
+offset_left = 373.0
+offset_top = 93.0
+offset_right = 513.0
+offset_bottom = 116.0
+scale = Vector2(3.20142, 3.20142)
+text = "Absorbed Human!"
+
+[node name="CharacterBody2D" type="RigidBody2D" parent="."]
+position = Vector2(494, 694)
+gravity_scale = 0.0
+linear_velocity = Vector2(0, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_rfs51")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CharacterBody2D"]
+offset_right = 220.0
+offset_bottom = 268.0
+text = "Credits:
+
+Music/Sounds: Camrynn
+
+Programming: Phoenix, Alex the slave, Aria
+
+Art: Aria, Rowan"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(494, 234)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(126.5, 0)
+shape = SubResource("RectangleShape2D_wdhw6")

@@ -24,7 +24,6 @@ var stunned = false
 var cursor_open = load("res://Assets/CursorWOW_optimized.png"	)
 var cursor_closed = load("res://Assets/cursor_closed.png")
 func _physics_process(delta: float) -> void:
-	
 	if !attacking:
 		$AnchorPoint2/Marker3D.global_position = global_position
 	else:
@@ -144,13 +143,18 @@ func attack(attack_origin): #put tween position as a parameter
 	tweenc.tween_property(player_camera, 'fov', 25.0, .5).set_trans(Tween.TRANS_CUBIC)
 	sprite_3d.play('Attack')
 	ui.attack_boss()
+	$CPUParticles3D.emitting = true
+	print($CPUParticles3D.emitting)
 	await sprite_3d.animation_finished
+	$CPUParticles3D.emitting = false
 	var tween2 = get_tree().create_tween()
 	tween2.tween_property(player_camera, 'fov', 53.7, .8).set_trans(Tween.TRANS_CUBIC)
 	attacking = false
 	sprite_3d.play('Idle')
 	frozen = false
 	
+func killed():
+	stunned = true
 
 func collect_item(poison_pickedup):
 	ui.attack_multiplier += 1
@@ -171,7 +175,6 @@ func spawn_slime():
 		var slime_instance = slime.instantiate()
 		add_child(slime_instance)
 
-
 func _on_slime_cooldown_timeout() -> void:
 	can_slime = true
 
@@ -183,6 +186,9 @@ func hurt(direction : Vector3, amount):
 	ui.take_damage(amount)
 	state_grabbed = false
 	dashCooldown.stop()
+
+func change_co(current_color):
+	ui.change_co(current_color)
 	
 
 
