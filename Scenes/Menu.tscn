@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://djr66pvfmqq7k"]
+[gd_scene load_steps=80 format=3 uid="uid://djr66pvfmqq7k"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_i28t0"]
 [ext_resource type="Texture2D" uid="uid://ddffootr8l1nr" path="res://Assets/JarAnimations/jar1.png" id="2_2byc2"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://bgsykpdnc2pur" path="res://Assets/syringe.png" id="10_8isue"]
 [ext_resource type="Texture2D" uid="uid://dx468ym40bf1v" path="res://Assets/PlayerAnimations/attack/GoopyGoober2.png" id="10_jud2y"]
 [ext_resource type="Texture2D" uid="uid://cdsiufe1sf76u" path="res://Assets/feet/image4.png" id="10_s311e"]
+[ext_resource type="AudioStream" uid="uid://b8rxwfuv6oqvn" path="res://Assets/sounds/GlassHit.wav" id="10_urdb2"]
+[ext_resource type="AudioStream" uid="uid://b6psgkmvknqgu" path="res://Assets/sounds/GlassBreak.wav" id="11_atj50"]
 [ext_resource type="Texture2D" uid="uid://c4at6q6ccw7nr" path="res://Assets/PlayerAnimations/attack/GoopyGoober3.png" id="11_dectp"]
 [ext_resource type="Texture2D" uid="uid://dxso5nx45l2si" path="res://Assets/hand/IMG_0049.png" id="11_jsjiu"]
 [ext_resource type="Texture2D" uid="uid://cq16b7ippomii" path="res://Assets/hand/IMG_0048.png" id="12_0s6eu"]
@@ -179,6 +181,18 @@ tracks/3/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("JarSound2:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ypdum"]
 resource_name = "hit"
@@ -243,6 +257,18 @@ tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("JarSound2:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_67trh"]
@@ -894,6 +920,14 @@ initial_velocity_max = 12.0
 angle_min = -409.8
 angle_max = 468.2
 
+[node name="JarSound" type="AudioStreamPlayer3D" parent="Jar"]
+transform = Transform3D(2.15263, 0, 0, 0, 2.15263, 0, 0, 0, 2.15263, -0.149324, -1.71532, 1.93759)
+stream = ExtResource("10_urdb2")
+
+[node name="JarSound2" type="AudioStreamPlayer3D" parent="Jar"]
+transform = Transform3D(2.15263, 0, 0, 0, 2.15263, 0, 0, 0, 2.15263, -0.149324, -1.71532, 1.47276)
+stream = ExtResource("11_atj50")
+
 [node name="MainAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jt5jo")
@@ -1186,11 +1220,11 @@ transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998446, -0.
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0.0236827, 0.99872, -0.0368121, 0.0342497, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0.0236827, 0.99872, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350355, -0.00607725, -0.999343, 0.0376592, 0.999244, -0.00475652, 0.998661, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350355, -0.00607724, -0.999343, 0.0376592, 0.999244, -0.00475652, 0.998661, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1316,7 +1350,7 @@ transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998447, -0.
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333443, -0.0249416, -0.99911, 0.0376351, 0.998979, -0.0236828, 0.998721, -0.0368121, 0.0342497, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333443, -0.0249416, -0.99911, 0.0376351, 0.998979, -0.0236828, 0.998721, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1374,6 +1408,8 @@ top_level = true
 transform = Transform3D(0.606159, 0, 0, 0, 2.22492, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("CylinderMesh_oulh3")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="2DPlayer"]
 
 [node name="UI" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001

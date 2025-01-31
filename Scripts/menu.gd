@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 			$Jar/AnimationPlayer.stop()
 			$Jar/AnimationPlayer.play("hit")
 			Director.shake_cam(Vector2(1,.5) * .1)
+			$Jar/JarSound.play()
 		if int(str(jar.animation)) >= 5 and _2d_player.frozen != false:
 			$Jar/AnimationPlayer.stop()
 			$Jar/AnimationPlayer.play("open")
