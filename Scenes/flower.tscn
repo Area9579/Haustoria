@@ -68,8 +68,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.564532)
 [node name="Tent5" parent="TentHolder" instance=ExtResource("2_vxso3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.741739)
 
+[node name="Sprite3D" parent="TentHolder/Tent5" index="1"]
+visible = false
+
 [node name="Flower" type="Sprite3D" parent="TentHolder/Tent5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0390143, 0)
 billboard = 1
 texture_filter = 0
 render_priority = 8
@@ -89,15 +91,15 @@ transform = Transform3D(0.215976, 0.639289, -0.737966, 0.117876, 0.73319, 0.6696
 progress = 1.0954
 
 [node name="PathFollow3D5" parent="TitlerHolder" instance=ExtResource("3_55vio")]
-transform = Transform3D(0.219604, 0.742289, -0.633031, 0.114084, 0.624876, 0.77231, 0.968853, -0.24183, 0.0525446, 1.08819, -0.0618787, -0.148745)
+transform = Transform3D(0.219604, 0.742289, -0.633031, 0.114084, 0.624876, 0.77231, 0.968852, -0.24183, 0.0525446, 1.08819, -0.0618787, -0.148745)
 progress = 1.28379
 
 [node name="PathFollow3D6" parent="TitlerHolder" instance=ExtResource("3_55vio")]
-transform = Transform3D(0.219611, 0.74229, -0.633033, 0.114087, 0.624878, 0.772313, 0.968883, -0.24183, 0.0525448, 1.08819, -0.0618787, -0.148745)
+transform = Transform3D(0.21961, 0.74229, -0.633033, 0.114087, 0.624878, 0.772313, 0.968882, -0.24183, 0.0525448, 1.08819, -0.0618787, -0.148745)
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="TitlerHolder" instance=ExtResource("3_55vio")]
-transform = Transform3D(0.219611, 0.742289, -0.633035, 0.114087, 0.624877, 0.772315, 0.968885, -0.24183, 0.0525449, 1.08819, -0.0618787, -0.148745)
+transform = Transform3D(0.219611, 0.742289, -0.633035, 0.114087, 0.624877, 0.772315, 0.968884, -0.24183, 0.0525449, 1.08819, -0.0618787, -0.148745)
 progress = 1.62546
 
 [node name="PathFollow3D8" parent="TitlerHolder" instance=ExtResource("3_55vio")]
@@ -113,5 +115,7 @@ transform = Transform3D(0.0851497, -0.484416, -0.870645, 0.106718, 0.873224, -0.
 progress = 0.259098
 
 [node name="PathFollow3D11" parent="TitlerHolder" instance=ExtResource("3_55vio")]
-transform = Transform3D(0.0291367, -0.583394, -0.811623, 0.0710106, 0.811121, -0.580489, 0.997012, -0.0407217, 0.0650633, 0.0924984, 0.0712391, -0.00211111)
+transform = Transform3D(0.0291366, -0.583394, -0.811623, 0.0710106, 0.811121, -0.580489, 0.997011, -0.0407217, 0.0650633, 0.0924984, 0.0712391, -0.00211111)
 progress = 0.117683
+
+[editable path="TentHolder/Tent5"]

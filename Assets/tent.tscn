@@ -16,6 +16,6 @@ script = ExtResource("1_4i2lk")
 shape = SubResource("SphereShape3D_og0le")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+transform = Transform3D(-1.31134e-09, -0.03, -1.31134e-09, 0, -1.31134e-09, 0.03, -0.03, 1.31134e-09, 5.73206e-17, 0, 0, 0)
 texture_filter = 0
 texture = ExtResource("2_k2mbp")
