@@ -1,12 +1,14 @@
-[gd_scene load_steps=80 format=3 uid="uid://djr66pvfmqq7k"]
+[gd_scene load_steps=84 format=3 uid="uid://djr66pvfmqq7k"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_i28t0"]
 [ext_resource type="Texture2D" uid="uid://ddffootr8l1nr" path="res://Assets/JarAnimations/jar1.png" id="2_2byc2"]
+[ext_resource type="Texture2D" uid="uid://d72nhw6hbqt2" path="res://Assets/walls.png" id="2_bj7cn"]
 [ext_resource type="Texture2D" uid="uid://clmk48qnybnue" path="res://Assets/floor.png" id="2_kp735"]
 [ext_resource type="Texture2D" uid="uid://faehyytmtc2q" path="res://Assets/JarAnimations/jar2.png" id="2_xqgnu"]
 [ext_resource type="Script" path="res://Scripts/sinwave.gd" id="3_438ew"]
 [ext_resource type="Texture2D" uid="uid://byxlsfs7kyuma" path="res://Assets/GoopyGoober.png" id="3_mu8wb"]
 [ext_resource type="Texture2D" uid="uid://cc4b22gsb4uat" path="res://Assets/JarAnimations/jar3.png" id="3_n15i3"]
+[ext_resource type="Texture2D" uid="uid://5uds5fhuvt23" path="res://Assets/d o o r/door1.png" id="3_ydk4q"]
 [ext_resource type="Texture2D" uid="uid://ba7xs6utq4bk5" path="res://Assets/JarAnimations/jar4.png" id="4_1wmgm"]
 [ext_resource type="Texture2D" uid="uid://c0xis0qqfl6l4" path="res://Assets/JarAnimations/jar5.png" id="5_fduop"]
 [ext_resource type="Script" path="res://Scripts/2Dplayer.gd" id="8_7r8i7"]
@@ -29,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://cqxsixhv7tq2x" path="res://Assets/barholderplaceholder.png" id="17_66xvd"]
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="18_o3lnb"]
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="19_5fxju"]
+[ext_resource type="AudioStream" uid="uid://jpgmsx2m586u" path="res://Assets/sounds/hurt.wav" id="19_h0n22"]
 [ext_resource type="Script" path="res://Scripts/armSpecial.gd" id="23_tp86a"]
 [ext_resource type="NoiseTexture3D" path="res://Assets/arm_noise.tres" id="24_bw3yd"]
 [ext_resource type="PackedScene" path="res://Scenes/tent.tscn" id="25_s54fk"]
@@ -54,22 +57,14 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 1.65
 
-[sub_resource type="Gradient" id="Gradient_8fsq7"]
-offsets = PackedFloat32Array(0, 0.785714)
-colors = PackedColorArray(0.155035, 0.181512, 0.194098, 1, 0.697173, 0.602875, 0.735926, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4pdg3"]
-gradient = SubResource("Gradient_8fsq7")
-width = 1000
-height = 1000
-fill = 1
-fill_from = Vector2(0.563158, 0.594737)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u8g2"]
-albedo_texture = SubResource("GradientTexture2D_4pdg3")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1b3p"]
+albedo_texture = ExtResource("3_ydk4q")
+uv1_scale = Vector3(1.63, 1.63, 1.63)
+uv1_offset = Vector3(-0.425, 1.01, 0)
+texture_filter = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_50via"]
-material = SubResource("StandardMaterial3D_4u8g2")
+material = SubResource("StandardMaterial3D_c1b3p")
 size = Vector3(100, 1, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8lc6p"]
@@ -399,6 +394,18 @@ tracks/8/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 1.60768)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MainAnimation/AudioStreamPlayer3D:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_iocm8"]
 resource_name = "Start"
@@ -544,6 +551,18 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.55278), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.76282), Vector3(0, 0, 1.55278)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MainAnimation/AudioStreamPlayer3D:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(3.03333, 3.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt5jo"]
@@ -792,17 +811,22 @@ _data = {
 "start": SubResource("Animation_jv3pw")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jq7v"]
+albedo_texture = ExtResource("2_bj7cn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohif5"]
+albedo_texture = ExtResource("2_bj7cn")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a8pd6"]
+material = SubResource("StandardMaterial3D_ohif5")
+size = Vector2(200, 250)
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_i28t0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ae8ic")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment"]
-transform = Transform3D(3.46752, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 36.9947, 0, -16.2752)
-layers = 3
-mesh = SubResource("BoxMesh_50via")
-skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldEnvironment"]
 transform = Transform3D(-1.55553e-08, -1, 2.19162e-08, 0, -4.37114e-08, -0.501384, 0.355864, -4.37114e-08, 9.57988e-16, 176.543, 26.5303, -16.2752)
@@ -811,7 +835,7 @@ mesh = SubResource("BoxMesh_50via")
 skeleton = NodePath("../../..")
 
 [node name="Table" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.01259, 0.00358505, -0.0021301, -0.010801, 0.999994, -9.64943e-05, 0.00641608, 0.000104132, 0.999998, 24.7818, -2.41178, 0)
+transform = Transform3D(3.01262, 0, 0, 0, 1, 0, 0, 0, 1, 24.7818, -2.41178, 0)
 mesh = SubResource("BoxMesh_gi7bd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Table"]
@@ -829,6 +853,28 @@ mesh = SubResource("BoxMesh_gi7bd")
 collision_layer = 129
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Table2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87506, 1.17874, -1019.9)
+shape = SubResource("BoxShape3D_2m3kh")
+
+[node name="Table3" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.01262, 0, 0, 0, 0.102758, -0.994706, 0, 0.994706, 0.102758, 24.7818, -2.5103, -59.8986)
+mesh = SubResource("BoxMesh_gi7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Table3"]
+collision_layer = 129
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87506, 1.17874, -1019.9)
+shape = SubResource("BoxShape3D_2m3kh")
+
+[node name="Table4" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.01262, 0, 0, 0, 0.102758, -0.994706, 0, 0.994706, 0.102758, 123.629, -2.53287, -60.1171)
+mesh = SubResource("BoxMesh_gi7bd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Table4"]
+collision_layer = 129
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table4/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87506, 1.17874, -1019.9)
 shape = SubResource("BoxShape3D_2m3kh")
 
@@ -898,7 +944,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.218
 shape = SubResource("BoxShape3D_15rcw")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Jar/Jar"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.21841, -0.424376, 0.50293)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.21841, 0.00175381, 0.50293)
 shape = SubResource("BoxShape3D_15rcw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Jar"]
@@ -1000,6 +1046,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.848, 1.52306, 1.57504)
 transform = Transform3D(-0.0265961, -0.720755, 0, 0.720755, -0.0265961, 0, 0, 0, 0.721245, -20.7154, -9, 0)
 texture = ExtResource("16_5pvqf")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainAnimation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.3205, 0, 0)
+stream = ExtResource("19_h0n22")
+volume_db = 5.0
+
 [node name="2DPlayer" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(1.59107, 0, 0, 0, 1.59107, 0, 0, 0, 1.59107, 0.0787538, 1.90514, 0.900107)
 collision_layer = 3
@@ -1010,7 +1061,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_0kq8h")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="2DPlayer"]
-transform = Transform3D(2.33079, 0, 0, 0, 2.33079, 0, 0, 0, 2.33079, 0, 0.039595, 0)
+transform = Transform3D(0.137422, 0, 0, 0, 0.137422, 0, 0, 0, 0.137422, 0, 0.039595, 0)
 billboard = 1
 texture_filter = 0
 render_priority = 6
@@ -1200,7 +1251,7 @@ curve = SubResource("Curve3D_1d7jp")
 transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369302, 0.992936, -0.112409, 0.999008, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
 
 [node name="PathFollow3D4" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0264826, -0.0902007, -0.995537, 0.0372347, 0.995265, -0.089189, 0.998911, -0.0347074, 0.0297177, 1.07728, 0.171954, -0.0238061)
+transform = Transform3D(0.0264826, -0.0902006, -0.995537, 0.0372346, 0.995264, -0.089189, 0.99891, -0.0347074, 0.0297177, 1.07728, 0.171954, -0.0238061)
 progress = 1.0954
 
 [node name="PathFollow3D5" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1212,27 +1263,27 @@ transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0298163, -0.0608969, -0.997676, 0.0374861, 0.997471, -0.0597659, 0.998836, -0.035617, 0.0320247, 1.60607, 0.211318, -0.0402237)
+transform = Transform3D(0.0298162, -0.0608968, -0.997675, 0.037486, 0.99747, -0.0597658, 0.998834, -0.035617, 0.0320246, 1.60607, 0.211318, -0.0402237)
 progress = 1.62546
 
 [node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998446, -0.0403407, 0.998772, -0.0362507, 0.0332868, 1.96108, 0.229167, -0.0518421)
+transform = Transform3D(0.0317739, -0.0415424, -0.99861, 0.0375845, 0.998446, -0.0403407, 0.998771, -0.0362507, 0.0332869, 1.96108, 0.229167, -0.0518421)
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333442, -0.0249416, -0.999108, 0.037635, 0.998979, -0.0236827, 0.998719, -0.036812, 0.0342496, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333442, -0.0249416, -0.999107, 0.0376349, 0.998979, -0.0236827, 0.998718, -0.0368121, 0.0342496, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350355, -0.00607724, -0.999342, 0.0376592, 0.999243, -0.00475652, 0.99866, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350354, -0.00607723, -0.999341, 0.0376591, 0.999242, -0.00475651, 0.998657, -0.0374679, 0.0352388, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0369364, 0.0159895, -0.999169, 0.0376472, 0.999106, 0.0173806, 0.998588, -0.0382581, 0.0363026, 2.80966, 0.240759, -0.0813591)
+transform = Transform3D(0.0369363, 0.0159895, -0.999169, 0.0376471, 0.999105, 0.0173806, 0.998587, -0.0382581, 0.0363026, 2.80966, 0.240759, -0.0813591)
 progress = 2.82973
 
 [node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0405576, 0.0599332, -0.997353, 0.037505, 0.99737, 0.0614605, 0.998459, -0.0398986, 0.0382041, 3.22756, 0.224939, -0.0969304)
+transform = Transform3D(0.0405576, 0.0599332, -0.997352, 0.037505, 0.99737, 0.0614604, 0.998459, -0.0398986, 0.038204, 3.22756, 0.224939, -0.0969304)
 progress = 3.24778
 
 [node name="PathFollow3D17" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1244,15 +1295,15 @@ transform = Transform3D(0.0582583, 0.287234, -0.956063, 0.0343419, 0.956537, 0.2
 progress = 4.08289
 
 [node name="PathFollow3D19" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0947783, 0.768253, -0.633045, 0.00996268, 0.635137, 0.7723, 0.99543, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
+transform = Transform3D(0.0947782, 0.768253, -0.633045, 0.00996266, 0.635137, 0.7723, 0.995429, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
 progress = 4.43262
 
 [node name="PathFollow3D8" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123722, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
+transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123723, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
 progress = 0.624339
 
 [node name="PathFollow3D9" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362701, 0.988434, -0.147136, 0.999141, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
+transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362701, 0.988434, -0.147136, 0.99914, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
 progress = 0.424082
 
 [node name="PathFollow3D10" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1330,7 +1381,7 @@ curve = SubResource("Curve3D_my26f")
 transform = Transform3D(0.0234823, -0.113316, -0.993248, 0.0369302, 0.992936, -0.112409, 0.999008, -0.0340422, 0.0275023, 0.737544, 0.137731, -0.0139993)
 
 [node name="PathFollow3D4" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0264827, -0.0902008, -0.995537, 0.0372347, 0.995266, -0.089189, 0.998912, -0.0347074, 0.0297177, 1.07728, 0.171954, -0.0238061)
+transform = Transform3D(0.0264826, -0.0902007, -0.995537, 0.0372347, 0.995265, -0.089189, 0.998911, -0.0347074, 0.0297177, 1.07728, 0.171954, -0.0238061)
 progress = 1.0954
 
 [node name="PathFollow3D5" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1342,27 +1393,27 @@ transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0298163, -0.0608969, -0.997677, 0.0374861, 0.997472, -0.0597659, 0.998836, -0.035617, 0.0320247, 1.60607, 0.211318, -0.0402237)
+transform = Transform3D(0.0298162, -0.0608969, -0.997676, 0.037486, 0.997471, -0.0597659, 0.998834, -0.035617, 0.0320247, 1.60607, 0.211318, -0.0402237)
 progress = 1.62546
 
 [node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998446, -0.0403407, 0.998773, -0.0362507, 0.0332868, 1.96108, 0.229167, -0.0518421)
+transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375845, 0.998446, -0.0403407, 0.998772, -0.0362507, 0.0332869, 1.96108, 0.229167, -0.0518421)
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0.0236828, 0.99872, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333442, -0.0249416, -0.999108, 0.037635, 0.998979, -0.0236827, 0.998719, -0.0368121, 0.0342496, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350355, -0.00607725, -0.999343, 0.0376592, 0.999244, -0.00475652, 0.99866, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350354, -0.00607724, -0.999342, 0.0376591, 0.999243, -0.00475652, 0.998657, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0369364, 0.0159895, -0.999169, 0.0376472, 0.999107, 0.0173806, 0.998589, -0.0382582, 0.0363026, 2.80966, 0.240759, -0.0813591)
+transform = Transform3D(0.0369363, 0.0159895, -0.999169, 0.0376471, 0.999106, 0.0173806, 0.998587, -0.0382581, 0.0363026, 2.80966, 0.240759, -0.0813591)
 progress = 2.82973
 
 [node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0405576, 0.0599332, -0.997354, 0.037505, 0.99737, 0.0614605, 0.998459, -0.0398986, 0.0382041, 3.22756, 0.224939, -0.0969304)
+transform = Transform3D(0.0405576, 0.0599332, -0.997353, 0.037505, 0.99737, 0.0614605, 0.998459, -0.0398986, 0.0382041, 3.22756, 0.224939, -0.0969304)
 progress = 3.24778
 
 [node name="PathFollow3D17" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1374,15 +1425,15 @@ transform = Transform3D(0.0582583, 0.287234, -0.956063, 0.0343419, 0.956537, 0.2
 progress = 4.08289
 
 [node name="PathFollow3D19" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0947784, 0.768253, -0.633045, 0.00996269, 0.635137, 0.7723, 0.995431, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
+transform = Transform3D(0.0947783, 0.768253, -0.633045, 0.00996267, 0.635137, 0.7723, 0.99543, -0.0795047, 0.0525449, 4.35439, -0.0618767, -0.148745)
 progress = 4.43262
 
 [node name="PathFollow3D8" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123722, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
+transform = Transform3D(0.0219043, -0.124576, -0.991935, 0.0367425, 0.991604, -0.123723, 0.999055, -0.0337372, 0.0262984, 0.608655, 0.122444, -0.0105)
 progress = 0.624339
 
 [node name="PathFollow3D9" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362702, 0.988434, -0.147136, 0.999142, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
+transform = Transform3D(0.0184538, -0.147873, -0.988799, 0.0362701, 0.988434, -0.147136, 0.999141, -0.0331503, 0.023604, 0.410543, 0.09558, -0.00547851)
 progress = 0.424082
 
 [node name="PathFollow3D10" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1439,7 +1490,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6937, 11.2782, 0)
 
 [node name="Label3D2" type="Label3D" parent="Credits"]
 transform = Transform3D(4.49337, -0.919496, 0, 0.919496, 4.49337, 0, 0, 0, 4.58648, 64.2081, -3.50865, 0)
-text = "Music and sounds by Camrynnr"
+text = "Music by Cammmrynn"
 
 [node name="Label3D3" type="Label3D" parent="Credits"]
 transform = Transform3D(4.35142, 1.44947, 0, -1.44947, 4.35142, 0, 0, 0, 4.58648, 94.6211, -3.87496, 0)
@@ -1448,6 +1499,13 @@ text = "Programming by Aria, Alex the slave, and Phoenix"
 [node name="Label3D4" type="Label3D" parent="Credits"]
 transform = Transform3D(4.58634, 0.0361021, 0, -0.0361021, 4.58634, 0, 0, 0, 4.58648, 136.166, -6.80398, 0)
 text = "Art by Rowan and Aria"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.74129, 0, 0, 0, -2.19506e-08, -0.502171, 0, 0.502171, -2.19506e-08, 36.9947, 0, -16.2752)
+layers = 3
+material_override = SubResource("StandardMaterial3D_3jq7v")
+mesh = SubResource("PlaneMesh_a8pd6")
+skeleton = NodePath("../..")
 
 [connection signal="animation_finished" from="MainAnimation" to="." method="start_level" unbinds=1]
 [connection signal="body_entered" from="MainAnimation/DecoyBoss/Area3D" to="." method="start_anim" unbinds=1]

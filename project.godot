@@ -34,6 +34,10 @@ project/assembly_name="Haustoria"
 player=""
 hand=""
 
+[gui]
+
+theme/custom_font="res://Assets/MetalMania-Regular.ttf"
+
 [input]
 
 jump={

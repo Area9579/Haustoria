@@ -26,8 +26,9 @@ var cursor_closed = load("res://Assets/cursor_closed.png")
 func _physics_process(delta: float) -> void:
 	if !attacking:
 		$AnchorPoint2/Marker3D.global_position = global_position
+		$Sprite3D.position = Vector3(0,.123,0)
 	else:
-		pass
+		$Sprite3D.position = Vector3(randf_range(-.1,.1),.123,randf_range(-.1,.1))
 	$Limbs.rotation.y = getDirectionVector().angle()
 	
 	if frozen: return #dont move or anything while in the attack animation

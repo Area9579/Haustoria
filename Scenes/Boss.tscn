@@ -13,13 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://bb7v7b77ycmve" path="res://Assets/feet/image.png" id="7_mgmcy"]
 [ext_resource type="Texture2D" uid="uid://cq16b7ippomii" path="res://Assets/hand/IMG_0048.png" id="8_5nv0t"]
 [ext_resource type="Texture2D" uid="uid://dxso5nx45l2si" path="res://Assets/hand/IMG_0049.png" id="9_r6gr2"]
-[ext_resource type="Texture2D" uid="uid://dd0geblwnhfxf" path="res://Assets/handstun.png" id="9_vpndc"]
 [ext_resource type="PackedScene" uid="uid://dtbwv1aqnter3" path="res://Assets/sounds/stomp.tscn" id="10_aidwa"]
 [ext_resource type="Script" path="res://Scripts/boss_hand_hit_box.gd" id="10_ekbqg"]
 [ext_resource type="Texture2D" uid="uid://bhen5seai7r4m" path="res://Assets/hand/IMG_0050.png" id="10_p7haa"]
 [ext_resource type="Texture2D" uid="uid://dhb3y04fdw8x6" path="res://Assets/hand/IMG_0051.png" id="11_5syif"]
 [ext_resource type="AudioStream" uid="uid://ce5kklje7enx0" path="res://Assets/sounds/Stomp.wav" id="11_mw28p"]
 [ext_resource type="Script" path="res://Scripts/DirectionalSprite.gd" id="13_usk8e"]
+[ext_resource type="Texture2D" uid="uid://buwpa4ojax53l" path="res://Assets/hand/red.png" id="17_uwscd"]
 [ext_resource type="PackedScene" uid="uid://c17ntp2foggih" path="res://Scenes/loop_audio.tscn" id="21_7k4n5"]
 [ext_resource type="AudioStream" uid="uid://dq2sn3q87m4g4" path="res://Assets/sounds/bossslide.wav" id="22_cij0l"]
 [ext_resource type="AudioStream" uid="uid://cscq8y6kfqsa6" path="res://Assets/sounds/throw.wav" id="23_c4670"]
@@ -283,7 +283,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_vpndc")
+"texture": ExtResource("11_5syif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uwscd")
 }],
 "loop": true,
 "name": &"stunned",
@@ -308,7 +311,7 @@ collision_mask = 128
 input_ray_pickable = false
 script = ExtResource("1_vgxb7")
 color = Color(1, 1, 1, 1)
-final_color = Color(0.131618, 0.228768, 0.0733036, 1)
+final_color = Color(0.0892091, 0.164268, 0.0441577, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -462,7 +465,6 @@ transform = Transform3D(0.580084, 0, 0, 0, 0.580084, 0, 0, 0, 0.580084, 0, 3.803
 billboard = 2
 render_priority = 10
 sprite_frames = SubResource("SpriteFrames_ogh61")
-animation = &"stunned"
 script = ExtResource("13_usk8e")
 
 [node name="DropShadow" parent="Hand/Sprite3D" instance=ExtResource("5_cax5e")]

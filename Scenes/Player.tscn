@@ -1,16 +1,14 @@
-[gd_scene load_steps=41 format=3 uid="uid://skk7130cpcoh"]
+[gd_scene load_steps=39 format=3 uid="uid://skk7130cpcoh"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_05xm5"]
-[ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="2_gel2l"]
 [ext_resource type="Texture2D" uid="uid://byxlsfs7kyuma" path="res://Assets/GoopyGoober.png" id="2_j5ysu"]
-[ext_resource type="Texture2D" uid="uid://dx468ym40bf1v" path="res://Assets/PlayerAnimations/attack/GoopyGoober2.png" id="3_dq4fj"]
+[ext_resource type="Texture2D" uid="uid://cxxkuj1fw0a7r" path="res://Assets/bush.png" id="3_2xmte"]
 [ext_resource type="Script" path="res://Scripts/player_camera.gd" id="3_iy2vu"]
-[ext_resource type="Texture2D" uid="uid://c4at6q6ccw7nr" path="res://Assets/PlayerAnimations/attack/GoopyGoober3.png" id="4_3fuqi"]
 [ext_resource type="Texture2D" uid="uid://cqxsixhv7tq2x" path="res://Assets/barholderplaceholder.png" id="4_ysrak"]
-[ext_resource type="Texture2D" uid="uid://ccm12uv71w2o3" path="res://Assets/PlayerAnimations/attack/GoopyGoober4.png" id="5_ihslg"]
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="5_x6hvr"]
-[ext_resource type="Texture2D" uid="uid://bqk50iwcx2kjs" path="res://Assets/PlayerAnimations/attack/GoopyGoober5.png" id="6_k0i1t"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="9_t2dxl"]
+[ext_resource type="Texture2D" uid="uid://lq5aelvvjewp" path="res://Assets/hand/skill.png" id="10_8edlv"]
+[ext_resource type="Texture2D" uid="uid://dx1lag2h25iyc" path="res://Assets/flower.png" id="11_8auv6"]
 [ext_resource type="PackedScene" uid="uid://c7x20hq3ju2re" path="res://Scenes/arm.tscn" id="12_ltyuy"]
 [ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="13_12324"]
 [ext_resource type="Texture2D" uid="uid://b5ae42smc721h" path="res://Assets/slimeblob.png" id="13_r464h"]
@@ -39,19 +37,19 @@ height = 0.941026
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gel2l")
+"texture": ExtResource("3_2xmte")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_dq4fj")
+"texture": ExtResource("3_2xmte")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_3fuqi")
+"texture": ExtResource("3_2xmte")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ihslg")
+"texture": ExtResource("3_2xmte")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_k0i1t")
+"texture": ExtResource("3_2xmte")
 }],
 "loop": false,
 "name": &"Attack",
@@ -174,19 +172,19 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../Path2D/PathFollow2D/Sprite2D:modulate")
+tracks/8/path = NodePath("../Path2D/PathFollow2D/Sprite2D:self_modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gfg3g"]
@@ -456,7 +454,7 @@ billboard = 1
 texture_filter = 0
 render_priority = 6
 sprite_frames = SubResource("SpriteFrames_lmg34")
-animation = &"Idle"
+animation = &"Attack"
 
 [node name="Flower" parent="Sprite3D" instance=ExtResource("13_12324")]
 transform = Transform3D(-0.428824, 0, 0.0135663, 0, 0.429039, 0, -0.0135663, 0, -0.428824, 0.0188493, -0.0382887, -0.180206)
@@ -515,6 +513,13 @@ scale = Vector2(2.17141, 2.17141)
 text = "boss health
 "
 
+[node name="Sprite2D2" type="Sprite2D" parent="UI/BossHealth"]
+texture_filter = 1
+position = Vector2(157.758, 622.117)
+scale = Vector2(4.40795, 1.81679)
+texture = ExtResource("10_8edlv")
+flip_h = true
+
 [node name="PlayerHealth" type="TextureProgressBar" parent="UI"]
 layout_mode = 0
 offset_left = 16.0
@@ -537,6 +542,11 @@ offset_bottom = 657.791
 scale = Vector2(2.17141, 2.17141)
 text = "boss health
 "
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/PlayerHealth"]
+position = Vector2(157.758, 628.257)
+scale = Vector2(0.406881, 0.16982)
+texture = ExtResource("11_8auv6")
 
 [node name="PlayerHealthw" type="TextureProgressBar" parent="UI"]
 visible = false
@@ -579,6 +589,7 @@ offset_bottom = 260.0
 layout_mode = 2
 size_flags_vertical = 3
 text = "Liquids Absorbed"
+scroll_active = false
 
 [node name="Panel" type="Panel" parent="UI/Control/VBoxContainer/RichTextLabel"]
 z_index = -1
@@ -611,11 +622,13 @@ position = Vector2(53, 93)
 rotation = -0.146941
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Path2D/PathFollow2D"]
+self_modulate = Color(1, 1, 1, 0)
 z_index = -5
 scale = Vector2(0.270455, 0.270455)
 texture = ExtResource("13_r464h")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="UI/Path2D/PathFollow2D/Sprite2D"]
+emitting = false
 amount = 15
 texture = ExtResource("13_r464h")
 gravity = Vector2(0, -100)
@@ -623,6 +636,8 @@ scale_amount_min = 0.1
 scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_1brye")
 color_ramp = SubResource("Gradient_keban")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="UI"]
 
 [node name="UI2" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001

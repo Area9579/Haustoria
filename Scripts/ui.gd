@@ -28,6 +28,7 @@ func take_damage_real():
 		#boss starts shaking
 		#climb up arm
 		#fade out
+		$"../Sprite3D".render_priority = 100
 		get_node("../../Boss").die()
 		get_parent().killed()
 		await get_tree().create_timer(7.0).timeout

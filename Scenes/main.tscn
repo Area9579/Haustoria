@@ -507,6 +507,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 1.16462, 30)
 [node name="Trap" parent="." instance=ExtResource("8_l15q6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.488, -0.374426, -0.53276)
 
+[node name="Trap3" parent="." instance=ExtResource("8_l15q6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5494, -0.374426, 1.08509)
+
 [node name="Trap2" parent="." instance=ExtResource("8_l15q6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1165, -0.5734, -29.6861)
 

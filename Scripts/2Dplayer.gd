@@ -34,7 +34,8 @@ var launchVelocity: Vector3
 
 var state_grabbed = false
 var syringe_hold = false
-
+var cursor_open = load("res://Assets/CursorWOW_optimized.png"	)
+var cursor_closed = load("res://Assets/cursor_closed.png")
 func grab_syringe():
 	syringe_hold = !syringe_hold
 	
@@ -62,7 +63,9 @@ func _physics_process(delta: float) -> void:
 		dragSelf(delta)
 		global_position.y = lerp(global_position.y, 1.0, delta * 6)
 		$Marker3D.global_position = oldPlayerPosition
+		Input.set_custom_mouse_cursor(cursor_closed)
 	else:
+		Input.set_custom_mouse_cursor(cursor_open)
 		velocity += get_gravity() * delta * 4
 		$Marker3D.global_position = lerp($Marker3D.global_position, global_position, delta * 12)
 		

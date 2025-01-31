@@ -63,34 +63,22 @@ shape = SubResource("BoxShape3D_geon1")
 transform = Transform3D(0.450865, 0, 0, 0, 0.450865, 0, 0, 0, 0.450865, 0, 0, 0)
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_vlrm3")
-animation = &"close"
+animation = &"open"
 autoplay = "open"
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 12.0
-one_shot = true
-
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.61151, 0.553958, -0.627263)
+transform = Transform3D(1.37078, 0, 0, 0, 1.37078, 0, 0, 0, 1.37078, -0.61151, 0.553958, -0.627263)
 billboard = 1
-text = "Make the boss' hand hit this
-
-then go in for the kill >:)"
+text = "Hit em when hes stunned >:)"
 script = ExtResource("12_5e148")
 scale_move = 0.2
 
 [node name="Timer" type="Timer" parent="Label3D"]
-wait_time = 25.0
-
-[node name="Label3D2" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33389, 1.1132, -0.210759)
-billboard = 1
-text = "Reset in:"
+wait_time = 12.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_c1g5p")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="frame_changed" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_frame_changed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Label3D/Timer" to="Label3D" method="hide"]

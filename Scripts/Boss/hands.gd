@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 				# reset hand position
 				self.position = lerp(self.position, boss.position, 1)
 		AttackPhase.second:
+			
 			# slam hand down and get player position
 			swipe_target_position = (attack_target.position - self.position) * Vector3(5, 0, 5)
 			$Sprite3D.change_direction(Vector2(swipe_target_position.x, -swipe_target_position.z))
@@ -76,6 +77,7 @@ func _on_attack_timer_timeout() -> void:
 				attack_phase = AttackPhase.second
 
 			AttackPhase.second:
+				$Sprite3D.play("default")
 				# hand pauses for player to dodge
 				attack_timer.start(0.5)
 				look_at(attack_target.global_position)
@@ -99,10 +101,10 @@ func _on_attack_timer_timeout() -> void:
 				pass
 		
 func reset():
-	$Sprite3D.play("default")
-	#animation_player.play('hand_lift')
+	
+	animation_player.play('default')
 	attack_timer.stop()
-	attack_phase = AttackPhase.first
+	attack_phase = AttackPhase.fifth
 	attack_timer.start(3)
 	attacking = true
 	$Sprite3D/BossHandHitBox/CollisionShape3D.disabled = false

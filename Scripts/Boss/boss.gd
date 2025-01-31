@@ -34,7 +34,6 @@ func _ready():
 	feet.attack_target = movement_target # pass through target node to child
 	hand.attack_target = movement_target # pass through target node to child
 	navigation_actor_setup.call_deferred() # call this function at end of other _ready() functions
-	
 
 func _physics_process(delta):
 	# stunned state while timer running
@@ -48,7 +47,7 @@ func _physics_process(delta):
 	
 	if stun_timer.time_left > 0:
 		state = States.stunned
-
+	
 	
 	# simple state machine just to keep things a little cleaner
 	match state:
@@ -64,10 +63,13 @@ func _physics_process(delta):
 			velocity = Vector3(0, 0, 0)
 			hand.attacking = false
 			feet.stunned = true
+			$Hand/Sprite3D.position.x += randf_range(-.01,.01)
+			$Feet/Right/Sprite3D.position.x += randf_range(-.01,.01)
+			$Feet/Left/Sprite3D.position.x += randf_range(-.01,.01)
 		States.hand_attacking:
 			navigation_physics_procces()
 			hand.attacking = true
-			
+			pass
 			
 	move_and_slide()
 
@@ -115,13 +117,15 @@ func _on_hand_proximity_body_exited(body: Node3D) -> void:
 
 # Detecting traps
 func _on_foot_area_entered(area: Area3D) -> void:
-	stun_timer.start()
+	stun_timer.start(8.0)
 
 func stun():
-	stun_timer.start()
+	stun_timer.start(8.0)
 	feet.stun()
+	
 
 func _on_stun_timer_timeout() -> void:
+	
 	state = States.walking
 	hand.attacking = false
 	feet.stunned = false
@@ -144,8 +148,10 @@ func _on_hand_attack_body_entered(body: Node3D) -> void:
 @export var color : Color
 @export var final_color : Color
 func hurt():
-	_on_stun_timer_timeout()
-	color = lerp(color, final_color, .1)
+	await get_tree().create_timer(1.0).timeout
+	stun_timer.stop()
+	stun_timer.start(.01)
+	color = lerp(color, final_color, .4)
 	$Hand/Sprite3D.modulate = color
 	$Feet/Right/Sprite3D.modulate = color
 	$Feet/Left/Sprite3D.modulate = color
