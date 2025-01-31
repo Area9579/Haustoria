@@ -9,7 +9,9 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group('hand') and animated_sprite_3d.animation != 'close':
 		body.stun()
 		animated_sprite_3d.play('close')
-	
+
+func animation_play():
+	animated_sprite_3d.play('close')
 
 
 func _on_timer_timeout() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://djr66pvfmqq7k"]
+[gd_scene load_steps=78 format=3 uid="uid://djr66pvfmqq7k"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_i28t0"]
 [ext_resource type="Texture2D" uid="uid://ddffootr8l1nr" path="res://Assets/JarAnimations/jar1.png" id="2_2byc2"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://ccm12uv71w2o3" path="res://Assets/PlayerAnimations/attack/GoopyGoober4.png" id="12_k0s7g"]
 [ext_resource type="Texture2D" uid="uid://bqk50iwcx2kjs" path="res://Assets/PlayerAnimations/attack/GoopyGoober5.png" id="13_mgauf"]
 [ext_resource type="PackedScene" uid="uid://c776xvpr2thv3" path="res://Scenes/flower.tscn" id="15_tluda"]
+[ext_resource type="Texture2D" uid="uid://dhb3y04fdw8x6" path="res://Assets/hand/IMG_0051.png" id="16_5pvqf"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="16_ecw48"]
 [ext_resource type="Texture2D" uid="uid://cqxsixhv7tq2x" path="res://Assets/barholderplaceholder.png" id="17_66xvd"]
 [ext_resource type="Texture2D" uid="uid://dj633coyrkljw" path="res://Assets/barplaceholder.png" id="18_o3lnb"]
@@ -31,6 +32,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/tent.tscn" id="25_s54fk"]
 [ext_resource type="PackedScene" uid="uid://ne7cdhep7f61" path="res://Scenes/tentsolid.tscn" id="26_a5hah"]
 [ext_resource type="Script" path="res://Scenes/camera_3dmenu.gd" id="30_yotbj"]
+[ext_resource type="PackedScene" uid="uid://dj70pfgnjq5q2" path="res://Scenes/level building/trap.tscn" id="32_a5ssa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gor8"]
 sky_top_color = Color(0.285814, 0.440282, 0.73271, 1)
@@ -335,6 +337,42 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector3(52.2117, 1.44233, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainAnimation/Trap/Sprite3D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-20.7154, -9, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainAnimation/Trap/Sprite3D:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_5pvqf")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MainAnimation/Trap/Sprite3D:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 1.60768)]
+}
 
 [sub_resource type="Animation" id="Animation_iocm8"]
 resource_name = "Start"
@@ -431,6 +469,56 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(52.2117, 1.44233, 0), Vector3(52.2117, 1.44233, 0), Vector3(52.2117, -7.4661, 0)]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainAnimation/Trap")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(10.2333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_play"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MainAnimation/Trap/Sprite3D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(8.53333, 8.56667, 10.2333),
+"transitions": PackedFloat32Array(1, 1.33187, 1),
+"update": 0,
+"values": [Vector3(-59.5081, -8.99979, 0), Vector3(-61.1072, 1.246, 0), Vector3(-6.09348, 1.24611, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MainAnimation/Trap/Sprite3D:texture")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(10.2333, 10.2667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("16_5pvqf"), ExtResource("12_0s6eu")]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MainAnimation/Trap/Sprite3D:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(10.2667, 10.3, 10.3333, 10.4, 10.4333, 10.4667, 10.5, 10.5333, 10.6, 10.6333, 10.6667, 10.7, 10.7333, 10.8, 10.8333, 10.8667, 10.9, 10.9333, 10.9667, 11.0333, 11.0667, 11.1333, 11.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.55278), Vector3(0, 0, 1.60768), Vector3(0, 0, 1.88075), Vector3(0, 0, 1.44676), Vector3(0, 0, 1.7503), Vector3(0, 0, 1.40974), Vector3(0, 0, 1.76282), Vector3(0, 0, 1.55278)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt5jo"]
 _data = {
@@ -440,6 +528,8 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7knul"]
 size = Vector3(4.3938, 3.24463, 3.88712)
+
+[sub_resource type="BoxMesh" id="BoxMesh_85rsj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gmgnb"]
 size = Vector3(1, 5.24597, 3.64374)
@@ -837,6 +927,10 @@ texture = ExtResource("11_jsjiu")
 [node name="Cutscene_Point" type="Marker3D" parent="MainAnimation/DecoyBoss/Hand"]
 transform = Transform3D(1, -9.84874e-08, -2.6077e-08, 4.02797e-08, 0.999999, -2.23517e-08, -1.37836e-07, 4.09782e-08, 1, 0.347799, -3.96235, 0.281794)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MainAnimation/DecoyBoss/Hand/Cutscene_Point"]
+transform = Transform3D(2.89978, 4.47035e-08, 0, 1.86265e-08, 2.89978, -1.49012e-08, 0, 0, 2.89978, 0, 0, 0)
+mesh = SubResource("BoxMesh_85rsj")
+
 [node name="Hand2" type="Sprite3D" parent="MainAnimation/DecoyBoss"]
 transform = Transform3D(0.544375, -0.119881, 0.0369862, 0.121464, 0.544846, -0.0217786, -0.0313991, 0.0292641, 0.556994, -2.14025, 18.9485, 1.14598)
 render_priority = 1
@@ -853,6 +947,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2117, 1.44233, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainAnimation/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998474, 0.386322)
 shape = SubResource("BoxShape3D_gmgnb")
+
+[node name="Trap" parent="MainAnimation" instance=ExtResource("32_a5ssa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.848, 1.52306, 1.57504)
+
+[node name="Sprite3D" type="Sprite3D" parent="MainAnimation/Trap"]
+transform = Transform3D(-0.0265926, -0.720755, 0, 0.720755, -0.0265926, 0, 0, 0, 0.721245, -20.7154, -9, 0)
+texture = ExtResource("16_5pvqf")
 
 [node name="2DPlayer" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(1.59107, 0, 0, 0, 1.59107, 0, 0, 0, 1.59107, 0.0787538, 1.90514, 0.900107)
@@ -1078,7 +1179,7 @@ transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350355, -0.00607725, -0.999343, 0.0376592, 0.999244, -0.00475652, 0.998661, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350355, -0.00607724, -0.999343, 0.0376592, 0.999244, -0.00475652, 0.998661, -0.037468, 0.0352388, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1196,7 +1297,7 @@ transform = Transform3D(0.0287947, -0.0703557, -0.997082, 0.03742, 0.996868, -0.
 progress = 1.44877
 
 [node name="PathFollow3D7" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0298163, -0.0608971, -0.997678, 0.0374861, 0.997474, -0.059766, 0.998837, -0.0356171, 0.0320247, 1.60607, 0.211318, -0.0402237)
+transform = Transform3D(0.0298163, -0.060897, -0.997678, 0.0374861, 0.997474, -0.059766, 0.998837, -0.0356171, 0.0320247, 1.60607, 0.211318, -0.0402237)
 progress = 1.62546
 
 [node name="PathFollow3D12" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1208,7 +1309,7 @@ transform = Transform3D(0.0333443, -0.0249416, -0.99911, 0.0376351, 0.998979, -0
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0350355, -0.00607725, -0.999344, 0.0376592, 0.999245, -0.00475653, 0.998661, -0.037468, 0.0352389, 2.52694, 0.242407, -0.0712428)
+transform = Transform3D(0.0350355, -0.00607725, -0.999344, 0.0376592, 0.999245, -0.00475652, 0.998661, -0.037468, 0.0352389, 2.52694, 0.242407, -0.0712428)
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm8/TitlerHolder" instance=ExtResource("26_a5hah")]
