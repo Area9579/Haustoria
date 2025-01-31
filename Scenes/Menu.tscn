@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://djr66pvfmqq7k"]
+[gd_scene load_steps=75 format=3 uid="uid://djr66pvfmqq7k"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_i28t0"]
 [ext_resource type="Texture2D" uid="uid://ddffootr8l1nr" path="res://Assets/JarAnimations/jar1.png" id="2_2byc2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ba7xs6utq4bk5" path="res://Assets/JarAnimations/jar4.png" id="4_1wmgm"]
 [ext_resource type="Texture2D" uid="uid://c0xis0qqfl6l4" path="res://Assets/JarAnimations/jar5.png" id="5_fduop"]
 [ext_resource type="Script" path="res://Scripts/2Dplayer.gd" id="8_7r8i7"]
+[ext_resource type="Texture2D" uid="uid://ck0n5xet51sfh" path="res://Assets/glassshard.png" id="9_3ixwi"]
 [ext_resource type="Texture2D" uid="uid://c2vk7i6n033pi" path="res://Assets/PlayerAnimations/attack/GoopyGoober1.png" id="9_5mcuo"]
 [ext_resource type="Texture2D" uid="uid://ueh2y5jtprdy" path="res://Assets/feet/image2.png" id="9_xc34x"]
 [ext_resource type="Texture2D" uid="uid://bgsykpdnc2pur" path="res://Assets/syringe.png" id="10_8isue"]
@@ -248,6 +249,17 @@ _data = {
 "hit": SubResource("Animation_ypdum"),
 "open": SubResource("Animation_27exy")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7av2"]
+transparency = 1
+albedo_color = Color(0.65098, 0.65098, 0.65098, 0.431373)
+albedo_texture = ExtResource("9_3ixwi")
+texture_filter = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ipbu7"]
+material = SubResource("StandardMaterial3D_h7av2")
+size = Vector2(0.5, 0.5)
+orientation = 2
 
 [sub_resource type="Animation" id="Animation_h86vx"]
 length = 0.001
@@ -778,6 +790,20 @@ libraries = {
 "": SubResource("AnimationLibrary_67trh")
 }
 
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Jar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.405178, 2.00149, 5.4153)
+emitting = false
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("PlaneMesh_ipbu7")
+emission_shape = 3
+emission_box_extents = Vector3(1.595, 3.07, 1)
+initial_velocity_min = 3.0
+initial_velocity_max = 12.0
+angle_min = -409.8
+angle_max = 468.2
+
 [node name="MainAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jt5jo")
@@ -860,6 +886,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="UI" type="Control" parent="2DPlayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1047,7 +1074,7 @@ transform = Transform3D(0.031774, -0.0415424, -0.99861, 0.0375846, 0.998446, -0.
 progress = 1.98081
 
 [node name="PathFollow3D13" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0.0236828, 0.99872, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
+transform = Transform3D(0.0333442, -0.0249416, -0.999109, 0.037635, 0.998979, -0.0236827, 0.99872, -0.036812, 0.0342497, 2.24394, 0.238291, -0.0614046)
 progress = 2.26379
 
 [node name="PathFollow3D14" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
@@ -1055,7 +1082,7 @@ transform = Transform3D(0.0350355, -0.00607725, -0.999343, 0.0376592, 0.999244, 
 progress = 2.54676
 
 [node name="PathFollow3D15" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]
-transform = Transform3D(0.0369365, 0.0159895, -0.999169, 0.0376473, 0.999107, 0.0173806, 0.998591, -0.0382582, 0.0363026, 2.80966, 0.240759, -0.0813591)
+transform = Transform3D(0.0369365, 0.0159895, -0.999169, 0.0376473, 0.999107, 0.0173806, 0.998591, -0.0382581, 0.0363026, 2.80966, 0.240759, -0.0813591)
 progress = 2.82973
 
 [node name="PathFollow3D16" parent="2DPlayer/Limbs/Arm7/TitlerHolder" instance=ExtResource("26_a5hah")]

@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 			jar.scale = Vector3.ONE * .6
 			$Jar/Jar.process_mode = Node.PROCESS_MODE_DISABLED
 			Director.shake_cam(Vector2(3,3) * .1)
+			$Jar/CPUParticles3D.emitting = true
 			
 			$Jar/LabelClick.freeze = false
 			$Jar/LabelClick.apply_impulse(Vector3(6,6,0))
