@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://fl224xwk37sl"]
+[gd_scene load_steps=47 format=3 uid="uid://fl224xwk37sl"]
 
 [ext_resource type="Script" path="res://Scripts/Boss/boss.gd" id="1_vgxb7"]
 [ext_resource type="Animation" uid="uid://eo1decu4btyf" path="res://Assets/Boss Animations/left_stomp.res" id="3_dkcie"]
@@ -14,9 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://cq16b7ippomii" path="res://Assets/hand/IMG_0048.png" id="8_5nv0t"]
 [ext_resource type="Texture2D" uid="uid://dxso5nx45l2si" path="res://Assets/hand/IMG_0049.png" id="9_r6gr2"]
 [ext_resource type="Texture2D" uid="uid://dd0geblwnhfxf" path="res://Assets/handstun.png" id="9_vpndc"]
+[ext_resource type="PackedScene" uid="uid://dtbwv1aqnter3" path="res://Assets/sounds/stomp.tscn" id="10_aidwa"]
 [ext_resource type="Script" path="res://Scripts/boss_hand_hit_box.gd" id="10_ekbqg"]
 [ext_resource type="Texture2D" uid="uid://bhen5seai7r4m" path="res://Assets/hand/IMG_0050.png" id="10_p7haa"]
 [ext_resource type="Texture2D" uid="uid://dhb3y04fdw8x6" path="res://Assets/hand/IMG_0051.png" id="11_5syif"]
+[ext_resource type="AudioStream" uid="uid://ce5kklje7enx0" path="res://Assets/sounds/Stomp.wav" id="11_mw28p"]
 [ext_resource type="Script" path="res://Scripts/DirectionalSprite.gd" id="13_usk8e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypvny"]
@@ -52,6 +54,18 @@ tracks/1/path = NodePath("Left/Hitbox/CollisionShape3D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Left/Stomp:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -117,6 +131,18 @@ tracks/1/path = NodePath("Hitbox/CollisionShape3D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stomp:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -283,6 +309,10 @@ collision_mask = 128
 input_ray_pickable = false
 gravity_scale = 0.0
 
+[node name="Stomp" parent="Feet/Left" instance=ExtResource("10_aidwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08708, 0, 0)
+stream = ExtResource("11_mw28p")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Feet/Left"]
 root_node = NodePath("../..")
 libraries = {
@@ -355,6 +385,9 @@ input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Right/Hitbox"]
 shape = SubResource("CylinderShape3D_tl6ao")
+
+[node name="Stomp" parent="Feet/Right" instance=ExtResource("10_aidwa")]
+stream = ExtResource("11_mw28p")
 
 [node name="Feet Bounds" type="Area3D" parent="Feet"]
 collision_layer = 0

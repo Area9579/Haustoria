@@ -157,7 +157,7 @@ func killed():
 	stunned = true
 
 func collect_item(poison_pickedup):
-	ui.attack_multiplier += 1
+	ui.attack_multiplier += .5
 	var text_new = RichTextLabel.new()
 	text_new.text = poison_pickedup
 	text_new.size_flags_vertical = Control.SIZE_EXPAND_FILL

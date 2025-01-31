@@ -7,6 +7,8 @@ var done = false
 
 signal shake
 
+func _ready() -> void:
+	Engine.max_fps = 60
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()

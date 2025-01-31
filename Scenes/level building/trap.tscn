@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj70pfgnjq5q2"]
+[gd_scene load_steps=12 format=3 uid="uid://dj70pfgnjq5q2"]
 
 [ext_resource type="Script" path="res://Scripts/trap.gd" id="1_giv3d"]
 [ext_resource type="Texture2D" uid="uid://bqivb1qljtnke" path="res://Assets/mousearm/close/mousearm1.png" id="1_syvkv"]
@@ -7,10 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://bafgwgysjkg40" path="res://Assets/mousearm/close/mousearm4.png" id="4_nhwg8"]
 [ext_resource type="Texture2D" uid="uid://vh0mfv2vn1fn" path="res://Assets/mousearm/close/mousearm5.png" id="6_5o32p"]
 [ext_resource type="Texture2D" uid="uid://dky22gbor3xhn" path="res://Assets/mousearm/close/mousearm6.png" id="7_6egjd"]
+[ext_resource type="AudioStream" uid="uid://buycis73m20qb" path="res://Assets/sounds/mousetrap.wav" id="9_c1g5p"]
 [ext_resource type="Script" path="res://Scripts/sinwave.gd" id="12_5e148"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_geon1"]
-size = Vector3(1.67419, 1, 2.3811)
+size = Vector3(2.64091, 1, 2)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vlrm3"]
 animations = [{
@@ -55,7 +56,7 @@ collision_mask = 2
 script = ExtResource("1_giv3d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194641, 0, 0.00354004)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.290778, 0, -0.18701)
 shape = SubResource("BoxShape3D_geon1")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
@@ -64,8 +65,6 @@ billboard = 1
 sprite_frames = SubResource("SpriteFrames_vlrm3")
 animation = &"close"
 autoplay = "open"
-frame = 5
-frame_progress = 1.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 12.0
@@ -88,6 +87,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33389, 1.1132, -0.210759)
 billboard = 1
 text = "Reset in:"
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_c1g5p")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="frame_changed" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_frame_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Label3D/Timer" to="Label3D" method="hide"]

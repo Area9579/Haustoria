@@ -692,5 +692,8 @@ mesh = SubResource("BoxMesh_an7aj")
 
 [node name="Stun" type="Timer" parent="."]
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
+
 [connection signal="timeout" from="SlimeCooldown" to="." method="_on_slime_cooldown_timeout"]
 [connection signal="timeout" from="Stun" to="." method="_on_stun_timeout"]
