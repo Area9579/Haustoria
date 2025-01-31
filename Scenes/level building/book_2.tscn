@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0uud21k7sg5f"]
+
+[ext_resource type="Texture2D" uid="uid://dy8hpq5pgtsb2" path="res://Assets/book2.png" id="1_xdxwt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kkbsu"]
+size = Vector3(7.385, 2.945, 1.265)
+
+[node name="book2" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.73, 0, 0, 0, 0.73, 0, 0, 0, 0.73, 0, 0, 0)
+billboard = 1
+render_priority = 7
+texture = ExtResource("1_xdxwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kkbsu")
