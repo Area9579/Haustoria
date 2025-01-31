@@ -17,7 +17,8 @@ func _process(delta: float) -> void:
 	player_health.value = round(player_health_total)
 	boss_health.value = round(boss_health_total)
 	
-
+func change_co(current_color):
+	$PlayerHealth.modulate = current_color
 func take_damage_real():
 	boss_health_total += (player_health_total * .1) * attack_multiplier
 	player_health_total -= player_health_total * .3

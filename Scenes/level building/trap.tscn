@@ -83,6 +83,11 @@ scale_move = 0.2
 [node name="Timer" type="Timer" parent="Label3D"]
 wait_time = 25.0
 
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33389, 1.1132, -0.210759)
+billboard = 1
+text = "Reset in:"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Label3D/Timer" to="Label3D" method="hide"]

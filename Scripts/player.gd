@@ -186,6 +186,9 @@ func hurt(direction : Vector3, amount):
 	ui.take_damage(amount)
 	state_grabbed = false
 	dashCooldown.stop()
+
+func change_co(current_color):
+	ui.change_co(current_color)
 	
 
 

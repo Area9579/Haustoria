@@ -518,6 +518,30 @@ offset_left = 16.0
 offset_top = 22.0
 offset_right = 316.0
 offset_bottom = 622.0
+scale = Vector2(0.21552, 0.488654)
+value = 20.0
+fill_mode = 3
+texture_over = ExtResource("4_ysrak")
+texture_progress = ExtResource("5_x6hvr")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/PlayerHealth"]
+visible = false
+layout_mode = 0
+offset_left = 23.1998
+offset_top = 607.791
+offset_right = 359.2
+offset_bottom = 657.791
+scale = Vector2(2.17141, 2.17141)
+text = "boss health
+"
+
+[node name="PlayerHealthw" type="TextureProgressBar" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 22.0
+offset_right = 316.0
+offset_bottom = 622.0
 scale = Vector2(0.22927, 0.519832)
 value = 90.0
 fill_mode = 3
@@ -525,7 +549,7 @@ texture_over = ExtResource("4_ysrak")
 texture_progress = ExtResource("5_x6hvr")
 tint_progress = Color(0.244776, 0.244776, 0.244776, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/PlayerHealth"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/PlayerHealthw"]
 visible = false
 layout_mode = 0
 offset_left = 39.255
@@ -584,7 +608,6 @@ position = Vector2(53, 93)
 rotation = -0.146941
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Path2D/PathFollow2D"]
-visible = false
 z_index = -5
 scale = Vector2(0.270455, 0.270455)
 texture = ExtResource("13_r464h")

@@ -69,7 +69,7 @@ transform = Transform3D(0.263429, 0, 0, 0, 0.263429, 0, 0, 0, 0.263429, 0, -0.26
 billboard = 1
 render_priority = 12
 sprite_frames = SubResource("SpriteFrames_amppj")
-animation = &"Sulfiric Acid"
+animation = &"Bleach"
 
 [node name="DropShadow" type="Decal" parent="AnimatedSprite3D"]
 transform = Transform3D(0.957738, 0, 0, 0, 0.957738, 0, 0, 0, 0.957738, -0.00148118, -7.78543, 2.60186)

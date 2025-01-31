@@ -8,9 +8,14 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('Left Click'):
 		jar.play(str(int(str(jar.animation)) + 1))
 		$"2DPlayer".velocity += Vector3(6,6,0)
-		if _2d_player.frozen: Director.shake_cam(Vector2(1,.5) * .1)
+		if _2d_player.frozen: 
+			$Jar/AnimationPlayer.stop()
+			$Jar/AnimationPlayer.play("hit")
+			Director.shake_cam(Vector2(1,.5) * .1)
 		if int(str(jar.animation)) >= 5 and _2d_player.frozen != false:
-			jar.scale = Vector3.ONE * .5
+			$Jar/AnimationPlayer.stop()
+			$Jar/AnimationPlayer.play("open")
+			jar.scale = Vector3.ONE * .6
 			$Jar/Jar.process_mode = Node.PROCESS_MODE_DISABLED
 			Director.shake_cam(Vector2(3,3) * .1)
 			
@@ -25,7 +30,7 @@ func _process(delta: float) -> void:
 			$Label3D.hide()
 			$Jar/LabelClick/Label3D.show()
 			_2d_player.velocity += Vector3(9,9,0)
-			await get_tree().create_timer(.5).timeout
+			await get_tree().create_timer(.2).timeout
 			_2d_player.frozen = false
 func start_anim():
 	$MainAnimation.play("Start")
