@@ -16,4 +16,5 @@ shape = SubResource("BoxShape3D_awj0h")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.725069, 0, 0, 0, 0.575375, 0, 0, 0, 0.284839, 0, 0.408417, 0.43)
 billboard = 1
+render_priority = 7
 texture = ExtResource("1_4k55u")

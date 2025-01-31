@@ -16,14 +16,14 @@ height = 3.02168
 transform = Transform3D(0.860262, 0, 0.509852, 0, 1, 0, -0.509852, 0, 0.860262, -1.15544, 0, 0.0241977)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(-0.00483218, -0.990534, -0.137176, 0.857865, -0.0745959, 0.508432, -0.513852, -0.115222, 0.850106, 1.12159, -0.206397, 1.25776)
+transform = Transform3D(-0.00483216, -0.990534, -0.137176, 0.857865, -0.0745961, 0.508432, -0.513852, -0.115222, 0.850106, 1.12159, -0.206397, 1.25776)
 shape = SubResource("CapsuleShape3D_3h544")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(-0.00483218, -0.990534, -0.137176, 0.857865, -0.0745959, 0.508432, -0.513852, -0.115222, 0.850106, 0.188936, 0.163016, 1.26047)
+transform = Transform3D(-0.00483216, -0.990534, -0.137176, 0.857865, -0.0745961, 0.508432, -0.513852, -0.115222, 0.850106, 0.188936, 0.163016, 1.26047)
 shape = SubResource("CapsuleShape3D_otyja")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.672501, 0, 0, 0, 0.672501, 0, 0, 0, 0.672501, 0, 0, 0)
+transform = Transform3D(0.533, 0, 0, 0, 0.533, 0, 0, 0, 0.533, 0, 0, 0)
 billboard = 1
 texture = ExtResource("1_kh1k6")

@@ -5,7 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_h3byf"]
 size = Vector3(4, 4, 4)
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[node name="box" type="StaticBody3D"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.3, 0)

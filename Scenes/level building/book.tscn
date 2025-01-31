@@ -27,5 +27,6 @@ transform = Transform3D(0.526006, 0, 0.850481, 0, 1, 0, -0.850481, 0, 0.526006, 
 shape = SubResource("BoxShape3D_qv026")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 billboard = 1
 texture = ExtResource("1_uvsp8")

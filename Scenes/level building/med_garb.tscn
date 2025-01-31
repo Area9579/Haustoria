@@ -15,4 +15,5 @@ shape = SubResource("CylinderShape3D_xutu8")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -0.3)
 billboard = 1
+render_priority = 7
 texture = ExtResource("1_c6frx")

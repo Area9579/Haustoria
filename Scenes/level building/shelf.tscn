@@ -3,16 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://bjgtgi5k7p8r7" path="res://Assets/shelf.png" id="1_uxx1h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bjg28"]
-size = Vector3(7.125, 0.64, 0.52)
+size = Vector3(9.18, 1.5, 0.52)
 
 [node name="shelf" type="StaticBody3D"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1.3516, 0, 0, 0, 1.3516, 0, 0, 0, 1.3516, 0, 1.91073, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.31073, 0)
 billboard = 1
 render_priority = 7
 texture = ExtResource("1_uxx1h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.20033)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.875)
 shape = SubResource("BoxShape3D_bjg28")
